@@ -1,174 +1,248 @@
 ---
-artifact: 1 — Attribution × Autonomy positioning
-buoc: 2 — Pricing/Access + Value/ROI
-phase: Đặt vị trí trên ma trận 2×2
-time: 15 phút (xem deck slide 4 để biết khung giờ chính xác trong buổi)
-input: 00-context.md + brief + 01-cost-model/3-FINAL-cost-model.md + prompts/03-attribution-autonomy.md
-nop-cuoi: Không — file trung gian
+artifact: 1 — Đặt sản phẩm trên ma trận Attribution × Autonomy
+buoc: 2 — Định giá + Giá trị / ROI
+phase: Đặt vị trí trên ma trận 2×2 để biết cách định giá nào hợp tự nhiên
+thoi-gian: 15 phút
+input: 00-context.md + đề bài + 01-cost-model/3-FINAL-cost-model.md + prompts/03-attribution-autonomy.md
+nop-cuoi: Không — đây là file trung gian (Section B của `04-FINAL-economics-sheet.md` mới là bản nộp)
 ---
 
-# 1 — Attribution × Autonomy: đặt sản phẩm trên ma trận 2×2
+# 1 — Đặt sản phẩm trên ma trận Attribution × Autonomy
 
-Mục tiêu: định vị AI product trên ma trận **Attribution × Autonomy** để xác định pricing model phù hợp tự nhiên.
+**Mục tiêu**: trước khi chọn cách định giá, nhóm phải xác định 2 đặc tính của AI trong đề bài — *Autonomy* (AI có làm tự chủ không) và *Attribution* (giá trị AI tạo ra có rõ ràng không). Hai trục này quyết định cách định giá nào tự nhiên hợp với sản phẩm.
 
-Lý do làm bước này: pricing model không tự nhiên xuất hiện — nó được quyết định bởi 2 đặc tính của AI (autonomy + attribution). Vị trí trên ma trận → pricing model. Vd: low autonomy + low attribution → seat-based; high autonomy + high attribution → outcome-based.
+Vì sao quan trọng: cách định giá không tự nhiên xuất hiện. Nó là **hệ quả** của vị trí AI trên ma trận. Đặt sản phẩm vào sai ô → cách định giá lệch với cách giá trị tạo ra → khách không hiểu vì sao họ trả tiền.
 
-Quy tắc: **không có vị trí trên ma trận = không có pricing model justify được**.
+**Quy tắc**: không có vị trí cụ thể trên ma trận = không có lý do để bảo vệ cách định giá.
 
-## Quy trình 15 phút
+---
+
+## Tổng thời gian 15 phút
+
+| Phần | Thời gian | Việc cần làm |
+|---|---|---|
+| A | 4 phút | Hiểu 2 trục — Autonomy và Attribution |
+| B | 5 phút | Trả lời 2 câu hỏi cho đề bài của nhóm |
+| C | 3 phút | Đặt vị trí trên ma trận + chọn ô |
+| D | 3 phút | Đối chiếu với một sản phẩm thật cùng ô |
+
+---
+
+## Phần A — Hiểu 2 trục của ma trận
+
+### Trục Autonomy (dọc) — AI có làm tự chủ không?
+
+**Câu hỏi**: Khi AI chạy xong một lần, có cần người duyệt rồi mới ra kết quả không, hay AI tự đẩy thẳng ra ngoài?
+
+- **Autonomy thấp** — AI gợi ý, người là người quyết định cuối.
+  - Grammarly đưa ra gợi ý sửa câu, người gõ chữ chọn nhận hay bỏ.
+  - GitHub Copilot viết nháp đoạn mã, lập trình viên sửa rồi mới commit.
+  - Trợ lý trả lời cho đội support đề xuất câu trả lời, nhân viên duyệt rồi mới gửi.
+
+- **Autonomy cao** — AI làm xong việc và đẩy thẳng đầu ra, người không xen vào (hoặc chỉ kiểm tra theo mẫu).
+  - OpenAI API tự phân loại nội dung và lưu nhãn.
+  - Intercom Fin tự trả lời người dùng cuối, không qua nhân viên.
+  - AWS Auto Scaling tự quyết khi nào tăng/giảm máy chủ.
+
+### Trục Attribution (ngang) — Giá trị AI tạo ra có rõ không?
+
+**Câu hỏi**: Khi nhìn vào một kết quả tốt, có thể nói rõ "AI làm ra cái này" không, hay nó hòa lẫn vào việc của cả đội?
+
+- **Attribution thấp** — Khó tách phần AI ra khỏi phần đội ngũ làm.
+  - AI giúp đội viết tài liệu nhanh hơn → kết quả là "đội viết tốt", không phải "AI viết tốt".
+  - Slack AI tóm tắt hội thoại → khó nói "AI là lý do chốt được đơn".
+
+- **Attribution cao** — Thấy rõ AI là người tạo ra kết quả cụ thể đó.
+  - Intercom Fin tự xử lý xong 1 ticket → rõ ràng AI giải quyết.
+  - Chargeflow thắng 1 vụ tranh chấp thẻ → rõ ràng AI thắng.
+  - DALL-E tạo ra 1 hình ảnh → rõ ràng AI tạo.
+
+---
+
+## Phần B — Trả lời 2 câu hỏi cho đề bài nhóm
+
+### Câu hỏi 1: Autonomy của AI trong đề bài
+
+Trước khi quyết, tự hỏi:
+
+- AI làm gì một mình từ đầu đến cuối?
+- Người làm gì ở khâu cuối, sau khi AI đã chạy xong?
+- Đề bài có ràng buộc "100% người phải duyệt" không?
+- AI có được tự gửi đầu ra cho khách / tự thay đổi hệ thống thật không?
+
+**Kết luận: AI trong đề bài thuộc Autonomy thấp hay cao?**
 
 ```text
-5 phút  — Trả lời 2 câu hỏi: autonomy + attribution
-5 phút  — Vẽ vị trí trên ma trận + chọn quadrant
-5 phút  — Validate với real-world analog
+(điền vào đây — chọn thấp / cao)
 ```
 
----
+**Giải thích trong 1-2 câu vì sao chọn vậy**:
 
-## Phần A — Hiểu 2 trục
+```text
+(điền vào đây)
+```
 
-### Trục Autonomy (dọc)
+### Câu hỏi 2: Attribution của AI trong đề bài
 
-**Câu hỏi**: AI tự làm xong việc, hay chỉ hỗ trợ người làm việc đó?
+Trước khi quyết, tự hỏi:
 
-- **Low Autonomy** = AI hỗ trợ, người quyết định cuối.
-  - Vd: Grammarly suggest, người chọn accept/reject.
-  - Vd: Copilot draft code, dev chỉnh sửa và commit.
-  - Vd: Support copilot suggest reply, agent edit và send.
+- Khi AI làm xong 1 đơn vị việc (1 ticket / 1 cảnh báo / 1 hợp đồng), có thể nói rõ "cái này là AI làm" không?
+- Hay AI chỉ là một bước trong quy trình dài, khó tách phần đóng góp?
+- Khách hàng có **thấy được** AI tạo ra giá trị, hay AI giấu mặt sau đội ngũ?
 
-- **High Autonomy** = AI làm xong xuôi, người review sau (hoặc không review).
-  - Vd: OpenAI API auto-classify content.
-  - Vd: Intercom Fin auto-reply user.
-  - Vd: AWS Auto Scaling tự quyết scaling.
+**Kết luận: AI trong đề bài thuộc Attribution thấp hay cao?**
 
-### Trục Attribution (ngang)
+```text
+(điền vào đây — chọn thấp / cao)
+```
 
-**Câu hỏi**: Có thể nói rõ AI tạo ra giá trị cụ thể nào không?
+**Giải thích trong 1-2 câu**:
 
-- **Low Attribution** = khó tách phần đóng góp của AI khỏi phần của team.
-  - Vd: AI giúp team viết tài liệu nhanh hơn — kết quả là "team viết tốt" chứ không "AI viết tốt".
-  - Vd: Slack AI hỗ trợ communication — khó nói "AI gây ra deal close".
-
-- **High Attribution** = thấy rõ AI là cause của outcome.
-  - Vd: Intercom Fin resolve 1 ticket → rõ AI giải quyết.
-  - Vd: Chargeflow win 1 chargeback dispute → rõ AI thắng.
-  - Vd: DALL-E sinh 1 ảnh → rõ AI tạo.
-
----
-
-## Phần B — Trả lời 2 câu hỏi cho brief của nhóm
-
-### Câu hỏi 1: Autonomy
-
-**Brief của nhóm thuộc Low hay High Autonomy?**
-
-- AI làm gì độc lập? [...]
-- Người làm gì cuối cùng? [...]
-- Có ràng buộc "100% human review" không? [Có → Low Autonomy]
-- AI tự gửi cho khách / push thay đổi production không? [Có → High Autonomy]
-
-**Kết luận Autonomy**: [Low / High]
-
-**Justification**: [1-2 câu giải thích vì sao]
-
-### Câu hỏi 2: Attribution
-
-**Brief của nhóm thuộc Low hay High Attribution?**
-
-- Nếu AI resolve 1 unit (1 ticket / 1 flag / 1 contract), có thể attribute hoàn toàn cho AI không? [Có → High]
-- Hay AI chỉ là 1 phần trong workflow, khó tách phần đóng góp? [→ Low]
-- Khách hàng có "thấy" rõ AI tạo giá trị không?
-
-**Kết luận Attribution**: [Low / High]
-
-**Justification**: [1-2 câu]
+```text
+(điền vào đây)
+```
 
 ---
 
 ## Phần C — Đặt vị trí trên ma trận
 
+Đây là ma trận Attribution × Autonomy với 4 ô. Mỗi ô gợi ý một cách định giá tự nhiên:
+
 ```text
-                Low Attribution        High Attribution
+                Attribution thấp             Attribution cao
 
-Low Autonomy    Seat / Flat            Hybrid (seat + credits)
-(human          Grammarly base         Cursor $20+credits
-controls)       Slack AI               Canva $15+500 credits
-                                       Clay $149-$800 tiers
+Autonomy thấp   Seat / Cố định                Hybrid (Seat + Credit)
+(người quyết)   Grammarly                    Cursor: $20 + credit
+                Slack AI                     Canva: $15 + 500 credit
+                                             Clay: gói $149-$800
 
-High Autonomy   Usage-based            Outcome-based
-(AI acts)       OpenAI API             Intercom Fin $0.99/res
-                AWS AI services        Chargeflow per dispute
-                Pinecone               Zendesk $1.50/resolution
+Autonomy cao    Usage-based                  Outcome-based
+(AI tự làm)     OpenAI API                   Intercom Fin: $0.99/lần xử lý
+                Dịch vụ AI của AWS           Chargeflow: theo vụ thắng
+                Pinecone                     Zendesk: $1.50/ticket xong
 ```
 
-**Vị trí của brief nhóm**:
+### Vị trí của đề bài nhóm
 
-- Autonomy: ___
-- Attribution: ___
-- → Quadrant: ___
+- **Trục Autonomy**:
 
-**Pricing model TỰ NHIÊN** (theo ma trận): ___
+```text
+(điền vào đây — thấp / cao)
+```
 
----
+- **Trục Attribution**:
 
-## Phần D — Validate với real-world analog
+```text
+(điền vào đây — thấp / cao)
+```
 
-Tìm 1 sản phẩm thật trong quadrant nhóm chọn để validate vị trí:
+- **Ô nhóm chọn** *(một trong 4 ô)*:
 
-| Sản phẩm tương tự | Quadrant của họ | Pricing model | Note |
-|---|---|---|---|
-| [...] | Low/High Auto + Low/High Attrib | [Seat / Usage / Hybrid / Outcome] | [...] |
+```text
+(điền vào đây)
+```
 
-**Câu hỏi validate**:
+### Cách định giá tự nhiên theo ma trận
 
-- Sản phẩm này có giống brief của nhóm không (cùng quadrant)?
-- Họ pricing theo cách nào? Có hợp với economics nhóm tính ra ở Section A không?
-
-Ví dụ analog:
-
-- Brief #1 (Support Copilot, low autonomy + medium attribution) → analog: Cursor, GitHub Copilot ($20-$30/seat + tiered credit).
-- Brief #2 (Content Moderator, high autonomy + low attribution, vì còn 100% review) → analog: AWS Rekognition (usage-based).
-- Brief #3 (Medical Triage, low autonomy + medium attribution) → analog: Epic AI in EHR (seat-based, bundle với EHR license).
-- Brief #4 (Legal Contract Reviewer, low autonomy + high attribution per flagged clause) → analog: Harvey AI, Kira (seat + tiered).
-- Brief #5 (Sales Email Generator, low autonomy + medium attribution) → analog: Clay, Lavender, Apollo.io.
-- Brief #6 (Code Review Assistant, low autonomy + high attribution per PR) → analog: Codium AI, Sourcegraph Cody.
-- Brief #7 (Inventory Forecaster, low autonomy + high attribution per forecast) → analog: Blue Yonder, o9.
-- Brief #8 (Essay Grader, low autonomy + high attribution per grade) → analog: GradeScope AI, Turnitin.
-- Brief #9 (Claim Processor, low autonomy + high attribution per claim) → analog: Tractable, Lemonade AI.
-- Brief #10 (Listing Generator, low autonomy + high attribution per listing) → analog: HouseSigma AI, ListingDojo.
+```text
+(điền vào đây — Seat / Usage / Outcome / Hybrid)
+```
 
 ---
 
-## Phần E — Edge case: brief nằm "giữa"
+## Phần D — Đối chiếu với một sản phẩm thật
 
-Một số brief khó dứt khoát Low/High. Trong trường hợp đó:
+Tìm **một sản phẩm AI thật** đang nằm trong cùng ô với đề bài nhóm. Đối chiếu để kiểm tra xem vị trí nhóm chọn có hợp lý không.
 
-- **Brief có autonomy "medium"** (vd: AI làm draft nhưng cần human review cho 80% case) → coi là Low Autonomy nếu human review là constraint cứng.
-- **Brief có attribution "medium"** (vd: AI flag clause, nhưng lawyer là người quyết định final issue list) → vẫn coi là High Attribution vì AI có output rõ ràng cho 1 contract.
+Trước khi chọn sản phẩm so sánh, tự hỏi:
 
-Nếu brief nhóm rơi vào "medium" → chọn hướng nghiêng theo nhận định:
+- Sản phẩm này có giải quyết bài toán tương tự đề bài không?
+- Họ đặt AI ở Autonomy nào, Attribution nào?
+- Họ đang định giá theo cách gì?
 
-- "Low Autonomy + Medium Attribution → Hybrid leaning Seat" (Cursor style: $20 base + credit).
-- "Low Autonomy + High Attribution → Hybrid (Seat + Outcome credit)" (Clay style: tier dựa trên outcome volume).
+**Sản phẩm thật nhóm chọn để so sánh**:
+
+```text
+(điền vào đây — vd: tên sản phẩm + 1 câu mô tả họ làm gì)
+```
+
+**Họ nằm ở ô nào trên ma trận**:
+
+```text
+(điền vào đây)
+```
+
+**Họ định giá theo cách gì** *(nếu biết, ghi số cụ thể)*:
+
+```text
+(điền vào đây)
+```
+
+**Có khớp với ô nhóm chọn cho đề bài không?**
+
+```text
+(điền vào đây — khớp / không khớp; nếu không, suy nghĩ lại vị trí trên ma trận)
+```
 
 ---
 
-## Phần F — Kiểm tra
+## Ví dụ: cách các đề bài hay rơi vào ô nào
 
-Trước khi chuyển sang `2-pricing-model-choice.md`, rà soát:
+*(Đọc tham khảo, không copy thẳng — đề bài của nhóm có thể khác.)*
 
-- [ ] Đã trả lời rõ Low/High cho Autonomy với justification.
-- [ ] Đã trả lời rõ Low/High cho Attribution với justification.
-- [ ] Vị trí quadrant rõ ràng (không "ở giữa cả 4 quadrant").
-- [ ] Pricing model tự nhiên theo ma trận đã ghi.
-- [ ] Có 1 real-world analog cùng quadrant để validate.
+- **Trợ lý cho support** — Autonomy thấp + Attribution trung bình → ô Hybrid. Sản phẩm tương tự: Cursor, GitHub Copilot.
+- **Bộ lọc nội dung** với ràng buộc 100% người duyệt — Autonomy thấp + Attribution thấp → ô Seat. Sản phẩm tương tự: nhiều công cụ bundle theo seat.
+- **Hệ thống phân loại đầu vào y tế** — Autonomy thấp + Attribution trung bình → ô Hybrid leaning Seat. Sản phẩm tương tự: AI tích hợp trong Epic EHR.
+- **Trợ lý đọc hợp đồng pháp lý** — Autonomy thấp + Attribution cao (rõ AI gắn cờ điểm rủi ro) → Hybrid (Seat + theo lượng). Sản phẩm tương tự: Harvey, Kira.
+- **AI viết email cho sale** — Autonomy thấp + Attribution trung bình → ô Hybrid. Sản phẩm tương tự: Clay, Lavender, Apollo.io.
+- **Trợ lý review code** — Autonomy thấp + Attribution cao (rõ AI tìm ra lỗi nào) → Hybrid (Seat + theo PR). Sản phẩm tương tự: Codium, Sourcegraph Cody.
+- **Dự báo tồn kho** — Autonomy thấp + Attribution cao → Seat hoặc Hybrid. Sản phẩm tương tự: Blue Yonder, o9.
+- **AI chấm bài luận** — Autonomy thấp + Attribution cao → Hybrid (Seat + theo lượt chấm). Sản phẩm tương tự: GradeScope, Turnitin.
+- **AI xử lý yêu cầu bảo hiểm** — Autonomy thấp + Attribution cao → Outcome-based (theo claim xử lý xong). Sản phẩm tương tự: Tractable, Lemonade AI.
+- **AI viết mô tả bất động sản** — Autonomy thấp + Attribution cao → Hybrid (Seat + theo listing). Sản phẩm tương tự: HouseSigma AI, ListingDojo.
 
 ---
 
-## Câu hỏi mở (cho `2-pricing-model-choice.md`)
+## Phần E — Khi đề bài "nửa cao nửa thấp"
 
-- Câu hỏi 1: Pricing model tự nhiên có phù hợp với buyer (CTO của brief) hay không?
-- Câu hỏi 2: Có Usage Anxiety rủi ro không (nếu chọn Usage-based)?
-- Câu hỏi 3: [...]
+Một số đề bài không dứt khoát thấp/cao. Cách xử lý:
 
-Sau bước này, chuyển sang `2-pricing-model-choice.md` để chốt pricing model + value metric.
+- **Autonomy "trung bình"** *(vd: AI làm nháp nhưng 80% trường hợp cần người duyệt)* → coi là Autonomy thấp **nếu** việc người duyệt là **ràng buộc cứng**, không phải tùy chọn.
+- **Attribution "trung bình"** *(vd: AI gắn cờ điểm trong hợp đồng, nhưng luật sư là người chốt danh sách điểm cần sửa)* → vẫn coi là Attribution cao **vì** AI vẫn có đầu ra rõ ràng cho 1 hợp đồng.
+
+Nếu đề bài nhóm nằm "giữa":
+
+- *Autonomy thấp + Attribution trung bình* → Hybrid nghiêng Seat (kiểu Cursor: $20 + credit).
+- *Autonomy thấp + Attribution cao* → Hybrid (Seat + theo lượng đầu ra) (kiểu Clay: gói tier theo lượng).
+
+**Đề bài nhóm có rơi vào "giữa" không?** Nếu có, nhóm nghiêng về hướng nào và vì sao?
+
+```text
+(điền vào đây — nếu không rơi vào "giữa", ghi "không")
+```
+
+---
+
+## Phần F — Kiểm tra trước khi sang `2-pricing-model-choice.md`
+
+- [ ] Đã chọn rõ Autonomy thấp / cao + giải thích 1-2 câu
+- [ ] Đã chọn rõ Attribution thấp / cao + giải thích 1-2 câu
+- [ ] Đã đặt đề bài vào **một** ô cụ thể trên ma trận (không "ở giữa cả 4 ô")
+- [ ] Đã ghi cách định giá tự nhiên theo ma trận
+- [ ] Đã tìm 1 sản phẩm thật cùng ô để đối chiếu
+
+---
+
+## Câu hỏi mở để mang sang `2-pricing-model-choice.md`
+
+Trước khi sang file tiếp theo, nhóm tự ghi 2-3 câu hỏi đang băn khoăn:
+
+```text
+1. (điền vào đây — vd: cách định giá tự nhiên có phù hợp với người mua trong đề bài không?)
+2.
+3.
+```
+
+---
+
+Sang bước tiếp theo: mở `2-pricing-model-choice.md` để chốt cách định giá cụ thể + chọn đơn vị khách trả tiền + kiểm tra rủi ro "ngại dùng AI vì sợ tốn".

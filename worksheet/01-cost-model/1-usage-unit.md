@@ -1,190 +1,237 @@
 ---
-artifact: 1 — Xác định Usage Unit + khung Cost Model
+artifact: 1 — Xác định đơn vị AI làm việc (Usage Unit) + ước tính khối lượng
 buoc: 1 — Cost Model
-phase: Define usage unit + ước tính volume
-time: 15 phút (xem deck slide 4 để biết khung giờ chính xác trong buổi)
-input: 00-context.md + brief được giao + prompts/01-define-usage-unit.md
-nop-cuoi: Không — file trung gian
+phase: Định nghĩa đơn vị AI làm việc + ước tính khối lượng
+thoi-gian: 15 phút
+input: 00-context.md + đề bài được giao + prompts/01-define-usage-unit.md
+nop-cuoi: Không — đây là file trung gian (chỉ section A trong `04-FINAL-economics-sheet.md` là bản nộp)
 ---
 
-# 1 — Xác định Usage Unit + ước tính volume
+# 1 — Định nghĩa đơn vị AI làm việc + ước tính khối lượng
 
-Mục tiêu: trước khi tính bất kỳ con số chi phí nào, nhóm phải định nghĩa rõ **AI làm GÌ trong MỘT lần chạy** (usage unit) và **MỖI tháng AI chạy bao nhiêu lần** (volume).
+**Mục tiêu**: trước khi tính bất kỳ con số chi phí nào, nhóm phải biết rõ **AI làm việc gì trong một lần chạy** và **mỗi tháng AI chạy bao nhiêu lần**.
 
-Lý do làm bước này: nếu không có usage unit, mọi con số sau (cost/task, value/task, monthly cost) đều không có nền tảng. Đây là "đơn vị nguyên tử kinh tế" của AI product.
+Vì sao quan trọng: nếu không có đơn vị AI làm việc (gọi là *Usage Unit* trong tiếng Anh), thì các con số sau — chi phí mỗi lần chạy, giá trị mỗi lần chạy, chi phí mỗi tháng — đều không có nền tảng. Đây là "đơn vị nguyên tử" của bài toán kinh tế AI.
 
-Quy tắc: **không có usage unit = không có cost model**.
-
-## Quy trình 15 phút
-
-```text
-5 phút  — Mỗi người tự đề xuất 1 usage unit
-5 phút  — Cặp chọn 1, kiểm tra qua 3-part test
-5 phút  — Ước tính volume từ brief
-```
+**Quy tắc**: không có đơn vị AI làm việc rõ ràng = không có Cost Model.
 
 ---
 
-## Phần A — Đề xuất Usage Unit
+## Tổng thời gian 15 phút
 
-### 3-part test (phải pass cả 3)
-
-Để đảm bảo usage unit hợp lệ, kiểm tra 3 điều:
-
-1. **Đếm được không?** — Có thể đếm số lần AI làm việc này (không phải "AI giúp đỡ" mà cụ thể: "AI sinh 1 reply", "AI flag 1 post").
-2. **Có tốn token không?** — Mỗi lần chạy đều gọi API → tốn chi phí.
-3. **Người dùng có thấy giá trị không?** — Một lần chạy có rút ngắn thời gian / cải thiện chất lượng cho user?
-
-Cả 3 = Có → usage unit hợp lệ.
-
-### Đề xuất của nhóm
-
-Mỗi thành viên tự đề xuất 1 usage unit. Sau đó cặp thảo luận chọn 1.
-
-**Đề xuất 1**: [...]
-
-- Đếm được? [Có / Không / chưa rõ]
-- Tốn token? [Có / Không / chưa rõ]
-- Có giá trị? [Có / Không / chưa rõ]
-
-**Đề xuất 2**: [...]
-
-- Đếm được?
-- Tốn token?
-- Có giá trị?
-
-**Usage unit cặp CHỌN**: [...]
-
-**Lý do chọn**: [vì sao usage unit này phù hợp với brief hơn các đề xuất khác]
-
----
-
-## Phần B — Common mistakes (đối chiếu)
-
-Kiểm tra usage unit của nhóm KHÔNG rơi vào các bẫy sau:
-
-| Bẫy | Ví dụ sai | Lý do sai |
+| Phần | Thời gian | Việc cần làm |
 |---|---|---|
-| Quá rộng | "AI hỗ trợ support" | Không đếm được — không biết "hỗ trợ" tính 1 lần hay nhiều lần |
-| Quá hẹp | "1 token AI sinh ra" | Đếm được nhưng không có giá trị user — user không trả tiền theo token |
-| Không phải atomic | "1 ticket được giải quyết" | Trong copilot, 1 ticket có thể gọi AI nhiều lần (search KB, draft, refine). Atomic phải là "1 lần AI chạy" |
-| Mix workflow vs AI | "1 buổi support shift" | Bao gồm cả công việc human không liên quan AI |
-| Đúng kỹ thuật, sai business | "1 API call" | Đúng technical nhưng không nối được với giá trị user |
-
-**Usage unit của nhóm có rơi vào bẫy nào không?**
-
-- [Có / Không. Nếu có, sửa lại trước khi tiếp tục]
+| A | 5 phút | Mỗi người tự nghĩ ra 1 phương án — sau đó cặp chọn 1 |
+| B | 5 phút | Kiểm tra phương án đã chọn không rơi vào các lỗi hay mắc |
+| C | 5 phút | Mô tả chi tiết phương án + ước tính khối lượng |
 
 ---
 
-## Phần C — Mô tả chi tiết Usage Unit
+## Phần A — Tự nghĩ phương án
 
-Mở rộng usage unit thành mô tả đầy đủ:
+### Trước khi viết, mỗi người tự hỏi
 
-**Tên usage unit**: [vd: "1 ticket reply draft"]
+- Trong quy trình ở đề bài, AI chen vào ở khâu nào?
+- Đầu ra của AI ở khâu đó nhìn như thế nào (một chữ phân loại / một đoạn văn / một quyết định / một bảng dữ liệu)?
+- Một lần AI chạy có thực sự đếm được không, hay là một thứ mơ hồ?
 
-**Mô tả 2-3 câu**: AI nhận input gì, sinh output gì, output đi đâu?
+### Một phương án đơn vị AI làm việc hợp lệ phải qua 3 câu kiểm tra
 
-[Ví dụ: "AI nhận nội dung ticket + 3 KB articles liên quan (từ vector search), sinh ra 1 bản nháp trả lời dài 80-200 từ. Bản nháp được hiển thị trong Zendesk side panel để agent edit/copy/send."]
+1. **Đếm được không?** — Có thể đếm "AI đã làm việc này X lần" mà không tranh cãi.
+2. **Có tốn token không?** — Một lần chạy có gọi sang API (giao diện gọi AI từ phần mềm), tức có chi phí thật.
+3. **Người dùng có thấy giá trị không?** — Một lần AI làm việc này có rút ngắn thời gian hoặc cải thiện chất lượng cho người dùng cụ thể nào?
 
-**Trigger** (khi nào AI chạy):
+Nếu cả 3 câu = Có → phương án hợp lệ.
 
-- [Ví dụ: agent click "Draft with AI" → AI chạy 1 lần]
-- [Auto trigger khi ticket vào queue?]
-- [Manual trigger?]
+### Phương án người 1
 
-**Input dự kiến** (1 lần chạy):
-
-- [Ví dụ: ticket subject + body + 3 KB articles + customer history (5 ticket gần nhất)]
-
-**Output dự kiến** (1 lần chạy):
-
-- [Ví dụ: 1 bản nháp 80-200 từ]
-
----
-
-## Phần D — Ước tính Volume
-
-### Pull từ brief
-
-Đọc lại brief, kéo các con số sau:
-
-- **Pilot users**: ___ (số người dùng AI trong pilot)
-- **Total team**: ___ (tổng đội)
-- **Team daily volume**: ___ (tổng số task team xử lý mỗi ngày)
-
-### Tính pilot daily volume
-
-Công thức:
+**Tên ngắn của đơn vị**:
 
 ```text
-Pilot daily volume = (Pilot users / Total team) × Team daily volume
+(điền vào đây)
 ```
 
-Tính cho nhóm:
+| Câu kiểm tra | Trả lời |
+|---|---|
+| Đếm được không? | _ _ _ |
+| Có tốn token không? | _ _ _ |
+| Người dùng có thấy giá trị không? | _ _ _ |
+
+### Phương án người 2
+
+**Tên ngắn của đơn vị**:
 
 ```text
-Pilot daily volume = (___ / ___) × ___ = ___ task/ngày
+(điền vào đây)
 ```
 
-### Tính monthly volume
+| Câu kiểm tra | Trả lời |
+|---|---|
+| Đếm được không? | _ _ _ |
+| Có tốn token không? | _ _ _ |
+| Người dùng có thấy giá trị không? | _ _ _ |
 
-Công thức:
+### Cặp chọn phương án nào?
 
 ```text
-Monthly volume = Pilot daily volume × 22 working days
+(điền tên ngắn vào đây)
 ```
 
-Tính cho nhóm:
+**Lý do chọn phương án này** (so với phương án kia):
 
 ```text
-Monthly volume = ___ × 22 = ___ task/tháng
+(điền vào đây)
 ```
-
-**Lưu ý**: dùng PILOT volume, không phải full-team volume. Đây là sai lầm phổ biến.
 
 ---
 
-## Phần E — Kiểm tra tính hợp lý
+## Phần B — Đối chiếu với các lỗi hay mắc
 
-Trước khi chuyển sang Phase 2 (cost research), kiểm tra:
+Đọc bảng dưới, rồi tự đánh giá xem phương án của nhóm có rơi vào lỗi nào không.
 
-- [ ] Usage unit pass 3-part test (đếm, tốn token, có giá trị).
-- [ ] Usage unit không quá rộng / quá hẹp.
-- [ ] Volume tính từ pilot scope (không phải full team).
-- [ ] Số ngày làm việc dùng = 22 (chuẩn 1 tháng).
-- [ ] Volume cuối tính được số cụ thể (vd: 3,520 task/tháng), không phải "khoảng vài nghìn".
+| Lỗi | Ví dụ sai | Vì sao sai |
+|---|---|---|
+| **Quá rộng** | "AI hỗ trợ team support" | Không đếm được — không biết "hỗ trợ" tính một lần hay nhiều lần |
+| **Quá hẹp** | "1 token AI sinh ra" | Đếm được nhưng người dùng không trả tiền theo token |
+| **Không phải đơn vị nhỏ nhất** | "1 ticket được giải quyết" | Một ticket có thể gọi AI nhiều lần (tìm tài liệu, viết nháp, sửa lại). Đơn vị nhỏ nhất phải là một lần AI chạy |
+| **Trộn lẫn việc người với việc AI** | "1 ca trực support" | Bao gồm cả công việc người làm không liên quan đến AI |
+| **Đúng kỹ thuật, sai góc nhìn kinh doanh** | "1 lần gọi API" | Đúng kỹ thuật nhưng người mua (CTO, VP) không hiểu vì sao họ trả tiền cho "lần gọi API" |
 
-### Cảm giác (sanity check)
+### Phương án của nhóm có rơi vào lỗi nào không?
 
-- Volume nhóm tính có khớp với scale brief không?
-  - Vd: brief 800 ticket/ngày toàn team, pilot 5/25 → 160 ticket/ngày pilot là hợp lý.
-  - Vd: brief 2M post/ngày → pilot 5/15 reviewer × 20K flag/ngày = 6,667 flag/ngày pilot.
-
----
-
-## Phần F — Hint cho Phase 2 (Cost Research)
-
-Trước khi vào phase 2, suy nghĩ trước:
-
-- Model nào nhóm dự định dùng (đọc lại 00-context.md phần 6)?
-- Input tokens dự kiến mỗi lần chạy bao nhiêu?
-  - Ví dụ ngắn (classify): 200-500 tokens.
-  - Ví dụ trung bình (draft reply): 800-1,500 tokens.
-  - Ví dụ dài (legal contract review): 5K-20K tokens.
-- Output tokens dự kiến bao nhiêu?
-  - Ví dụ ngắn (label/classification): 50-100 tokens.
-  - Ví dụ trung bình (reply draft): 300-500 tokens.
-  - Ví dụ dài (analysis report): 1K-3K tokens.
-
-Lưu lại ước tính này cho phase 2 — sẽ dùng để tính cost/task.
+```text
+(điền vào đây — nếu có, sửa lại trước khi sang Phần C)
+```
 
 ---
 
-## Câu hỏi mở (cho Phase 2)
+## Phần C — Mô tả chi tiết đơn vị + ước tính khối lượng
 
-- Câu hỏi 1: [vd: "Vector DB cho KB search có cần không, giá bao nhiêu?"]
-- Câu hỏi 2: [vd: "Có cần monitoring tool (Langfuse, Langsmith)?"]
-- Câu hỏi 3: [...]
+### C.1 — Mô tả chi tiết
 
-Sau bước này, chuyển sang `2-cost-research.md` để tra pricing và tính cost/task.
+**Tên đơn vị AI làm việc**:
+
+```text
+(điền tên ngắn — vd: "1 bản nháp trả lời ticket")
+```
+
+**Mô tả 2-3 câu** *(AI nhận đầu vào gì, sinh đầu ra gì, đầu ra đi đâu)*:
+
+```text
+(điền vào đây)
+```
+
+**AI chạy khi nào?** *(người dùng bấm nút / tự động khi có sự kiện / theo lịch / ...)*:
+
+```text
+(điền vào đây)
+```
+
+**Đầu vào dự kiến trong một lần chạy** *(văn bản nào / dữ liệu nào, kích thước ước lượng)*:
+
+```text
+(điền vào đây)
+```
+
+**Đầu ra dự kiến trong một lần chạy** *(văn bản / số / nhãn, kích thước ước lượng)*:
+
+```text
+(điền vào đây)
+```
+
+### C.2 — Khối lượng
+
+Mở đề bài, lấy các số sau:
+
+| Số liệu | Giá trị | Lấy từ trường nào trong đề bài |
+|---|---|---|
+| Người dùng trong nhóm thử nghiệm | _ _ _ | Trường 8 — Ngân sách / Thời gian pilot |
+| Tổng đội | _ _ _ | Trường 1 — Bối cảnh doanh nghiệp |
+| Khối lượng mỗi ngày của toàn đội | _ _ _ | Trường 1 hoặc Trường 7 — Chỉ số nền |
+
+Tính khối lượng mỗi ngày của nhóm thử nghiệm:
+
+```text
+Khối lượng mỗi ngày = (Người dùng pilot / Tổng đội) × Khối lượng mỗi ngày toàn đội
+```
+
+→ Số tính ra:
+
+```text
+(điền vào đây — vd: 160 việc/ngày)
+```
+
+Tính khối lượng mỗi tháng (1 tháng làm việc = 22 ngày):
+
+```text
+Khối lượng mỗi tháng = Khối lượng mỗi ngày × 22
+```
+
+→ Số tính ra:
+
+```text
+(điền vào đây — vd: 3,520 việc/tháng)
+```
+
+> **Lưu ý quan trọng**: dùng **khối lượng của nhóm thử nghiệm**, không phải của toàn đội. Đây là lỗi nhiều nhóm mắc — họ tính cost theo khối lượng toàn đội nhưng pilot chỉ chạy với một nhóm nhỏ.
+
+---
+
+## Phần D — Kiểm tra hợp lý trước khi sang Phase 2
+
+Trước khi sang `2-cost-research.md`, đánh dấu các ô đã xong:
+
+- [ ] Đơn vị qua 3 câu kiểm tra (đếm được, tốn token, có giá trị)
+- [ ] Đơn vị không quá rộng / quá hẹp / lẫn việc người
+- [ ] Khối lượng tính cho **nhóm thử nghiệm**, không phải toàn đội
+- [ ] Số ngày làm việc dùng là 22
+- [ ] Khối lượng cuối là một số cụ thể, không phải "khoảng vài nghìn"
+
+### Câu hỏi cảm tính
+
+Nhìn số khối lượng vừa tính ra: có khớp với quy mô đề bài không?
+
+- Vd: đề bài 800 ticket/ngày toàn đội, pilot 5/25 → 160 ticket/ngày cho pilot là hợp lý.
+- Vd: đề bài 2 triệu bài/ngày, pilot 5/15 reviewer → ~6,667 lần kiểm tra mỗi ngày cho pilot là hợp lý.
+
+Câu trả lời của nhóm:
+
+```text
+(điền vào đây)
+```
+
+---
+
+## Phần E — Gợi ý chuẩn bị cho Phase 2 (Cost Research)
+
+Trước khi sang phần tra giá, suy nghĩ trước về kích thước token:
+
+| Loại việc | Số token đầu vào điển hình | Số token đầu ra điển hình |
+|---|---|---|
+| Phân loại / gán nhãn | 200–500 | 50–100 |
+| Viết bản nháp ngắn | 800–1,500 | 300–500 |
+| Tóm tắt / phân tích văn bản dài | 5,000–20,000 | 1,000–3,000 |
+
+Nhóm dự đoán đơn vị của mình rơi vào nhóm nào? Số token đầu vào / đầu ra dự kiến bao nhiêu?
+
+```text
+(điền vào đây — vd: "Bản nháp trả lời ticket, đầu vào ~1,200 tokens, đầu ra ~400 tokens")
+```
+
+Câu trả lời này sẽ dùng để tra giá ở Phase 2.
+
+---
+
+## Câu hỏi mở để nhóm hỏi AI ở Phase 2
+
+Nghĩ trước 2-3 câu nhóm sẽ hỏi AI hỗ trợ ở Phase 2:
+
+```text
+1. (điền vào đây — vd: "Cần dùng vector DB cho phần tìm tài liệu không, nếu có giá bao nhiêu?")
+2.
+3.
+```
+
+---
+
+Sang bước tiếp: mở `2-cost-research.md` để tra giá và tính chi phí cho mỗi lần AI chạy.

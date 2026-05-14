@@ -1,289 +1,201 @@
-# Prompt tham khảo 9 — So sánh Cross-Brief
+# Câu lệnh AI 9 — So sánh với cặp khác đề bài
 
-**Dùng khi**: nhóm đã hoàn thành Economics Sheet, muốn so sánh kết quả với 1-2 cặp khác brief khác — rút insight pattern across briefs.
-**Công cụ gợi ý**: Claude Sonnet/Opus, ChatGPT-4o.
-**Lưu kết quả vào**: Phần "Comparison với cặp khác brief" trong `04-FINAL-economics-sheet.md`
-**Thời gian**: 10 phút (sau giờ Lab chính, có thể làm trong giờ Present)
+**Dùng khi**: nhóm đã hoàn thành Economics Sheet và muốn đối chiếu kết quả với 1–2 cặp ở đề bài khác — để rút ra quy luật chung về kinh tế AI.
 
----
+**Công cụ gợi ý**: Claude, ChatGPT.
 
-## Trước khi vào prompt — 5 câu hỏi nhóm tự trả lời
+**Lưu kết quả vào**: phần "So sánh với cặp khác đề bài" trong `04-FINAL-economics-sheet.md`.
 
-1. **Brief nhóm tôi** là gì (# + tên)?
-2. **Brief 2 cặp khác** đã share kết quả với mình là gì?
-3. **3 metrics chính** so sánh: Monthly Cost, Monthly Value, ROI.
-4. **Pattern tìm kiếm**: cost structure khác nhau ở chỗ nào? Verdict khác nhau lý do gì?
-5. **Insight target**: tổng quát hoá pattern từ 3 brief.
-
-> **Cảnh báo**: cross-brief comparison KHÔNG để "thắng/thua" giữa nhóm. Để rút **insight transferable** về AI economics — patterns vượt brief.
+**Thời gian**: 10 phút (sau giờ Lab chính, có thể làm trong giờ trình bày).
 
 ---
 
-## Prompt chính (paste sau khi có Economics Sheet 3 brief)
+## Trước khi vào câu lệnh — 5 câu nhóm tự trả lời
+
+So sánh không phải để "thắng / thua" giữa nhóm. Để rút ra quy luật chung **vượt qua một đề bài cụ thể** — đây là loại bài học quan trọng nhất cho người làm sản phẩm AI sau này.
+
+1. Đề bài nhóm tôi là gì (số + tên ngắn)?
+2. 2 cặp khác đã chia sẻ kết quả với nhóm là đề bài gì?
+3. 3 chỉ số chính so sánh: Chi phí/tháng, Giá trị/tháng, ROI.
+4. Quy luật cần tìm: cấu trúc chi phí khác nhau ở điểm nào? Verdict khác nhau vì lý do gì?
+5. Mục tiêu cuối: tổng quát hoá quy luật từ 3 đề bài.
+
+---
+
+## Câu lệnh chính (dán sau khi đã có Economics Sheet của cả 3 đề bài)
 
 ```text
-Bạn là Senior Product Manager AI có kinh nghiệm cross-portfolio.
-Dựa trên 3 brief Economics Sheet (brief nhóm tôi + 2 brief cặp khác),
-giúp tôi extract patterns + insights.
+Bạn là Senior Product Manager AI có kinh nghiệm nhìn nhiều dự án.
+Dựa trên Economics Sheet của 3 đề bài (đề bài nhóm tôi + 2 đề bài cặp
+khác), giúp tôi rút quy luật và bài học.
 
-DATA NHẬP VÀO:
+Dữ liệu đầu vào:
 
-Brief A (nhóm tôi): #___ "[tên]"
-- Usage unit: ___
-- Monthly cost: $___ (API ___%, tooling ___%, review ___%, setup ___%)
-- Monthly value: $___
-- Base ROI: ___:1
+Đề bài A (nhóm tôi): #___ "[tên]"
+- Usage Unit: ___
+- Chi phí/tháng: $___ (API ___%, công cụ ___%, người kiểm tra ___%, triển khai ___%)
+- Giá trị/tháng: $___
+- ROI cơ bản: ___:1
 - Verdict: ___
-- Pricing model: ___
+- Mô hình định giá: ___
 
-Brief B (cặp khác): #___ "[tên]"
-- [tương tự]
+Đề bài B (cặp khác): #___ "[tên]"
+- (như trên)
 
-Brief C (cặp khác): #___ "[tên]"
-- [tương tự]
+Đề bài C (cặp khác): #___ "[tên]"
+- (như trên)
 
-YÊU CẦU PHÂN TÍCH:
+Yêu cầu phân tích:
 
-PHẦN 1 — Bảng so sánh:
+Phần 1 — Bảng so sánh:
 
-| Aspect | Brief A | Brief B | Brief C |
+| Mặt | Đề A | Đề B | Đề C |
 |---|---|---|---|
-| Domain | | | |
-| Usage unit | | | |
-| Monthly volume (tasks) | | | |
-| Cost/task | $___ | $___ | $___ |
-| Cost component dominate | [vd: API / Human review / Tooling] | | |
-| Monthly cost | $___ | $___ | $___ |
-| Monthly value | $___ | $___ | $___ |
-| Base ROI | ___:1 | ___:1 | ___:1 |
-| Combined worst ROI | ___:1 | ___:1 | ___:1 |
-| Pricing model | | | |
+| Ngành | | | |
+| Usage Unit | | | |
+| Khối lượng/tháng | | | |
+| Chi phí/lần chạy | $___ | $___ | $___ |
+| Phần chi phí chiếm phần lớn | (vd: API / Người kiểm tra / Công cụ) | | |
+| Chi phí/tháng | $___ | $___ | $___ |
+| Giá trị/tháng | $___ | $___ | $___ |
+| ROI cơ bản | ___:1 | ___:1 | ___:1 |
+| ROI kịch bản tệ nhất | ___:1 | ___:1 | ___:1 |
+| Mô hình định giá | | | |
 | Verdict | | | |
 
-PHẦN 2 — Pattern Analysis:
+Phần 2 — Tìm 3–4 quy luật:
 
-Identify 3-4 patterns:
+Quy luật 1 — Cấu trúc chi phí:
+- Đề bài nào chi phí chủ yếu là API? Lý do? (vd: khối lượng cao + ít
+  kiểm tra → API chiếm phần lớn).
+- Đề bài nào chi phí chủ yếu là Người kiểm tra? Lý do? (vd: ràng buộc
+  100% người duyệt).
+- Đề bài nào chi phí chủ yếu là Công cụ? Lý do?
 
-PATTERN 1 — Cost structure pattern
-- Brief nào có cost dominate bởi API? Lý do? (vd: high volume + low review = API dominate).
-- Brief nào có cost dominate bởi Human Review? Lý do? (vd: 100% review constraint).
-- Brief nào có cost dominate bởi Tooling? Lý do?
+Quy luật 2 — Khối lượng vs Chi phí/lần chạy:
+- Đề bài khối lượng cao + chi phí/lần thấp (support, kiểm duyệt nội dung)
+  vs đề bài khối lượng thấp + chi phí/lần cao (luật, y tế)?
+- Hai mô hình kinh tế khác nhau — đánh đổi gì cho mỗi mô hình?
 
-PATTERN 2 — Volume vs Cost/task pattern
-- Brief có high volume + low cost/task (support, content) vs Brief có low volume + high cost/task (legal, medical)?
-- Trade-off khác nhau cho mỗi pattern?
+Quy luật 3 — Verdict:
+- Đa số verdict là gì (GO / CONDITIONAL / NO-GO)?
+- Quy luật nào dẫn đến CONDITIONAL (vd: 3 trong 4 = CONDITIONAL nếu có
+  ràng buộc kiểm tra)?
 
-PATTERN 3 — Verdict pattern
-- Hầu hết verdict là gì (GO / CONDITIONAL / NO-GO)?
-- Pattern nào dẫn đến CONDITIONAL (vd: 3 trong 4 = CONDITIONAL nếu có constraint review)?
+Quy luật 4 — Mô hình định giá:
+- Đề bài có gắn-rõ-với-AI cao (luật, bồi thường) → tính theo kết quả dễ
+  hơn?
+- Đề bài có gắn-rõ thấp (support, nội dung) → tính theo người dùng dễ
+  hơn?
+- Có ngoại lệ nào không?
 
-PATTERN 4 — Pricing model pattern
-- Brief với high attribution (legal, claim) → outcome-based dễ hơn?
-- Brief với low attribution (support, content) → seat-based dễ hơn?
-- Có ngoại lệ không?
+Phần 3 — 3 bài học có thể chuyển sang đề khác:
 
-PHẦN 3 — Insights transferable:
+1. (vd: "Kinh tế AI bị chi phối bởi người kiểm tra khi đề bài có ràng
+   buộc 100% duyệt. Chi phí API thường không đáng kể.")
 
-3 insight rút ra:
+2. (vd: "ROI nhạy nhất với tỷ lệ sử dụng — không phải chi phí. Tỷ lệ
+   sử dụng tăng 20% → ROI tăng 30%, nhưng chi phí giảm 20% chỉ làm ROI
+   tăng 20%.")
 
-1. "Insight 1": [vd: AI economics dominate by Human Review cost khi brief có 100% review constraint. API cost insignificant.]
+3. (vd: "CONDITIONAL chiếm 70% verdict — đó là thực tế, không phải bi
+   quan. Pilot AI đa số là CONDITIONAL.")
 
-2. "Insight 2": [vd: ROI sensitive nhất với adoption — không phải cost. Adoption tăng 20% → ROI tăng 30%, nhưng cost giảm 20% chỉ tăng ROI 20%.]
+Phần 4 — Bài học cho người mua:
 
-3. "Insight 3": [vd: CONDITIONAL chiếm 70% verdict — đó là realistic, không phải pessimistic. Pilot AI thực tế đa số là CONDITIONAL.]
+Nếu giám đốc kỹ thuật / phó tổng hỏi "Quy luật giữa các thử nghiệm AI
+của chúng ta là gì?", trả lời:
+- (vd: "Chi phí người kiểm tra chiếm phần lớn. Tối ưu ROI = tối ưu quy
+  trình kiểm tra, không phải chọn mô hình rẻ nhất.")
+- (vd: "Tỷ lệ sử dụng là biến quan trọng nhất. Đầu tư đào tạo > đầu tư
+  chất lượng AI.")
 
-PHẦN 4 — Lesson cho buyer:
+Phần 5 — Có gì áp dụng được cho nhóm tôi:
 
-Nếu CTO/VP hỏi "Pattern giữa các AI pilot của chúng ta là gì?", reply:
-- [vd: "Human review cost dominate. Optimize ROI = tối ưu review, không phải tối ưu model."]
-- [vd: "Adoption là biến quan trọng nhất. Đầu tư training > đầu tư AI quality."]
-- [vd: "Provider risk thấp khi API < 10% total cost. Nhưng quan trọng cho ML startup."]
+So với đề B + C, đề A:
+- Mạnh hơn ở: ___
+- Yếu hơn ở: ___
+- Có thể vay mượn từ B/C: ___ (vd: mô hình định giá, điều kiện giảm
+  thiểu).
 
-PHẦN 5 — Cross-brief learning cho nhóm tôi:
+Yêu cầu trình bày:
+- Bảng + gạch đầu dòng rõ ràng.
+- Viết tiếng Việt thoát nghĩa.
 
-So với Brief B + C, brief tôi:
-- Stronger ở: ___
-- Weaker ở: ___
-- Có thể borrow từ Brief B/C: ___ (vd: pricing model, mitigation conditions)
-
-YÊU CẦU FORMAT:
-- Bảng + bullet rõ ràng.
-- Trả lời tiếng Việt thoát nghĩa.
-
-YÊU CẦU PHẢN BIỆN:
-- Có pattern nào có thể là coincidence không (chỉ 3 brief — sample nhỏ)?
-- Có pattern nào surprising không?
-- Pattern nào contradicting với common wisdom?
+Yêu cầu phản biện:
+- Có quy luật nào chỉ là trùng hợp ngẫu nhiên không (mẫu chỉ 3 đề bài)?
+- Có quy luật nào bất ngờ không?
+- Quy luật nào ngược lại với "trí khôn thông thường"?
 ```
 
 ---
 
-## Iterate — đẩy AI sâu hơn nếu output chưa đủ
+## Iterate — đẩy AI sâu hơn khi bản nháp chưa đủ
 
-### Khi muốn deeper cost structure analysis
+### Khi muốn rút kết luận vĩ mô từ 3 đề bài
 
 ```text
-Bảng cost structure 3 brief:
+Sau khi phân tích, rút 3 kết luận có bằng chứng từ 3 đề bài:
 
-| Component | Brief A | Brief B | Brief C |
-|---|---|---|---|
-| API ($ + %) | $30 (1%) | $300 (60%) | $15 (10%) |
-| Tooling ($ + %) | $120 (4%) | $50 (10%) | $200 (15%) |
-| Human review ($ + %) | $2,500 (90%) | $0 (0%) | $1,000 (75%) |
-| Setup ($ + %) | $150 (5%) | $150 (30%) | $0 (0%) |
-| **Total** | **$2,800** | **$500** | **$1,215** |
+1. "Chi phí AI bị chi phối bởi cấu trúc ràng buộc — không phải API."
+   - Bằng chứng: bao nhiêu trong 3 đề bài có người kiểm tra chiếm phần lớn?
+   - Hệ quả cho PM: tối ưu quy trình kiểm tra trước, chọn mô hình rẻ sau.
 
-Analyze:
-1. Vì sao Brief A có Human Review 90% còn Brief B có 0%?
-   (Brief A: 100% review constraint. Brief B: high autonomy, no review.)
-2. Brief B có API 60% — provider risk cao nhất. Mitigation?
-3. Brief C cost mid-range $1,215 — balanced. Có pattern gì?
+2. "Điểm hoà vốn thường ở tỷ lệ sử dụng khoảng ___%."
+   - Bằng chứng: cả 3 đề bài hoà vốn ở mức tương tự?
+   - Hệ quả: chỉ số quan trọng nhất = theo dõi tỷ lệ sử dụng.
 
-Recommend lesson cho mỗi brief để optimize cost.
+3. "Mô hình định giá phụ thuộc trục Attribution nhiều hơn Autonomy."
+   - Bằng chứng: gắn-rõ cao → tính theo kết quả; gắn-rõ thấp → tính theo
+     người.
+
+3 kết luận này có bảo vệ được với dữ liệu 3 đề bài không?
 ```
 
-### Khi muốn rút conclusion vĩ mô
+### Khi muốn đối chiếu với sản phẩm thật ngoài lớp
 
 ```text
-Sau khi phân tích 3 brief, đưa ra 3 conclusion vĩ mô về AI economics:
+Cho mỗi đề bài, tìm 1 sản phẩm AI thật cùng ngành (Intercom Fin / Hive
+AI / Harvey AI / Buoy Health / …).
 
-1. "AI cost không phải về API — về human-in-the-loop."
-   - Bằng chứng: 2/3 brief có human review dominate.
-   - Implication: PM phải tối ưu review process, không chỉ chọn model rẻ.
-
-2. "ROI break-even thường ở adoption 30-40%."
-   - Bằng chứng: 3 brief đều break-even ở adoption ~35%.
-   - Implication: pilot success metric quan trọng nhất = adoption tracking.
-
-3. "Pricing model phụ thuộc Attribution > Autonomy."
-   - Bằng chứng: high attribution → outcome-based dễ pass; low attribution → seat-based.
-   - Implication: trước khi định pricing, hỏi "AI tạo outcome đo được không?".
-
-3 conclusion này có defensible với data 3 brief không?
+So sánh: quy luật của lớp giống / khác ngành ở điểm nào? Lý do (thường
+là thử nghiệm nhỏ vs sản xuất quy mô lớn)? Bài học cho nhóm tôi.
 ```
 
-### Khi muốn map với industry pattern
+---
+
+## Trước khi dán kết quả vào worksheet — nhóm tự rà soát
+
+- Quy luật rút ra có phải thực sự là quy luật, hay chỉ là trùng hợp?
+- Bài học có hành động được cho PM tương lai không?
+- Có quy luật nào bất ngờ, ngược trí khôn thông thường không?
+- Bài học cho nhóm có cụ thể không, hay chỉ là chung chung?
+
+---
+
+## Câu hỏi mở rộng (chỉ làm khi còn thời gian)
 
 ```text
-3 brief của lớp + 3 ví dụ industry public:
+So sánh giữa các đề bài là cách để trả lời 1 câu hỏi lớn hơn:
 
-| Brief | Industry analog | Họ học được gì |
-|---|---|---|
-| #1 Support Copilot | Intercom Fin, Ada, Zendesk AI | Outcome-based works ở high autonomy |
-| #2 Content Moderator | OpenAI Moderation, Hive AI | API-dominate, scale matters |
-| #3 Medical Triage | Buoy Health, Babylon Health | Trust + regulation = slow adoption |
+"Có quy luật chung 'AI đắt / rẻ' không, hay luôn phụ thuộc bối cảnh?"
 
-Cross-reference: brief lớp tôi có pattern giống/khác industry?
-- Pattern giống: ___
-- Pattern khác: ___ (lý do: pilot scale vs production scale)
+Sau khi xem 3 đề bài, trả lời:
 
-Insight: ___
-```
+1. Phép thử quy luật chung:
+   - Nếu nói "Chi phí AI luôn bị chi phối bởi API" — có đúng không?
+   - Bằng chứng: 3/3 đề bài lớp tôi chi phí chủ yếu là người kiểm tra,
+     không phải API.
+   - Kết luận: câu này SAI. Chi phí AI bị chi phối bởi CẤU TRÚC RÀNG BUỘC
+     (có người kiểm tra hay tự chủ).
 
----
+2. Riêng từng loại đề bài:
+   - Đề có 100% người kiểm tra → người kiểm tra chiếm phần lớn.
+   - Đề tự chủ cao → API chiếm phần lớn.
+   - Đề ngành hẹp → triển khai chiếm phần lớn (chi phí tinh chỉnh).
 
-## Phản biện sau khi có output — 5 câu nhóm tự hỏi
-
-1. **Pattern check**: 3 brief có thực sự cho pattern, hay là coincidence?
-2. **Insight check**: insight có actionable cho PM tương lai?
-3. **Surprising check**: có pattern nào ngược với common wisdom?
-4. **Buyer view**: CTO hỏi "What's pattern across pilots?" → có defendable answer?
-5. **Transferable check**: lesson cho brief tôi có cụ thể, không chỉ chung chung?
-
----
-
-## Ví dụ tốt vs ví dụ chưa tốt
-
-### Chưa tốt
-
-> "3 brief khác nhau. Brief 1 ROI 2.1, brief 2 ROI 5, brief 3 ROI 1.2."
-
-Vấn đề: chỉ liệt kê, không pattern, không insight.
-
-### Tốt
-
-> **Cross-Brief Comparison — Lớp AI20K-D27**
->
-> **Bảng so sánh** (chỉ kéo cost + ROI key):
->
-> | Brief | Domain | Cost ($/mo) | Cost dominate | ROI base | Verdict |
-> |---|---|---|---|---|---|
-> | #1 (us) Support Copilot | B2B SaaS | $2,803 | Human Review 47% | 2.07:1 | CONDITIONAL |
-> | #2 Content Moderator | Social platform | $3,200 | Human Review 92% | 1.5:1 | CONDITIONAL |
-> | #4 Legal Contract | M&A law | $1,400 | API 35%, Review 50% | 2.7:1 | CONDITIONAL |
->
-> **Pattern 1 — Cost dominate by Human Review**:
-> - 3/3 brief có Human Review > 40% cost.
-> - Lý do: cả 3 đều có constraint "100% review" hoặc tương đương.
-> - Insight: API cost (5-15%) thường minor. Tối ưu review process quan trọng hơn chọn model rẻ.
->
-> **Pattern 2 — Volume vs Cost/task trade-off**:
-> - Brief #1: high volume (3,520/mo) + low cost/task ($0.0084).
-> - Brief #2: extreme volume (146K/mo) + ultra-low cost/task ($0.000135).
-> - Brief #4: low volume (200/mo) + high cost/task ($2.50).
-> - Insight: 2 economic models — Volume Play (#1, #2) vs Premium Play (#4). Different optimization.
->
-> **Pattern 3 — Verdict pattern**:
-> - 3/3 = CONDITIONAL. None GO, none NO-GO.
-> - Lý do: pilot scale + uncertain adoption + emerging provider pricing.
-> - Insight: CONDITIONAL là default cho AI pilot. CTO nên expect CONDITIONAL, không GO chắc chắn.
->
-> **Pattern 4 — Pricing model**:
-> - Brief #1: Hybrid Seat + Credits.
-> - Brief #2: Usage-based (per flag pre-screen).
-> - Brief #4: Hybrid Seat + Outcome.
-> - Insight: 2/3 chọn Hybrid — không phải pure pricing. Hybrid balance predictability + ROI defendability.
->
-> **Lesson cho nhóm tôi**:
-> - Borrow từ Brief #2: scale advantage. Nếu pilot tôi mở rộng 5 → 25 agent → cost dominated by API (như #2) → có thể cheaper model fallback hợp lý hơn.
-> - Borrow từ Brief #4: outcome-based component. Có thể thử $X/seat + outcome $Y/draft accepted → defend ROI rõ hơn cho CFO.
-
----
-
-## Anti-pattern khi prompt — tránh
-
-| Đừng làm | Nên làm |
-|---|---|
-| Chỉ liệt kê 3 brief, không so sánh | Đặt vào bảng + identify pattern |
-| Không có actionable insight | Mỗi pattern có implication cho PM |
-| Conclusion chung chung "AI khác nhau" | Cụ thể "Human review dominate when constraint review" |
-| Coincidence treated as pattern | Caveat: sample 3 brief, cần n=10+ mới robust |
-| Bỏ industry analog | Cross-ref với real product (Intercom, Hive, etc.) |
-
----
-
-## Format save vào `04-FINAL-economics-sheet.md` (phần Comparison)
-
-```markdown
-## Comparison với cặp khác brief
-
-[Paste bảng + 3-4 pattern + lesson cho nhóm]
-```
-
----
-
-## Câu hỏi mở rộng — nâng cao phản biện (optional)
-
-```text
-Cross-brief insight là proxy cho 1 câu hỏi lớn hơn:
-
-"Có universal 'AI is expensive / cheap' không, hay luôn phụ thuộc?"
-
-Sau khi xem 3 brief, trả lời:
-
-1. **Universal claim test**: nếu nói "AI cost luôn dominate by API" — có phải universally đúng?
-   - Bằng chứng: 3/3 brief lớp tôi cost dominate Human Review, không API.
-   - Conclusion: claim sai. AI cost dominate by **constraint structure** (review vs auto).
-
-2. **Per-brief specific**:
-   - Brief có 100% review → human review dominate.
-   - Brief có high autonomy → API dominate.
-   - Brief có narrow domain → setup dominate (fine-tune cost).
-
-3. **PM mental model**:
-   - Trước stress test: assume "AI cost = API cost".
-   - Sau stress test: "AI cost = constraint cost + opportunity cost".
-   - Đây là shift quan trọng cho PM AI mới.
-
-Trả lời 3 câu này = D28 panel question prepare. Panel sẽ hỏi "Pattern là gì? Insight cho PM?" — trả lời được = strong defense.
+3. Tư duy của PM AI:
+   - Trước nén thử: cứ tưởng "Chi phí AI = chi phí API".
+   - Sau nén thử: "Chi phí AI = chi phí ràng buộc + chi phí cơ hội".
+   - Đây là bước chuyển tư duy quan trọng cho PM AI mới.
 ```

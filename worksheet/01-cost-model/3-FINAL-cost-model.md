@@ -1,177 +1,239 @@
 ---
-artifact: 3 — FINAL Cost Model (Section A của Economics Sheet)
+artifact: 3 — Chốt Cost Model (Mục A của bảng kinh tế)
 buoc: 1 — Cost Model
-phase: Chốt Section A
-time: 10 phút (xem deck slide 4 để biết khung giờ chính xác trong buổi)
+phase: Chốt mục A
+thoi-gian: 10 phút
 input: 1-usage-unit.md + 2-cost-research.md
-nop-cuoi: Có — section A nộp trong 04-FINAL-economics-sheet.md
+nop-cuoi: Có — mục A sẽ được dán vào `04-FINAL-economics-sheet.md` để nộp
 ---
 
-# 3 — FINAL Cost Model — Section A của Economics Sheet
+# 3 — Chốt Cost Model (Mục A của bảng kinh tế)
 
-Đây là file cuối của Step 1 Lab. Người chấm sẽ xem section này cùng với 3 section còn lại trong `04-FINAL-economics-sheet.md`.
+**Mục tiêu**: gộp các con số đã có từ `1-usage-unit.md` và `2-cost-research.md` thành **Mục A — Cost Model** với đầy đủ 10-15 trường + công thức tính chi phí mỗi tháng.
 
-Mục tiêu: chốt Section A của Economics Sheet với 10-15 trường rõ ràng + công thức tính monthly cost.
+Đây là file cuối của Bước 1 trong Lab. Người chấm sẽ đọc Mục A này song song với 3 mục còn lại trong file gộp `04-FINAL-economics-sheet.md`.
 
-Quy tắc khi viết:
+Vì sao quan trọng: nếu Mục A không gãy, mọi tính toán của Bước 2 (giá trị / ROI) và Bước 3 (kịch bản xấu) đều có nền tảng. Nếu Mục A lung lay, các bước sau cũng lung lay theo.
 
-- Mỗi số phải có công thức / nguồn / lý do.
-- Không dùng "khoảng", "tầm", "đại loại" — phải số cụ thể.
-- Tham chiếu `1-usage-unit.md` và `2-cost-research.md` cho công thức chi tiết.
+**Quy tắc khi điền**:
+
+- Mỗi con số đều phải có công thức, nguồn, hoặc lý do — không có số "trên trời rơi xuống".
+- Cấm dùng "khoảng", "tầm", "đại loại" — phải là một số cụ thể.
+- Khi cần công thức chi tiết, mở `1-usage-unit.md` (phần khối lượng) và `2-cost-research.md` (phần chi phí từng thành phần).
+
+---
+
+## Tổng thời gian 10 phút
+
+| Phần | Thời gian | Việc cần làm |
+|---|---|---|
+| A.0 | 1 phút | Điền thông tin nhóm |
+| A.1 → A.6 | 6 phút | Điền 6 mục con: đơn vị tính, khối lượng, API, công cụ phụ trợ, người kiểm, setup |
+| A.7 | 2 phút | Áp công thức 4 thành phần → chi phí mỗi tháng |
+| A.8 | 1 phút | Kiểm tra so với ngân sách trong đề bài |
 
 ---
 
 ## Thông tin nhóm
 
-- **Brief**: # ___ — [tên brief]
-- **Cặp**: [tên + mã học viên × 2]
-- **Ngày tính**: [YYYY-MM-DD]
-- **Phiên bản**: v1
+Trước khi điền các mục con, ghi thông tin nhận diện. Người chấm dùng cho việc đối chiếu.
+
+- **Số đề bài + tên ngắn**:
+
+```text
+(điền vào đây)
+```
+
+- **Tên + mã học viên × 2 thành viên cặp**:
+
+```text
+(điền vào đây)
+```
+
+- **Ngày tính** *(YYYY-MM-DD)*:
+
+```text
+(điền vào đây)
+```
+
+- **Phiên bản** *(v1 cho lần nộp đầu, v2 nếu nhóm sửa lại sau phản hồi)*:
+
+```text
+(điền vào đây)
+```
 
 ---
 
-## Section A — Cost Model
+## Mục A — Cost Model
 
-### A.1 — Usage Unit
+### A.1 — Đơn vị AI làm việc
+
+Trả lời "AI làm việc gì trong một lần chạy". Lấy từ `1-usage-unit.md` phần C.1.
 
 | Trường | Giá trị |
 |---|---|
-| Usage unit (tên ngắn) | [vd: "1 ticket reply draft"] |
-| Mô tả (1-2 câu) | [...] |
-| 3-part test pass | ☐ Đếm được ☐ Tốn token ☐ Có giá trị |
+| Tên ngắn của đơn vị | (điền vào đây) |
+| Mô tả 1-2 câu *(AI nhận đầu vào gì, sinh đầu ra gì, đi đâu)* | (điền vào đây) |
+| Đếm được không? | (điền vào đây) |
+| Có tốn token không? | (điền vào đây) |
+| Người dùng có thấy giá trị không? | (điền vào đây) |
 
-### A.2 — Volume
+### A.2 — Khối lượng
+
+Lấy từ `1-usage-unit.md` phần C.2. Nhắc lại: khối lượng tính cho **nhóm thử nghiệm**, không phải toàn đội.
 
 | Trường | Giá trị | Công thức / Nguồn |
 |---|---|---|
-| Pilot users | ___ | Brief field #8 |
-| Total team | ___ | Brief field #1 |
-| Team daily volume | ___ /day | Brief field #1 |
-| Pilot daily volume | ___ /day | (pilot/total) × team daily |
-| Monthly volume | ___ /month | daily × 22 working days |
+| Người dùng trong nhóm thử nghiệm | (điền vào đây) | Trường 8 trong đề bài |
+| Tổng đội | (điền vào đây) | Trường 1 trong đề bài |
+| Khối lượng mỗi ngày của toàn đội | (điền vào đây) việc/ngày | Trường 1 hoặc Trường 7 |
+| Khối lượng mỗi ngày của nhóm thử nghiệm | (điền vào đây) việc/ngày | (Người thử / Tổng đội) × Khối lượng toàn đội |
+| Khối lượng mỗi tháng | (điền vào đây) việc/tháng | Khối lượng mỗi ngày × 22 ngày làm việc |
 
-### A.3 — Model + API Cost
+### A.3 — Chi phí API
+
+Lấy từ `2-cost-research.md` phần B. Mọi giá phải có đường dẫn trang giá nhà cung cấp.
 
 | Trường | Giá trị | Nguồn |
 |---|---|---|
-| Provider chính | ___ | [URL pricing page] |
-| Model chọn | ___ | [URL pricing page] |
-| Input price ($/1M tokens) | $___ | [URL] |
-| Output price ($/1M tokens) | $___ | [URL] |
-| Input tokens/task | ___ | Ước tính từ task type |
-| Output tokens/task | ___ | Ước tính từ task type |
-| API cost/task | $___ | (in × in_price + out × out_price) / 1M |
+| Nhà cung cấp chính | (điền vào đây) | (dán đường dẫn trang giá) |
+| Mô hình chọn | (điền vào đây) | (dán đường dẫn trang giá) |
+| Giá đầu vào ($/1M token) | $(điền vào đây) | (dán đường dẫn) |
+| Giá đầu ra ($/1M token) | $(điền vào đây) | (dán đường dẫn) |
+| Số token đầu vào mỗi lần chạy | (điền vào đây) | Ước tính từ loại việc |
+| Số token đầu ra mỗi lần chạy | (điền vào đây) | Ước tính từ loại việc |
+| Chi phí API mỗi lần chạy | $(điền vào đây) | (in × giá_in + out × giá_out) / 1.000.000 |
 
-### A.4 — Tooling Cost
+### A.4 — Chi phí công cụ phụ trợ
+
+Lấy từ `2-cost-research.md` phần C. Nếu không cần một công cụ → ghi `0` và lý do "không cần", đừng để trống.
 
 | Trường | Giá trị | Nguồn / Lý do |
 |---|---|---|
-| Vector DB | $___ /month | [Pinecone / Qdrant / pgvector / không cần] |
-| Monitoring | $___ /month | [Langfuse / Helicone / không cần] |
-| Orchestration | $___ /month | [n8n / Zapier / custom / không cần] |
-| Other tooling | $___ /month | [Specify] |
-| **Tổng tooling/tháng** | **$___** | Sum |
+| Cơ sở dữ liệu vector *(Pinecone / Qdrant / pgvector / không cần)* | $(điền vào đây) /tháng | (điền vào đây) |
+| Giám sát chất lượng *(Langfuse / Helicone / không cần)* | $(điền vào đây) /tháng | (điền vào đây) |
+| Điều phối quy trình *(n8n / Zapier / tự viết / không cần)* | $(điền vào đây) /tháng | (điền vào đây) |
+| Công cụ phụ trợ khác | $(điền vào đây) /tháng | (điền vào đây) |
+| **Tổng công cụ phụ trợ mỗi tháng** | **$(điền vào đây)** | Cộng 4 dòng trên |
 
-### A.5 — Human Review Cost
+### A.5 — Chi phí người kiểm
+
+Áp dụng nếu đề bài có ràng buộc người kiểm trước khi AI gửi đầu ra. Nếu đề bài cho phép AI tự gửi → điền `0` và ghi rõ "đề bài cho phép AI tự gửi".
 
 | Trường | Giá trị | Công thức / Lý do |
 |---|---|---|
-| Reviewer hourly rate | $___ /hr | [Brief hoặc loaded rate = 1.3-1.5× lương cơ bản] |
-| Review time/task | ___ phút | [Ước tính từ brief constraint] |
-| Cost/review | $___ /task | (phút / 60) × hourly |
-| Monthly review cost | $___ /month | Monthly volume × cost/review |
+| Lương người kiểm mỗi giờ *(đã gồm phụ cấp = lương cơ bản × 1.3-1.5)* | $(điền vào đây) /giờ | Lấy từ đề bài hoặc giả định theo ngành |
+| Thời gian kiểm một việc | (điền vào đây) phút | Ước tính từ ràng buộc trong đề bài |
+| Chi phí kiểm mỗi việc | $(điền vào đây) /việc | (phút / 60) × lương giờ |
+| Chi phí kiểm mỗi tháng | $(điền vào đây) /tháng | Khối lượng mỗi tháng × chi phí kiểm mỗi việc |
 
-### A.6 — Setup Cost (amortize)
+### A.6 — Chi phí setup (chia đều theo tháng)
+
+Setup là chi phí một lần (tích hợp + kiểm tra an ninh + viết câu lệnh AI lần đầu). Chia đều cho số tháng thử nghiệm để tính chi phí mỗi tháng.
 
 | Trường | Giá trị | Lý do |
 |---|---|---|
-| One-time setup | $___ | [Integration + security review + prompt engineering] |
-| Pilot duration | ___ months | [Brief field #8 chia 30] |
-| Amortized setup/month | $___ /month | Setup / pilot duration |
+| Chi phí setup một lần | $(điền vào đây) | Tích hợp + kiểm tra an ninh + viết và tinh chỉnh câu lệnh AI |
+| Thời gian thử nghiệm | (điền vào đây) tháng | Trường 8 trong đề bài, chia 30 |
+| Chi phí setup chia đều mỗi tháng | $(điền vào đây) /tháng | Setup / số tháng thử nghiệm |
 
-### A.7 — Monthly Cost Formula
+### A.7 — Công thức chi phí mỗi tháng
 
-```text
-Monthly AI Cost
-  = (Monthly volume × API cost/task)            [API]
-  + Tooling monthly                              [Vector DB + monitoring + ...]
-  + (Monthly volume × Human review cost/task)    [Human review]
-  + Amortized setup/month                        [Setup amortize]
-```
+Tổng chi phí mỗi tháng gồm 4 thành phần. Áp công thức cho nhóm.
 
-Tính cho nhóm:
+**Công thức gốc**:
 
 ```text
-Monthly AI Cost
-  = (___ × $___)         = $___      [API]
-  + $___                  = $___      [Tooling]
-  + (___ × $___)         = $___      [Human review]
-  + $___                  = $___      [Setup amortize]
-                          ──────────
-                          = $___ /month TOTAL
+Chi phí AI mỗi tháng
+  = (Khối lượng mỗi tháng × Chi phí API mỗi lần)   [API]
+  + Tổng công cụ phụ trợ mỗi tháng                  [Công cụ phụ trợ]
+  + (Khối lượng mỗi tháng × Chi phí kiểm mỗi việc)  [Người kiểm]
+  + Chi phí setup chia đều mỗi tháng                [Setup]
 ```
 
-### A.8 — Budget Check
+**Tính cụ thể cho nhóm**:
+
+```text
+Chi phí AI mỗi tháng
+  = ((điền vào đây) × $(điền vào đây))   = $(điền vào đây)   [API]
+  + $(điền vào đây)                                            [Công cụ phụ trợ]
+  + ((điền vào đây) × $(điền vào đây))   = $(điền vào đây)   [Người kiểm]
+  + $(điền vào đây)                                            [Setup]
+                                          ────────────
+                                          = $(điền vào đây) /tháng (TỔNG)
+```
+
+### A.8 — Đối chiếu với ngân sách
 
 | Trường | Giá trị |
 |---|---|
-| Total monthly cost | $___ |
-| Pilot budget | $___ (brief field #8) |
-| % of budget | ___% |
-| Status | ☐ Within budget ☐ Over budget |
+| Tổng chi phí mỗi tháng | $(điền vào đây) |
+| Ngân sách thử nghiệm mỗi tháng *(trường 8 trong đề bài)* | $(điền vào đây) |
+| % so với ngân sách | (điền vào đây) % |
+| Tình trạng | (Trong ngân sách / Vượt ngân sách) |
 
-**Nếu Over budget — hành động đề xuất**:
+**Nếu vượt ngân sách**: nhóm sẽ làm gì? *(vd: dùng mô hình rẻ hơn cho loại việc đơn giản / giảm khối lượng thử nghiệm / đàm phán giá doanh nghiệp với nhà cung cấp)*
 
-- [vd: dùng model rẻ hơn cho phần FAQ tier-1 / giảm volume pilot / negotiate enterprise pricing]
-- [...]
-
----
-
-## Section A — Insight ban đầu
-
-Sau khi tính xong, ghi 2-3 insight đáng chú ý nhất về cost structure:
-
-1. **Cost driver chính**: [vd: "Human review chiếm 89% cost, API chỉ 2%" — đây là pattern phổ biến với pilot có constraint 100% human review]
-2. **Surprise cost** (chi phí nào ngoài dự đoán): [vd: "Vector DB rẻ hơn dự đoán; setup cost cao hơn dự đoán"]
-3. **Sensitivity**: [Cost nhạy nhất với biến nào? Volume / model / human review time?]
+```text
+(điền vào đây)
+```
 
 ---
 
-## Checklist nộp Section A
+## 2-3 điểm đáng chú ý sau khi tính
 
-- [ ] Usage unit pass 3-part test, có mô tả 1-2 câu rõ ràng.
-- [ ] Pilot daily + monthly volume tính theo công thức (không khoảng).
-- [ ] Có URL pricing source cho provider + model.
-- [ ] Cost/task tính theo công thức tokens (không "estimate").
-- [ ] Tooling cost có ghi rõ tên tool + giá tháng.
-- [ ] Human review cost tính theo phút × rate (nếu brief có constraint review).
-- [ ] Setup cost được amortize theo tháng pilot.
-- [ ] Monthly cost formula có 4 component cộng lại bằng total.
-- [ ] Budget check so với brief field #8.
+Sau khi tính xong toàn bộ Mục A, nhóm tự rút ra 2-3 điểm đáng chú ý về cấu trúc chi phí. Đây là phần ý nghĩa nhất khi trình bày — không phải con số, mà là **hiểu cái gì đang điều khiển chi phí**.
 
-Đếm số trường đã điền: ___ / 30+ trường
+Trước khi viết, tự hỏi:
 
-Yêu cầu tối thiểu: 25 trường có số cụ thể.
+- Thành phần nào (API / công cụ phụ trợ / người kiểm / setup) chiếm phần lớn nhất? Có ngạc nhiên không?
+- Có chi phí nào cao hơn / thấp hơn dự đoán ban đầu của nhóm không?
+- Nếu phải cắt một thành phần, cắt cái nào sẽ ảnh hưởng nhỏ nhất đến chất lượng?
+
+→ Viết 2-3 điểm:
+
+```text
+1. (điền vào đây)
+2. (điền vào đây)
+3. (điền vào đây)
+```
 
 ---
 
-## Anti-pattern (lỗi hay mắc — kiểm tra trước khi nộp)
+## Bảng kiểm trước khi gộp vào file FINAL
 
-| Đừng làm | Nên làm |
+- [ ] Đơn vị AI làm việc qua 3 câu kiểm tra, có mô tả 1-2 câu rõ ràng.
+- [ ] Khối lượng tính cho **nhóm thử nghiệm**, không phải toàn đội.
+- [ ] Mỗi giá API có đường dẫn trang giá nhà cung cấp.
+- [ ] Chi phí API tính theo công thức token, không ghi "ước tính".
+- [ ] Mỗi công cụ phụ trợ có tên + giá tháng (hoặc lý do "không cần").
+- [ ] Chi phí người kiểm tính theo phút × lương giờ (nếu đề bài có ràng buộc kiểm).
+- [ ] Chi phí setup được chia đều theo số tháng thử nghiệm.
+- [ ] Công thức A.7 có 4 dòng cộng lại bằng tổng.
+- [ ] Có đối chiếu với ngân sách trong đề bài.
+- [ ] Có 2-3 điểm đáng chú ý đã viết ra.
+
+Số trường đã điền có số cụ thể: ___ / 30+ trường (yêu cầu tối thiểu 25).
+
+---
+
+## Những lỗi hay mắc (kiểm tra lần cuối)
+
+| Đừng | Thay vào đó |
 |---|---|
-| "Cost/task khoảng $0.01" | "$0.0084 (in 800 × $3 + out 400 × $15 / 1M)" |
-| Quên human review cost | Nếu brief có 100% review → cost này thường là phần lớn nhất |
-| Dùng full-team volume | Dùng PILOT volume (5/25 × 800 = 160/day, không phải 800/day) |
-| Tooling = $0 | Ít nhất có monitoring (Langfuse free tier vẫn ghi $0) |
-| Setup = $0 | Integration + prompt engineering luôn có cost (developer time) |
-| Cost/task < $0.0001 | Kiểm tra lại — model classify rẻ nhất GPT-4o-mini cũng $0.000135/task |
-| Cost/task > $50 cho 1 simple task | Model chọn quá to — thử model rẻ hơn |
-| Không ghi URL pricing | Mỗi giá API phải có URL pricing page |
+| "Chi phí mỗi việc khoảng $0.01" | "$0.0084 = (800 × $3 + 400 × $15) / 1.000.000" |
+| Quên chi phí người kiểm | Nếu đề bài có ràng buộc 100% người kiểm → đây thường là thành phần lớn nhất |
+| Dùng khối lượng toàn đội | Dùng khối lượng nhóm thử nghiệm *(vd: 5/25 × 800 = 160 việc/ngày, không phải 800)* |
+| Công cụ phụ trợ = $0 toàn bộ | Ít nhất phải có giám sát chất lượng — bậc miễn phí cũng phải ghi vào và ghi $0 |
+| Setup = $0 | Tích hợp + viết câu lệnh AI lần đầu luôn tốn thời gian của lập trình viên |
+| Chi phí mỗi việc < $0.0001 | Kiểm tra lại — mô hình rẻ nhất cho việc phân loại cũng khoảng $0.000135 mỗi lần chạy |
+| Chi phí mỗi việc > $50 cho một việc đơn giản | Có thể chọn mô hình quá lớn — thử mô hình rẻ hơn |
+| Không ghi đường dẫn trang giá | Mỗi giá API phải có đường dẫn trang giá nhà cung cấp |
 
 ---
 
-## Next: Section B + C
+## Sau khi xong Mục A
 
-Sau khi chốt Section A, chuyển sang `worksheet/02-pricing-value/` để dựng Section B (Pricing/Access) và Section C (Value/ROI).
+Mục A đã chốt. Chuyển sang `worksheet/02-pricing-value/` để dựng Mục B (Pricing / Access) và Mục C (Value / ROI).
 
-Cost model một mình không trả lời được "có nên build không" — cần ghép với Value để tính ROI.
+Chi phí một mình chưa trả lời được "có nên triển khai không" — cần ghép với giá trị để tính ROI ở Bước 2.

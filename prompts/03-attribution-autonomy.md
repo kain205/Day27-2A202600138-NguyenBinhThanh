@@ -1,246 +1,202 @@
-# Prompt tham khảo 3 — Attribution × Autonomy Positioning
+# Câu lệnh AI 3 — Đặt sản phẩm vào ma trận Attribution × Autonomy
 
-**Dùng khi**: nhóm đã có Cost Model, bắt đầu Step 2 — cần định vị AI product trên ma trận 2×2 để chọn pricing model phù hợp.
-**Công cụ gợi ý**: Claude Sonnet/Opus, ChatGPT-4o, Gemini 1.5 Pro.
-**Lưu kết quả vào**: `worksheet/02-pricing-value/1-attribution-autonomy.md`
-**Thời gian**: 10-15 phút
+**Dùng khi**: đầu Bước 2 Lab — nhóm đã có Cost Model, cần đặt sản phẩm AI vào ma trận 2×2 *(2 trục: AI có làm tự chủ không × AI có chịu trách nhiệm rõ cho kết quả không)* để chọn cách định giá phù hợp.
 
----
+**Công cụ gợi ý**: Claude, ChatGPT, Gemini.
 
-## Trước khi vào prompt — 5 câu hỏi nhóm tự trả lời
+**Lưu kết quả vào**: `worksheet/02-pricing-value/1-attribution-autonomy.md`.
 
-1. **Usage unit** đã chốt là gì? (Quan trọng vì autonomy + attribution đánh giá theo unit.)
-2. **Trong brief, AI tự làm xong việc hay chỉ hỗ trợ?** (Đọc lại field #5 — constraint).
-3. **Output AI có visible với end user** (vd: customer thấy AI reply) hay invisible (chỉ team thấy)?
-4. **Có thể nói "AI làm được X" không** (cụ thể), hay chỉ "AI giúp team làm X"?
-5. **Brief có 100% human review** → autonomy auto thấp.
-
-> **Cảnh báo**: AI có thể đặt sai vị trí (vd: high autonomy cho brief có constraint review). Tự kiểm tra logic dựa trên brief.
+**Thời gian**: 10–15 phút.
 
 ---
 
-## Prompt chính (paste sau `00-context.md` + Cost Model output)
+## Trước khi vào câu lệnh — 5 câu nhóm tự trả lời
+
+AI hay đặt sai vị trí, đặc biệt là cho AI "điểm cao về tự chủ" trong khi đề bài có ràng buộc bắt người kiểm tra. Trả lời 5 câu này trước để nhóm có khung tự kiểm tra.
+
+1. Usage Unit đã chốt là gì? (Cả hai trục đều đánh giá theo đơn vị này.)
+2. Đọc lại trường ràng buộc (trường 5 của đề bài): AI tự làm xong việc, hay chỉ hỗ trợ người làm việc?
+3. Đầu ra AI có hiển thị trực tiếp cho khách hàng cuối không (vd: khách thấy AI trả lời), hay chỉ nội bộ đội thấy?
+4. Có thể nói thẳng "AI đã làm việc X" không (cụ thể), hay chỉ "AI giúp đội làm việc X"?
+5. Nếu đề bài có "100% người kiểm tra" → trục tự chủ tự động xuống thấp.
+
+---
+
+## Câu lệnh chính (dán sau `00-context.md` và kết quả Cost Model)
 
 ```text
-Bạn là Product Strategist AI có kinh nghiệm về pricing models.
-Dựa trên BỐI CẢNH ở trên (brief + usage unit + cost model), giúp nhóm tôi:
+Bạn là chuyên gia chiến lược sản phẩm AI, chuyên về mô hình định giá.
+Dựa trên bối cảnh ở trên (đề bài + Usage Unit + Cost Model), giúp nhóm
+tôi:
 
-1. ĐỊNH VỊ AI product trên Ma trận ATTRIBUTION × AUTONOMY.
-2. SUGGEST pricing model phù hợp tự nhiên.
-3. VALIDATE với real-world analog.
+1. Đặt sản phẩm AI vào ma trận Attribution × Autonomy.
+2. Đề xuất cách định giá phù hợp tự nhiên.
+3. Đối chiếu với sản phẩm thật.
 
-CONTEXT MA TRẬN:
-- Autonomy: AI tự làm xong (high) vs hỗ trợ human (low)
-- Attribution: rõ AI là cause (high) vs khó tách phần đóng góp (low)
+Bối cảnh ma trận:
+- Autonomy (tự chủ): AI tự làm xong việc (cao) — vs — AI hỗ trợ người
+  (thấp).
+- Attribution (gắn rõ với AI): rõ là AI tạo ra kết quả (cao) — vs —
+  khó tách AI khỏi công sức của đội (thấp).
 
-Quadrant → pricing tự nhiên:
-- Low Auto + Low Attrib  → Seat/Flat (Grammarly, Slack AI)
-- Low Auto + High Attrib → Hybrid Seat+Credits (Cursor, Canva)
-- High Auto + Low Attrib → Usage-based (OpenAI API, AWS)
-- High Auto + High Attrib → Outcome-based (Intercom Fin, Chargeflow)
+Mỗi ô của ma trận gợi ý một mô hình giá tự nhiên:
+- Tự chủ thấp + Gắn thấp  → tính theo người dùng (vd: Grammarly, Slack AI)
+- Tự chủ thấp + Gắn cao   → kết hợp (vd: Cursor, Canva — người dùng + tín dụng)
+- Tự chủ cao + Gắn thấp   → tính theo lượng dùng (vd: API OpenAI, AWS)
+- Tự chủ cao + Gắn cao    → tính theo kết quả (vd: Intercom Fin, Chargeflow)
 
-YÊU CẦU:
+Yêu cầu:
 
-PHẦN 1 — Autonomy assessment:
-Cho brief tôi, AI thuộc:
-- Low: ___ (assists human, human ra quyết định cuối)
-- High: ___ (AI tự ra quyết định / hành động)
+Phần 1 — Đánh giá trục tự chủ:
+- Đề bài rơi vào: Thấp ___ (AI hỗ trợ, người ra quyết định cuối)
+                  Cao ___ (AI tự ra quyết định / hành động)
+- 2–3 câu lý do dựa trên: ràng buộc (trường 5), ranh giới rủi ro
+  (trường 9), quy trình (trường 2).
 
-Justification 2-3 câu dựa trên:
-- Constraint trong brief (field #5)
-- Risk boundary (field #9)
-- Workflow (field #2)
+Cảnh báo: nếu đề bài có "100% người kiểm tra" hoặc "người duyệt trước
+khi gửi" → KHÔNG đánh giá tự chủ cao được.
 
-CẢNH BÁO: nếu brief có "100% human review" hoặc "agent must approve" → KHÔNG được high autonomy.
+Phần 2 — Đánh giá trục gắn-rõ-với-AI:
+- Thấp: khó tách phần AI khỏi đội (vd: AI giúp đội viết → kết quả là
+  "đội viết tốt", không nói rõ AI làm phần nào).
+- Cao: rõ AI tạo ra kết quả (vd: AI gắn cờ 1 điều khoản → rõ AI tạo
+  cảnh báo đó).
+- 2–3 câu lý do.
 
-PHẦN 2 — Attribution assessment:
-Cho usage unit của tôi, attribution:
-- Low: khó tách AI khỏi team effort (vd: AI giúp team viết → kết quả là "team viết tốt")
-- High: rõ AI là cause (vd: AI flag 1 clause → rõ AI tạo flag)
+Phần 3 — Vị trí trên ma trận:
+- Tự chủ: ___
+- Gắn rõ với AI: ___
+- Ô: ___
+- Định giá tự nhiên cho ô này: ___
 
-Justification 2-3 câu.
+Phần 4 — Đối chiếu sản phẩm thật:
+Tìm 2 sản phẩm AI đang chạy thật trong cùng ô (cùng ngành hoặc khác
+ngành nhưng cùng mô hình):
+- Sản phẩm A: tên + cách định giá + URL trang giá
+- Sản phẩm B: tên + cách định giá + URL trang giá
 
-PHẦN 3 — Quadrant:
-- Autonomy: ___
-- Attribution: ___
-- Quadrant: ___
+Có quy luật chung không? Cách định giá họ chọn gợi ý gì cho nhóm tôi?
 
-Pricing tự nhiên cho quadrant này: ___
+Phần 5 — Trường hợp đứng giữa:
+Đề bài có rơi vào "vừa thấp vừa cao" không? Nếu có:
+- Nghiêng về trục nào trước (tự chủ hay gắn-rõ)?
+- Lý do (ràng buộc nào, quy luật nào)?
 
-PHẦN 4 — Real-world analog:
-Tìm 2 sản phẩm AI thật trong cùng quadrant (cùng domain hoặc cross-domain):
-- Sản phẩm A: tên + pricing + URL
-- Sản phẩm B: tên + pricing + URL
+Khi đứng giữa, kết hợp (Hybrid: tính theo người + tính theo lượng) thường
+là lựa chọn mặc định an toàn.
 
-Có pattern chung không? Pricing họ chọn có gợi ý gì cho nhóm tôi?
+Yêu cầu trình bày:
+- Viết tiếng Việt thoát nghĩa.
+- Mỗi đánh giá có lý do cụ thể, không chỉ "tôi nghĩ".
 
-PHẦN 5 — Edge case check:
-Brief có rơi vào "medium" (vừa low vừa high) không? Nếu có:
-- Nghiêng về Low hay High Autonomy → vì constraint nào?
-- Nghiêng về Low hay High Attribution → vì pattern nào?
-
-Recommend: Hybrid pricing (Seat + Usage) thường là default cho "medium" position.
-
-YÊU CẦU FORMAT:
-- Trả lời bằng tiếng Việt thoát nghĩa.
-- Mỗi assessment có justification cụ thể, không chỉ "tôi nghĩ".
-
-YÊU CẦU PHẢN BIỆN:
-- Nếu nhóm tôi chọn high autonomy nhưng brief có review constraint → flag inconsistency.
-- Nếu nhóm tôi chọn high attribution nhưng buyer khó measure → flag risk.
-- Nếu pricing model gợi ý không khớp với buyer (CTO vs CFO) → flag friction.
+Yêu cầu phản biện:
+- Nếu nhóm tôi đánh giá tự chủ cao nhưng đề bài có người kiểm tra → cảnh
+  báo mâu thuẫn.
+- Nếu nhóm tôi đánh giá gắn-rõ cao nhưng người mua khó đo → cảnh báo rủi
+  ro khi đi bán.
+- Nếu cách định giá đề xuất không khớp với người mua (giám đốc kỹ thuật
+  vs giám đốc tài chính) → cảnh báo trở ngại.
 ```
 
 ---
 
-## Iterate — đẩy AI sâu hơn nếu output chưa đủ
+## Iterate — đẩy AI sâu hơn khi bản nháp chưa đủ
 
-### Khi muốn cross-check vị trí với analog
+### Khi nhóm muốn đối chiếu vị trí với sản phẩm thật
 
 ```text
-Vị trí bạn assign cho brief tôi là [Auto ___ + Attrib ___] = quadrant ___.
+Vị trí AI gán cho đề bài của tôi là [Tự chủ ___ + Gắn-rõ ___].
 
-Cross-check với 3 sản phẩm:
+Đối chiếu với 3 sản phẩm:
 
-1. [Sản phẩm cụ thể trong cùng domain, vd: Zendesk AI cho support]
-   - Vị trí của họ trên ma trận: [...]
-   - Pricing họ chọn: [...]
-   - Có khớp với quadrant tôi không?
+1. (sản phẩm cùng ngành — vd: Zendesk AI cho support)
+   - Vị trí của họ trên ma trận: ___
+   - Cách định giá: ___
+   - Có khớp với ô tôi đề xuất không?
 
-2. [Sản phẩm khác domain nhưng cùng pattern, vd: Harvey AI cho legal]
-   - [tương tự]
+2. (sản phẩm khác ngành nhưng cùng mô hình hoạt động — vd: Harvey AI
+   cho luật)
+   - (như trên)
 
-3. [Sản phẩm có constraint tương tự nhóm tôi, vd: brief có review constraint → tìm AI product có review constraint]
-   - [tương tự]
+3. (sản phẩm có ràng buộc tương tự — vd: đề bài có người kiểm tra → tìm
+   sản phẩm cũng có người kiểm tra)
+   - (như trên)
 
-Nếu cả 3 analog đều ở Low Auto + Low Attrib và pricing seat-based → confirm cho brief tôi.
-Nếu phân tán → review lại justification.
+Nếu cả 3 đều ở cùng ô và đều dùng định giá theo người dùng → xác nhận
+cho đề bài của tôi.
+Nếu 3 sản phẩm rải khắp 4 ô → đánh giá lại lý do của nhóm.
 ```
 
-### Khi muốn challenge autonomy assessment
+### Khi nhóm muốn chất vấn đánh giá trục tự chủ
 
 ```text
-Tôi assess autonomy = HIGH, nhưng brief có constraint "agent must review before send".
+Tôi đánh giá tự chủ = CAO, nhưng đề bài có ràng buộc "người duyệt trước
+khi gửi".
 
-Có inconsistency không?
-- Nếu agent always review → AI không thực sự autonomous → nên là LOW.
-- Nếu agent review chỉ 50% case → có thể medium → đánh giá lại.
-- Nếu agent review chỉ tier-1 case → còn lại auto → split: tier-1 = low auto, tier-2+ = high auto?
+Có mâu thuẫn không?
+- Nếu người luôn duyệt → AI không thực sự tự chủ → phải đánh giá THẤP.
+- Nếu người chỉ duyệt 50% trường hợp → ở giữa, đánh giá lại.
+- Nếu người chỉ duyệt tầng cơ bản, các tầng khác AI tự làm → tách: tầng
+  cơ bản = tự chủ thấp, tầng còn lại = tự chủ cao?
 
-Recommend: brief đa số là LOW autonomy do constraint compliance. Đừng đánh giá high vì "AI làm phần lớn việc" — review = quyết định cuối.
+Đề xuất: đa số đề bài có ràng buộc duyệt → đánh giá TỰ CHỦ THẤP. Không
+được đánh giá cao chỉ vì "AI làm phần lớn việc" — người duyệt = quyết
+định cuối.
 ```
 
-### Khi muốn lựa chọn giữa pricing model
+### Khi 2 cách định giá đều hợp lý, phải chọn 1
 
 ```text
-Quadrant của tôi = ___ → pricing tự nhiên = ___.
+Ô của tôi = ___ → định giá tự nhiên = ___.
 
-Nhưng có 2 alternative model cũng hợp lý:
-- Alternative A: [tên model], lý do hợp lý
-- Alternative B: [tên model], lý do hợp lý
+Có 2 lựa chọn khác cũng hợp lý:
+- Lựa chọn A: ___, lý do hợp lý
+- Lựa chọn B: ___, lý do hợp lý
 
-So sánh 3 model qua 4 lens:
-| Lens | Pricing tự nhiên | Alternative A | Alternative B |
+So sánh 3 lựa chọn qua 4 góc nhìn:
+
+| Góc nhìn | Định giá tự nhiên | Lựa chọn A | Lựa chọn B |
 |---|---|---|---|
-| Buyer dễ approve? | | | |
-| Predictable cost? | | | |
-| Defend được ROI? | | | |
-| Risk Usage Anxiety? | | | |
+| Người mua dễ duyệt? | | | |
+| Chi phí dự đoán được? | | | |
+| Bảo vệ được ROI? | | | |
+| Có gây "lo lắng khi dùng" cho người dùng cuối? | | | |
 
-Recommend cuối: ___ với lý do ___.
+Đề xuất cuối: ___ vì ___.
 ```
 
 ---
 
-## Phản biện sau khi có output — 5 câu nhóm tự hỏi
+## Trước khi dán kết quả vào worksheet — nhóm tự rà soát
 
-1. **Autonomy check**: low autonomy có khớp với constraint trong brief không?
-2. **Attribution check**: high attribution có defendable không (buyer measure được AI value)?
-3. **Quadrant clarity**: vị trí có clear, không "ở giữa cả 4"?
-4. **Analog check**: real-world analog có cùng quadrant không?
-5. **Pricing makes sense**: pricing model gợi ý có khớp với buyer + cost structure không?
-
----
-
-## Ví dụ tốt vs ví dụ chưa tốt
-
-### Chưa tốt
-
-> "AI Support Copilot là high autonomy + high attribution → outcome-based."
-
-Vấn đề: brief có constraint "no auto-send" → KHÔNG thể high autonomy.
-
-### Tốt
-
-> **Brief #1 — AI Support Copilot**
->
-> **Autonomy**: LOW.
-> - Justification: brief field #5 nói "no auto-send to customer (legal/compliance)". Agent senior review trước khi send. AI hỗ trợ draft, agent ra quyết định cuối → low autonomy.
->
-> **Attribution**: MEDIUM (leaning high).
-> - Justification: 1 draft = 1 AI output cụ thể, có thể measure (% drafts used as-is, % edited heavy, % discarded). Tuy nhiên outcome cuối (CSAT) bị ảnh hưởng bởi agent skill + KB quality nữa, không chỉ AI.
->
-> **Quadrant**: Low Autonomy + Medium-High Attribution → Hybrid (Seat + Credits).
->
-> **Pricing đề xuất**: $25/seat/month, bundle 1,000 AI drafts/seat. Extra: $0.05/draft.
->
-> **Real-world analog**:
-> - Cursor: $20/seat + tiered credits cho IDE AI completion.
-> - Lavender: $39/seat + extra usage for sales email AI.
->
-> **Edge case note**: nếu IT muốn flat (predictable cost), có thể chọn $35/seat unlimited — nhưng risk Usage Anxiety nếu user dùng nhiều bị bottleneck.
+- Trục tự chủ có khớp với ràng buộc trong đề bài không?
+- Trục gắn-rõ có bảo vệ được không (người mua đo được phần AI tạo ra)?
+- Vị trí có rõ ràng, không "ở giữa cả 4 ô"?
+- Sản phẩm đối chiếu thật có cùng ô không?
+- Cách định giá đề xuất có khớp với người mua và cấu trúc chi phí không?
 
 ---
 
-## Anti-pattern khi prompt — tránh
-
-| Đừng làm | Nên làm |
-|---|---|
-| Pick quadrant random | Justify từ brief field 2, 5, 9 |
-| High autonomy + brief có review constraint | Constraint review → low autonomy luôn |
-| Bỏ analog | Cross-check với 2-3 sản phẩm thật |
-| Pricing không link với cost | Pricing đề xuất phải > cost/unit + margin |
-| Bỏ Usage Anxiety check ở Hybrid model | Hybrid có credit limit → check anxiety |
-
----
-
-## Format save vào `1-attribution-autonomy.md`
-
-```markdown
-## Phần B — Trả lời 2 câu hỏi
-
-### Câu hỏi 1: Autonomy
-[Paste assessment]
-
-### Câu hỏi 2: Attribution
-[Paste assessment]
-
-## Phần C — Đặt vị trí trên ma trận
-[Paste quadrant + pricing tự nhiên]
-
-## Phần D — Validate với real-world analog
-[Paste analog table]
-```
-
----
-
-## Câu hỏi mở rộng — nâng cao phản biện (optional)
+## Câu hỏi mở rộng (chỉ làm khi còn thời gian)
 
 ```text
-Sau khi định vị, giúp tôi suy nghĩ 3 câu hỏi STRATEGIC:
+Sau khi định vị, suy nghĩ 3 góc chiến lược:
 
-1. **Pricing model migration**: nếu brief tôi MVP với seat (low auto + low attrib), nhưng 2 năm sau
-   AI khá autonomy (vì agent quen, mở auto-respond) → migration pricing thế nào?
-   - Move sang outcome-based? Cần grace period bao lâu?
+1. Chuyển đổi cách định giá theo thời gian:
+   - Phiên bản đầu (MVP): tính theo người dùng, tự chủ thấp + gắn-rõ thấp.
+   - 2 năm sau: AI quen, mở cho phép tự gửi → tự chủ cao hơn → chuyển
+     sang tính theo kết quả?
+   - Khoảng đệm chuyển đổi bao lâu?
 
-2. **Pricing model cho buyer khác**: cùng pricing có phù hợp cho buyer khác không?
-   - Buyer là CTO → ai care về cost predictability.
-   - Buyer là CFO → care về ROI defendability.
-   - Buyer là VP Operations → care về adoption.
+2. Cùng cách định giá có hợp với người mua khác không?
+   - Giám đốc kỹ thuật: quan tâm chi phí có dự đoán được không.
+   - Giám đốc tài chính: quan tâm ROI có bảo vệ được không.
+   - Phó tổng vận hành: quan tâm tỷ lệ sử dụng thực tế.
 
-3. **Bundle vs unbundle**: AI feature này nên bán riêng hay bundle với product cũ?
-   - Bundle: easier sale nhưng khó measure AI ROI.
-   - Unbundle: defendable AI value nhưng add procurement friction.
+3. Bán riêng hay bán kèm sản phẩm cũ?
+   - Bán kèm: dễ bán hơn nhưng khó đo riêng giá trị AI.
+   - Bán riêng: bảo vệ được giá trị AI rõ ràng nhưng tăng cản trở khi
+     đi qua quy trình mua.
 
-Trả lời 3 câu này để chuẩn bị cho buổi present + Q&A từ instructor.
+3 câu này chuẩn bị cho buổi trình bày + hỏi đáp với giảng viên.
 ```

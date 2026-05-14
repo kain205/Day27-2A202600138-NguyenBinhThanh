@@ -1,211 +1,373 @@
 ---
-artifact: 2 — Verdict Draft
-buoc: 3 — Stress Test + Verdict
-phase: Viết verdict draft + conditions
-time: 10 phút (xem deck slide 4 để biết khung giờ chính xác trong buổi)
+artifact: 2 — Bản nháp quyết định cuối
+buoc: 3 — Stress Test + Quyết định cuối
+phase: Viết quyết định cuối + điều kiện kèm theo
+thoi-gian: 10 phút
 input: 1-scenario-table.md + prompts/08-verdict-writing.md
 nop-cuoi: Không — file trung gian
 ---
 
-# 2 — Verdict Draft
+# 2 — Bản nháp Quyết định Cuối
 
-Mục tiêu: viết verdict draft (GO / CONDITIONAL / NO-GO) dựa trên 5 scenarios + combined worst case + break-even analysis.
+**Mục tiêu**: dựa trên 5 kịch bản + ROI kết hợp + điểm hòa vốn ở file trước, **viết một quyết định cuối**: GO / CONDITIONAL / NO-GO. Bản nháp này sẽ được gọt lại và dán vào Mục D ở file FINAL.
 
-Quy tắc:
+Vì sao quan trọng: phân tích tốn 1 giờ — quyết định chỉ tốn 3 câu. Nhưng quyết định **không có lý do cụ thể** sẽ bị người mua từ chối ngay. Bản nháp này tập cho nhóm viết quyết định **đứng được trước câu hỏi của người mua**.
 
-- Verdict phải có lý do cụ thể (không chỉ "feeling").
-- CONDITIONAL phải có 3-5 điều kiện rõ ràng + monitoring metrics + stop trigger.
-- NO-GO phải nói rõ "cần thay đổi gì để khả thi" — không từ chối khô khan.
+**Quy tắc**:
 
-## Quy trình 10 phút
+- GO / CONDITIONAL / NO-GO phải có **lý do cụ thể bằng số**, không chỉ "cảm thấy ổn".
+- CONDITIONAL phải có **3-5 điều kiện cụ thể** + chỉ số theo dõi + ngưỡng dừng.
+- NO-GO phải nói rõ **cần thay đổi gì** để khả thi — không từ chối khô khan.
+
+---
+
+## Tổng thời gian 10 phút
+
+| Phần | Thời gian | Việc cần làm |
+|---|---|---|
+| A | 3 phút | Áp 3 tiêu chí → chọn một trong ba quyết định |
+| B | 4 phút | Viết bản nháp + điều kiện / thay đổi |
+| C | 3 phút | Cặp tự thách thức quyết định của mình |
+
+---
+
+## Phần A — Khung 3 tiêu chí quyết định
+
+### A.1 — Bảng tiêu chí
+
+| Tiêu chí | GO | CONDITIONAL | NO-GO |
+|---|---|---|---|
+| ROI gốc | > 3:1 | 1.5 – 3:1 | < 1.5:1 |
+| Số kịch bản (trong 4 kịch bản 2-5) ở trạng thái "Sống được" | 3-4 | 1-2 | 0 |
+| ROI kết hợp xấu nhất | > 1.5:1 | 1 – 1.5:1 | < 1:1 |
+
+### A.2 — Áp dụng cho nhóm
+
+Lấy 3 con số trên từ `1-scenario-table.md` và điền vào bảng dưới.
+
+| Tiêu chí | Giá trị của nhóm | Tiêu chí này nghiêng về |
+|---|---|---|
+| ROI gốc | (điền vào đây) : 1 | (GO / CONDITIONAL / NO-GO) |
+| Số kịch bản "Sống được" trong 4 kịch bản 2-5 | (điền vào đây) / 4 | (GO / CONDITIONAL / NO-GO) |
+| ROI kết hợp xấu nhất | (điền vào đây) : 1 | (GO / CONDITIONAL / NO-GO) |
+
+**Quyết định tổng hợp dự kiến**:
 
 ```text
-3 phút  — Apply criteria → pick verdict
-4 phút  — Viết draft verdict + conditions / change
-3 phút  — Reality check (cặp tự challenge verdict mình)
+(điền vào đây — GO / CONDITIONAL / NO-GO)
+```
+
+**Cách đọc kết quả**:
+
+- Nếu 3 hàng cùng nghiêng về một quyết định → quyết định rõ ràng.
+- Nếu lệch *(vd: ROI gốc nghiêng GO nhưng ROI kết hợp nghiêng NO-GO)* → thường an toàn nhất là **CONDITIONAL** với điều kiện chặt.
+
+---
+
+## Phần B — Viết bản nháp quyết định
+
+Phần này có 3 mẫu — chọn mẫu khớp với quyết định đã chọn ở Phần A. **Đọc mẫu rồi viết bằng số của nhóm**, không copy mẫu nguyên xi.
+
+### B.1 — Nếu GO
+
+Trước khi viết, tự hỏi:
+
+- Tại sao mình tin GO mà không phải CONDITIONAL? Có dữ liệu cứng nào về tỷ lệ sử dụng / chất lượng không?
+- ROI kết hợp xấu nhất có thực sự > 1.5:1 không? Có chắc không phải lạc quan?
+
+**Khung gợi ý**:
+
+```text
+Triển khai pilot như phạm vi đã chốt. Đề bài #(số) — (tên ngắn). Phạm vi:
+(số người thử) người trong (số ngày) ngày, ngân sách $(số) /tháng.
+
+ROI ở kịch bản gốc là (số) : 1. Sống được trong (số) / 4 kịch bản xấu.
+Kịch bản kết hợp 2 cái xấu nhất ((tên 2 kịch bản)) cho ROI (số) : 1,
+vẫn trên ngưỡng 1.5 : 1.
+```
+
+**Bản nháp của nhóm** *(viết bằng số của nhóm, không copy mẫu)*:
+
+```text
+(điền vào đây)
+```
+
+### B.2 — Nếu CONDITIONAL (trường hợp phổ biến nhất)
+
+Trước khi viết, tự hỏi:
+
+- Điều kiện nào là điều kiện sống chết *(nếu không đạt thì coi như fail)*?
+- Mỗi điều kiện đo bằng gì *(không phải "cảm thấy ổn", mà là một con số đo được hàng tuần)*?
+- Khi nào dừng pilot và xem xét lại *(số cụ thể + thời gian cụ thể)*?
+
+**Khung gợi ý**:
+
+```text
+CONDITIONAL GO. Đề bài #(số) — (tên). Triển khai pilot **với các điều kiện**:
+
+- Điều kiện 1: (vd: Tỷ lệ sử dụng phải đạt ≥ X% trong tháng 1, không thì dừng xem xét lại)
+- Điều kiện 2: (vd: Khoá giá API với nhà cung cấp 6 tháng, hoặc setup mô hình dự phòng)
+- Điều kiện 3: (vd: Cổng chi phí hàng tháng $X — không vượt ngân sách thử nghiệm)
+- Điều kiện 4: (vd: Hệ số chất lượng đo bằng lấy mẫu ngẫu nhiên 50 việc/tuần, mục tiêu ≥ Y%)
+
+Theo dõi hàng tuần: tỷ lệ sử dụng, chi phí mỗi việc, hệ số chất lượng.
+
+Ngưỡng dừng pilot: nếu trong 30 ngày liên tiếp tỷ lệ sử dụng < X% HOẶC chất lượng < Y%
+HOẶC chi phí mỗi việc > $Z → dừng pilot và xem xét lại.
+```
+
+**Bản nháp của nhóm**:
+
+```text
+(điền vào đây)
+```
+
+### B.3 — Nếu NO-GO
+
+Trước khi viết, tự hỏi:
+
+- NO-GO là "không bao giờ" hay "không phải lúc này"? Khác nhau quan trọng.
+- Cần thay đổi cái gì cụ thể thì có thể quay lại quyết định *(đổi mô hình rẻ hơn / mở rộng phạm vi / nới ràng buộc kiểm tra)*?
+
+**Khung gợi ý**:
+
+```text
+NO-GO theo phạm vi hiện tại. Đề bài #(số) — (tên).
+
+Lý do: ROI gốc (số) : 1 < 1.5, hoặc ROI kết hợp xấu nhất (số) : 1 < 1.
+
+Cần thay đổi để khả thi:
+
+- Thay đổi 1: (vd: Đổi mô hình — dùng GPT-4o-mini cho việc đơn giản
+  thay vì Claude 3.5 Sonnet → chi phí mỗi việc giảm 80%)
+- Thay đổi 2: (vd: Mở rộng phạm vi pilot từ 5 lên 15 người → setup chia đều tốt hơn)
+- Thay đổi 3: (vd: Nới ràng buộc 100% người kiểm cho các việc đơn giản → giảm chi phí người kiểm)
+
+Loại NO-GO: (Không phải lúc này — có thể quay lại khi A, B / Không bao giờ — về bản chất không phù hợp).
+```
+
+**Bản nháp của nhóm**:
+
+```text
+(điền vào đây)
 ```
 
 ---
 
-## Phần A — Verdict Decision Framework
+## Phần C — Cặp tự thách thức quyết định
 
-### Criteria mapping
+Trước khi đem quyết định sang file FINAL, cặp tự đặt 3 câu hỏi sau cho nhau. Đây là phần quan trọng nhất — vì người mua thật **sẽ hỏi đúng những câu này**.
 
-| Criteria | GO | CONDITIONAL | NO-GO |
-|---|---|---|---|
-| Base ROI | > 3:1 | 1.5-3:1 | < 1.5:1 |
-| Survives ___ /5 individual scenarios | 4-5 | 2-3 | 0-1 |
-| Combined worst case ROI | > 1.5:1 | 1-1.5:1 | < 1:1 |
+### C.1 — Câu hỏi 1: Tại sao không CONDITIONAL nếu đang chọn GO?
 
-### Apply criteria cho nhóm
+Hầu hết pilot AI thực tế nên đi CONDITIONAL. Nếu nhóm chọn GO, kiểm tra lại:
 
-| Criteria | Giá trị nhóm | Quadrant |
-|---|---|---|
-| Base ROI | ___ : 1 | [GO / CONDITIONAL / NO-GO] |
-| Survives X/5 scenarios | ___ / 5 | [GO / CONDITIONAL / NO-GO] |
-| Combined worst case | ___ : 1 | [GO / CONDITIONAL / NO-GO] |
+- Có dữ liệu cứng nào hỗ trợ tỷ lệ sử dụng > 80%? *(không phải dự đoán — dữ liệu)*
+- Có dữ liệu cứng nào hỗ trợ chất lượng > 85%?
+- ROI kết hợp xấu nhất thực sự > 1.5:1, hay nhóm đang lạc quan ở chỗ nào?
 
-**Verdict tổng hợp**: ___
+Trả lời của nhóm *(nếu chọn GO)*:
 
-Nếu 3 row chỉ vào 1 verdict đồng nhất → verdict rõ ràng.
+```text
+(điền vào đây)
+```
 
-Nếu lệch (vd: base GO, combined NO-GO) → thường nghiêng về **CONDITIONAL** với điều kiện chặt.
+### C.2 — Câu hỏi 2: Tại sao không NO-GO nếu đang chọn CONDITIONAL?
 
----
+Một CONDITIONAL **với điều kiện không khả thi** thực ra là NO-GO trá hình:
 
-## Phần B — Draft Verdict Statement
+- Điều kiện 1 có khả thi để đạt trong thời gian thử nghiệm không?
+- Nếu cần tỷ lệ sử dụng > 80% mới sống mà điều đó khó đạt → thực ra là NO-GO.
+- Nếu cần chi phí giảm 50% mới sống mà khó đàm phán → thực ra là NO-GO.
 
-### Nếu GO
+Thành thật hơn là nói NO-GO ngay từ đầu, có lý do để quay lại sau.
 
-**Verdict draft**:
+Trả lời của nhóm *(nếu chọn CONDITIONAL)*:
 
-> "Proceed with pilot as scoped. Brief # ___ — [tên]. Pilot scope: ___ user × ___ ngày, budget $___."
->
-> "Base ROI là ___ : 1. Sống được cả khi: [list 4-5 scenarios sống]. Combined worst case [scenarios xấu nhất] cho ROI ___ : 1, vẫn trên ngưỡng 1.5:1."
+```text
+(điền vào đây)
+```
 
-### Nếu CONDITIONAL (phổ biến nhất)
+### C.3 — Câu hỏi 3: Người mua (CTO / VP) sẽ phản ứng thế nào?
 
-**Verdict draft**:
+Đặt mình vào vai người mua trong trường 6 của đề bài. Đọc bản nháp quyết định một lần nữa qua mắt họ.
 
-> "CONDITIONAL GO. Brief # ___ — [tên]. Tiến hành pilot **với các điều kiện**:"
->
-> Điều kiện 1: [vd: Adoption phải đạt ≥ ___% trong tháng 1, nếu không → pause review]
->
-> Điều kiện 2: [vd: Lock API pricing với provider trong 6 tháng pilot, hoặc setup fallback model]
->
-> Điều kiện 3: [vd: Monthly cost review gate ở $___, không vượt budget pilot]
->
-> Điều kiện 4: [vd: Quality factor đo theo random sampling 50 tasks/tuần, target ≥ ___%]
->
-> "Monitoring metrics tracked weekly: adoption rate, cost/task, quality factor."
->
-> "Stop/pivot trigger: nếu trong 30 ngày liên tiếp adoption < ___% HOẶC quality < ___% HOẶC cost-per-task > $___ → pause và re-evaluate."
+- Họ thấy GO chắc chắn nhưng không có stress test → có tin được không?
+- Họ thấy CONDITIONAL với 3 điều kiện rõ ràng → có hành động được không?
+- Họ thấy NO-GO với lý do rõ ràng → có giúp tiết kiệm chi phí không?
 
-### Nếu NO-GO
+Kinh nghiệm thực tế: người mua tốt **thích CONDITIONAL với điều kiện rõ** hơn **GO chắc chắn không stress test** — vì CONDITIONAL chứng tỏ nhóm đã suy nghĩ kỹ.
 
-**Verdict draft**:
+Quyết định cuối của nhóm sau khi tự thách thức:
 
-> "NO-GO at current scope. Brief # ___ — [tên]."
->
-> "Base ROI ___ : 1 < 1, hoặc combined worst case ___ : 1 < 0.5."
->
-> "Cần thay đổi để khả thi:"
->
-> Change 1: [vd: Đổi cost model — dùng GPT-4o-mini thay vì Claude 3.5 Sonnet → cost/task giảm 80%]
->
-> Change 2: [vd: Mở rộng scope pilot từ 5 lên 15 agent → cost amortize tốt hơn]
->
-> Change 3: [vd: Loại bỏ constraint 100% review cho task đơn giản → giảm human review cost]
->
-> "Loại NO-GO: [Not now — có thể quay lại khi A, B / Not ever — fundamentally không phù hợp]"
+```text
+(điền vào đây — GO / CONDITIONAL / NO-GO + 1 câu lý do)
+```
 
 ---
 
-## Phần C — Verdict của nhóm
+## Phần D — Bản nháp chi tiết (chuẩn bị dán sang FINAL)
 
-**Verdict CHỌN**: [GO / CONDITIONAL / NO-GO]
+### D.1 — Quyết định chọn
 
-**Tóm tắt verdict trong 3-4 câu** (paste này vào FINAL):
+```text
+(điền vào đây — GO / CONDITIONAL / NO-GO)
+```
 
-[...]
+### D.2 — Phát biểu quyết định 3-4 câu
 
-[...]
+Đây là phần sẽ dán nguyên vào Mục D.4 của file FINAL.
 
-[...]
+```text
+(điền câu 1 — quyết định gì + đề bài nào)
+```
 
-[...]
+```text
+(điền câu 2 — lý do bằng số: ROI gốc, số kịch bản sống, ROI kết hợp)
+```
 
-### Conditions / Changes (chi tiết)
+```text
+(điền câu 3 — điều kiện sống chết hoặc thay đổi cần thiết)
+```
 
-Nếu CONDITIONAL — viết 3-5 conditions:
+```text
+(điền câu 4 — phạm vi & thời gian: pilot bao nhiêu người, bao nhiêu tháng, ngân sách bao nhiêu)
+```
 
-1. **Điều kiện 1**: [Cụ thể, đo được, có timeline]
-2. **Điều kiện 2**: [Cụ thể, đo được, có timeline]
-3. **Điều kiện 3**: [Cụ thể, đo được, có timeline]
-4. **Điều kiện 4** (nếu cần): [...]
-5. **Điều kiện 5** (nếu cần): [...]
+### D.3 — Điều kiện cụ thể (nếu CONDITIONAL)
 
-### Monitoring metrics
+Mỗi điều kiện cần: nội dung cụ thể, đo bằng gì, lúc nào, hành động nếu không đạt. Ít nhất 3, tối đa 5.
 
-Liệt kê 3-5 metrics nhóm sẽ track hàng tuần:
+1. **Điều kiện 1**:
 
-- Metric 1: [vd: Adoption rate (= users active that week / pilot total)]
-- Metric 2: [vd: Cost per task ($)]
-- Metric 3: [vd: Quality factor (random 50 tasks sample / week)]
-- Metric 4: [vd: User satisfaction (CSAT survey monthly)]
+```text
+(điền vào đây — vd: "Tỷ lệ sử dụng ≥ 60% trong tháng 1, đo bằng tỷ lệ người hoạt động /
+tổng người thử, kiểm cuối tháng 1, nếu không đạt → dừng và xem xét lại")
+```
 
-### Stop/pivot trigger
+2. **Điều kiện 2**:
 
-Trigger cụ thể: "Nếu trong [thời gian], [metric] vượt ngưỡng [số], thì [action]."
+```text
+(điền vào đây)
+```
 
-- Trigger 1: [...]
-- Trigger 2: [...]
+3. **Điều kiện 3**:
+
+```text
+(điền vào đây)
+```
+
+4. **Điều kiện 4** *(nếu cần)*:
+
+```text
+(điền vào đây)
+```
+
+5. **Điều kiện 5** *(nếu cần)*:
+
+```text
+(điền vào đây)
+```
+
+### D.4 — Chỉ số theo dõi hàng tuần / hàng tháng
+
+3-5 chỉ số nhóm sẽ theo dõi trong suốt pilot. Mỗi chỉ số: tên, đo bằng nguồn nào, ngưỡng chấp nhận.
+
+- **Chỉ số 1**:
+
+```text
+(điền vào đây — vd: "Tỷ lệ sử dụng = người hoạt động / tổng người thử, lấy từ log dùng, hàng tuần, ngưỡng ≥ 60%")
+```
+
+- **Chỉ số 2**:
+
+```text
+(điền vào đây)
+```
+
+- **Chỉ số 3**:
+
+```text
+(điền vào đây)
+```
+
+- **Chỉ số 4** *(nếu cần)*:
+
+```text
+(điền vào đây)
+```
+
+- **Chỉ số 5** *(nếu cần)*:
+
+```text
+(điền vào đây)
+```
+
+### D.5 — Ngưỡng dừng pilot
+
+Trigger cụ thể bằng số + thời gian + hành động. Tránh "nếu pilot thất bại" — quá mơ hồ.
+
+- **Trigger 1**:
+
+```text
+(điền vào đây — vd: "Tỷ lệ sử dụng < 40% trong 30 ngày liên tiếp → dừng và xem xét lại")
+```
+
+- **Trigger 2**:
+
+```text
+(điền vào đây)
+```
+
+### D.6 — Thay đổi cần thiết (nếu NO-GO)
+
+Liệt kê 2-3 thay đổi để nhóm có thể quay lại quyết định. Mỗi thay đổi cần kèm tác động dự kiến lên ROI.
+
+1. **Thay đổi 1**:
+
+```text
+(điền vào đây — vd: "Đổi từ Claude 3.5 Sonnet sang GPT-4o-mini cho việc đơn giản → chi phí mỗi việc giảm 80%, ROI tăng từ 0.8:1 lên 2.1:1")
+```
+
+2. **Thay đổi 2**:
+
+```text
+(điền vào đây)
+```
+
+3. **Thay đổi 3**:
+
+```text
+(điền vào đây)
+```
 
 ---
 
-## Phần D — Reality Check (challenge verdict của chính mình)
+## Phần E — Bảng kiểm trước khi chuyển sang `3-FINAL-stress-test-verdict.md`
 
-Trước khi finalize, cặp tự challenge:
-
-### Câu hỏi 1: Tại sao không CONDITIONAL nếu chọn GO?
-
-Hầu hết AI pilot thực tế nên CONDITIONAL. Nếu nhóm chọn GO:
-
-- Có data hard nào support adoption > 80% không?
-- Có data hard nào support quality > 85% không?
-- Combined worst case có thực sự > 1.5:1 không, hoặc nhóm đang lạc quan?
-
-Nếu không có data cứng → consider CONDITIONAL.
-
-### Câu hỏi 2: Tại sao không NO-GO nếu chọn CONDITIONAL?
-
-Một CONDITIONAL với điều kiện không khả thi cũng = NO-GO trá hình:
-
-- Điều kiện 1 có thực sự đạt được không?
-- Adoption phải > 80% mới sống → khó đạt → thực tế là NO-GO.
-- Cost phải giảm 50% mới sống → khó negotiate → thực tế là NO-GO.
-
-Nếu CONDITIONAL phụ thuộc vào điều kiện không khả thi → CONDITIONAL biến thành NO-GO. Honest hơn nói NO-GO ngay.
-
-### Câu hỏi 3: Buyer (CTO/VP) sẽ phản ứng thế nào?
-
-Đặt mình vào vai buyer trong brief field #6:
-
-- Buyer thấy GO chắc chắn không có stress test → có tin được không?
-- Buyer thấy CONDITIONAL có 3 điều kiện cụ thể → có actionable không?
-- Buyer thấy NO-GO có lý do rõ → có giúp tiết kiệm cost không?
-
-Buyer tốt **thích CONDITIONAL với điều kiện rõ** hơn là **GO chắc chắn không stress test**.
+- [ ] Đã chọn rõ 1 trong 3 quyết định (GO / CONDITIONAL / NO-GO).
+- [ ] Phát biểu quyết định 3-4 câu sẵn sàng để dán vào FINAL.
+- [ ] Nếu CONDITIONAL: có 3-5 điều kiện cụ thể, đo được, có thời gian.
+- [ ] Có 3-5 chỉ số theo dõi với ngưỡng chấp nhận.
+- [ ] Có ngưỡng dừng pilot cụ thể *(số + thời gian + hành động)*.
+- [ ] Đã trả lời câu hỏi tự thách thức ở Phần C.
+- [ ] Đã đặt mình vào vai người mua để đọc lại bản nháp.
 
 ---
 
-## Phần E — Kiểm tra Verdict Draft
+## Những lỗi hay mắc
 
-Trước khi chuyển sang `3-FINAL-stress-test-verdict.md`, rà soát:
-
-- [ ] Verdict CHỌN rõ ràng (GO / CONDITIONAL / NO-GO).
-- [ ] Verdict statement 3-4 câu paste được vào FINAL.
-- [ ] Nếu CONDITIONAL: có 3-5 điều kiện cụ thể, đo được, có timeline.
-- [ ] Có monitoring metrics list 3-5 items.
-- [ ] Có stop/pivot trigger cụ thể (số + thời gian + action).
-- [ ] Đã reality check tại sao không CONDITIONAL (nếu GO) hoặc tại sao không NO-GO (nếu CONDITIONAL).
-- [ ] Đã đặt mình vào vai buyer để kiểm tra verdict có defendable không.
-
----
-
-## Anti-pattern
-
-| Đừng làm | Nên làm |
+| Đừng | Thay vào đó |
 |---|---|
-| Verdict = "Có vẻ ok" | Cụ thể GO/CONDITIONAL/NO-GO với criteria |
-| GO chắc chắn (không stress test) | CONDITIONAL với điều kiện rõ — defendable hơn |
-| CONDITIONAL không có điều kiện cụ thể | 3-5 điều kiện đo được + timeline |
-| CONDITIONAL với điều kiện không khả thi | Honest hơn nói NO-GO |
-| NO-GO không nói "cần đổi gì" | Liệt kê 2-3 changes để khả thi |
-| Quên buyer perspective | Đặt mình vào vai buyer, defendable? |
+| "Có vẻ ổn" | Cụ thể GO / CONDITIONAL / NO-GO với lý do bằng số |
+| GO chắc chắn không có stress test | CONDITIONAL với điều kiện rõ — đứng được trước người mua hơn |
+| CONDITIONAL nhưng không có điều kiện cụ thể | 3-5 điều kiện đo được + thời gian |
+| CONDITIONAL với điều kiện không khả thi | Thành thật nói NO-GO |
+| NO-GO mà không nói cần đổi gì | Liệt kê 2-3 thay đổi để khả thi |
+| Quên góc nhìn người mua | Đọc lại một lần qua mắt CTO / VP — có đứng được không? |
 
 ---
 
-## Next: FINAL Section D
+## Sau khi xong bản nháp
 
-Sau khi có verdict draft, chuyển sang `3-FINAL-stress-test-verdict.md` để gộp Section D (Stress Test + Verdict) hoàn chỉnh.
+Chuyển sang `3-FINAL-stress-test-verdict.md` để gộp Mục D hoàn chỉnh: bảng 5 kịch bản + kịch bản kết hợp + quyết định + điều kiện + theo dõi + ngưỡng dừng.

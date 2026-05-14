@@ -1,220 +1,170 @@
-# Prompt tham khảo 1 — Tự định nghĩa Usage Unit
+# Câu lệnh AI 1 — Định nghĩa đơn vị AI làm việc
 
-**Dùng khi**: nhóm bắt đầu Step 1 Lab, cần định nghĩa "AI làm GÌ trong MỘT lần chạy" từ brief — nền tảng cho toàn bộ Cost Model.
-**Công cụ gợi ý**: Claude Sonnet/Opus, ChatGPT-4o, Gemini 1.5 Pro.
-**Lưu kết quả vào**: `worksheet/01-cost-model/1-usage-unit.md` Phần A + C
-**Thời gian**: 10-15 phút
+**Dùng khi**: Bước 1 của Lab — sau khi đọc đề bài, nhóm cần xác định "AI làm việc gì trong một lần chạy" (gọi là *Usage Unit*) trước khi tính bất kỳ chi phí nào.
 
----
+**Công cụ gợi ý**: Claude, ChatGPT, Gemini.
 
-## Trước khi vào prompt — 5 câu hỏi nhóm tự trả lời
+**Lưu kết quả vào**: `worksheet/01-cost-model/1-usage-unit.md`, Phần A và Phần C.
 
-Mục tiêu: trước khi nhờ AI, nhóm phải biết **mục đích cụ thể của usage unit** — không phải đặt 1 cái tên kêu mà phải link với cost + value.
-
-1. **Brief # bao nhiêu** và domain là gì? (Trừ Brief #1 đã có ví dụ Support Copilot, các brief khác phải tự suy ra.)
-2. **Workflow chính của brief** (đọc lại field #2): từ input đến output, AI chen vào khâu nào?
-3. **Primary constraint** (đọc lại field #5): có bắt buộc 100% human review không? Có cấm auto-action không?
-4. **AI thay vai trò ai**: tự làm việc của human (high autonomy), hay hỗ trợ human (low autonomy)?
-5. **Output cuối của AI nhìn như thế nào**: là 1 label / 1 đoạn text / 1 quyết định / 1 bộ data?
-
-> **Cảnh báo**: nếu nhóm chưa trả lời 5 câu này → AI sẽ đưa usage unit "kêu nhưng vô dụng" (vd: "AI capacity"). Đầu vào tệ → đầu ra tệ.
+**Thời gian**: 10–15 phút.
 
 ---
 
-## Prompt chính (paste sau `00-context.md`)
+## Trước khi vào câu lệnh — 5 câu nhóm tự trả lời
+
+Đây không phải để dán vào AI. Đây là để nhóm tự hỏi nhau trước, để khi đọc bản nháp AI sinh ra, nhóm biết cái nào hợp lý cái nào không. AI sẽ "đoán" nếu nhóm chưa định hình — đoán sai thì cả Cost Model sau đó lệch theo.
+
+1. Đề bài thuộc ngành nào, đội nào, làm việc gì cụ thể?
+2. Đọc lại quy trình (trường 2 của đề bài): AI chen vào ở khâu nào trong quy trình?
+3. Đọc lại ràng buộc (trường 5): có bắt buộc 100% người kiểm tra không? Có cấm AI tự gửi không?
+4. AI thay vai trò ai trong khâu đó — tự làm thay người, hay chỉ hỗ trợ người ra quyết định?
+5. Đầu ra một lần AI chạy trông như thế nào — một nhãn phân loại, một đoạn văn, một quyết định, hay một bảng dữ liệu?
+
+Trả lời 5 câu này xong, cả nhóm sẽ thống nhất được "AI làm gì" trước khi để AI gợi ý.
+
+---
+
+## Câu lệnh chính (dán sau `00-context.md`)
 
 ```text
-Bạn là Product Manager AI có kinh nghiệm tính economics cho AI products.
-Dựa trên BỐI CẢNH ở trên (00-context.md + brief đã giao), giúp nhóm tôi định nghĩa
-USAGE UNIT cho AI product trong brief.
+Bạn là Product Manager AI có kinh nghiệm tính kinh tế cho sản phẩm AI.
+Dựa trên bối cảnh ở trên (`00-context.md` + đề bài đã giao), giúp nhóm tôi
+định nghĩa đơn vị AI làm việc (Usage Unit) cho sản phẩm AI trong đề bài.
 
-Usage unit = đơn vị nguyên tử kinh tế của AI product = "AI làm GÌ trong MỘT lần chạy".
+Usage Unit = đơn vị nguyên tử kinh tế của sản phẩm AI = "AI làm gì trong
+một lần chạy".
 
-YÊU CẦU:
+Yêu cầu:
 
-1. Đề xuất 3 usage unit candidate cho brief, mỗi cái có:
-   - Tên ngắn (vd: "1 ticket reply draft", "1 content flag pre-screen")
-   - Mô tả 2-3 câu (input là gì, output là gì, output đi đâu)
-   - Trigger (khi nào AI chạy: auto / manual / scheduled)
-   - Pass 3-part test:
-     a. Đếm được? (countable, không phải "AI hỗ trợ")
-     b. Tốn token? (mỗi lần = 1 API call có cost)
-     c. Có giá trị cho user? (1 đơn vị này có rút thời gian / cải thiện chất lượng?)
+1. Đề xuất 3 phương án Usage Unit cho đề bài, mỗi phương án gồm:
+   - Tên ngắn (vd: "1 bản nháp trả lời ticket", "1 lần gắn cờ kiểm duyệt")
+   - Mô tả 2–3 câu (đầu vào là gì, đầu ra là gì, đầu ra đi đâu)
+   - AI chạy khi nào (người bấm nút / tự động theo sự kiện / theo lịch)
+   - Qua 3 câu kiểm tra:
+     a. Đếm được không? (đếm "AI đã làm việc này X lần" mà không tranh cãi)
+     b. Có tốn token không? (mỗi lần chạy có gọi API thật, có chi phí thật)
+     c. Người dùng có thấy giá trị không? (rút ngắn thời gian hoặc cải
+        thiện chất lượng cho một người dùng cụ thể)
 
-2. Đánh giá 3 candidate theo 4 tiêu chí (1-5):
-   - Atomic-ness (đủ atomic không?)
-   - Countable (dễ đếm trong production không?)
-   - Cost-linked (rõ ràng cost mỗi unit không?)
-   - Value-linked (link rõ với giá trị user không?)
+2. Đánh giá 3 phương án theo 4 tiêu chí, chấm 1–5:
+   - Đơn vị nhỏ nhất (atomic): có phải đúng "một lần AI chạy", hay là
+     gom nhiều lần?
+   - Đếm được trong thực tế (countable): khi triển khai có log lại được?
+   - Gắn với chi phí (cost-linked): từ đơn vị này có dễ tính chi phí mỗi
+     lần chạy không?
+   - Gắn với giá trị (value-linked): từ đơn vị này có dễ tính giá trị mỗi
+     lần chạy không?
 
-3. Recommend usage unit nào pick + lý do (2-3 câu).
+3. Đề xuất phương án nên chọn + 2–3 câu lý do.
 
-4. Cảnh báo các common mistake cho brief này:
-   - Quá rộng (vd: "AI hỗ trợ X")
-   - Quá hẹp (vd: "1 token")
-   - Không atomic (1 unit gọi AI nhiều lần)
-   - Đúng technical, sai business (vd: "1 API call")
+4. Cảnh báo các lỗi hay mắc cho đề bài này:
+   - Quá rộng (vd: "AI hỗ trợ team support")
+   - Quá hẹp (vd: "1 token AI sinh ra")
+   - Không phải đơn vị nhỏ nhất (1 đơn vị gọi AI nhiều lần)
+   - Đúng kỹ thuật nhưng sai góc nhìn kinh doanh (vd: "1 lần gọi API")
 
-YÊU CẦU PHẢN BIỆN:
-- Nếu brief có constraint 100% human review → usage unit có phải là "1 lần AI chạy" hay "1 lần AI + human review combined"?
-- Nếu brief có multi-step workflow (vd: search + draft + refine = 3 AI call) → đếm 1 unit hay 3 unit?
-- Nếu user có thể "regen" / "try again" → đếm 1 lần thử hay 1 outcome cuối?
+Yêu cầu phản biện:
+- Nếu đề bài có ràng buộc 100% người kiểm tra, Usage Unit nên là "1 lần
+  AI chạy" hay "1 lần AI + người kiểm tra gộp lại"?
+- Nếu quy trình có nhiều bước (vd: tìm tài liệu + viết nháp + sửa = 3
+  lần AI chạy), đếm là 1 đơn vị hay 3 đơn vị?
+- Nếu người dùng có thể bấm "thử lại" / "tạo lại", đếm 1 lần thử hay
+  1 kết quả cuối?
 
-YÊU CẦU FORMAT:
-- Trả lời bằng tiếng Việt thoát nghĩa, không dịch nửa vời.
-- Mỗi candidate trình bày trong format đồng nhất.
-- Recommendation cuối ngắn gọn 2-3 câu.
+Yêu cầu trình bày:
+- Viết tiếng Việt thoát nghĩa, không dịch nửa vời.
+- Trình bày 3 phương án theo cùng định dạng.
+- Đề xuất cuối ngắn gọn 2–3 câu.
 ```
 
 ---
 
-## Iterate — đẩy AI sâu hơn nếu output chưa đủ
+## Iterate — đẩy AI sâu hơn khi bản nháp chưa đủ
 
-### Khi AI đề xuất usage unit quá rộng
-
-Nếu AI trả lời "1 ticket handled" — quá rộng vì 1 ticket có thể qua nhiều AI call (search KB, draft, refine).
+### Khi AI đưa ra phương án quá rộng (vd: "1 ticket được giải quyết")
 
 ```text
-Usage unit bạn đề xuất ("1 ticket handled") là OUTCOME, không phải ATOMIC AI call.
+Phương án bạn đề xuất ("1 ticket được giải quyết") là kết quả cuối, không
+phải một lần AI chạy. Một ticket thường gọi AI nhiều lần: 1 lần tìm tài
+liệu, 1 lần viết nháp, có khi 1 lần sửa lại.
 
-Trong workflow:
-- Bước 1: AI search KB (1 API call)
-- Bước 2: AI draft reply (1 API call)
-- Bước 3: AI refine sau agent feedback (0 hoặc 1 API call)
+Đề xuất lại: Usage Unit nên là 1 trong các bước AI gọi cụ thể, hay là
+"1 bản nháp trả lời ticket" (= bước viết nháp, bước có giá trị rõ nhất
+với người dùng)?
 
-Tách lại: usage unit nên là 1 trong 3 bước trên, hay là "1 ticket reply draft" (= bước 2 — bước có giá trị rõ nhất với user)?
-
-Phân tích thêm: nếu chọn "1 ticket reply draft" thì bước 1 (search KB) tính vào đâu?
-- Option A: include trong cost/task của bước 2 (multi-step cost).
-- Option B: tách riêng "1 KB search" = usage unit phụ.
-
-Recommend cái nào dễ measure + bill hơn trong thực tế?
+Nếu chọn "1 bản nháp trả lời", thì bước "tìm tài liệu" tính vào đâu —
+gộp vào chi phí của bước viết nháp, hay tách thành đơn vị phụ riêng?
+Cái nào dễ đo và dễ tính tiền hơn trong thực tế?
 ```
 
-### Khi AI đề xuất usage unit quá technical
-
-Nếu AI trả lời "1 token consumed" hoặc "1 model inference" — đúng technical, sai business.
+### Khi AI đưa ra phương án quá kỹ thuật (vd: "1 lần gọi API")
 
 ```text
-Usage unit bạn đề xuất là technical-level, không tied với business value.
+Phương án bạn đề xuất là đúng kỹ thuật nhưng sai góc nhìn kinh doanh.
 
 Vấn đề:
-- Buyer (CTO/VP) không hiểu "1 inference" nghĩa là gì.
-- User không trả tiền theo "inference count" — họ trả tiền theo outcome.
+- Người mua (giám đốc kỹ thuật, phó tổng) không hiểu "1 lần gọi API"
+  nghĩa là gì, vì sao họ trả tiền cho nó.
+- Người dùng không trả tiền theo "số lần gọi API" — họ trả tiền theo
+  việc cụ thể đã làm được.
 
-Đề xuất lại usage unit ở MIDDLE LAYER:
-- KHÔNG quá technical (như "1 token")
-- KHÔNG quá broad (như "1 ticket handled")
-- Ở giữa: "1 unit of AI work mà buyer sẽ pay for" — vd: 1 draft, 1 flag pre-screen, 1 forecast, 1 contract review.
+Đề xuất lại Usage Unit ở tầng giữa:
+- Không quá kỹ thuật (như "1 token")
+- Không quá rộng (như "1 ticket được giải quyết")
+- Ở giữa: "một việc AI làm mà người mua sẵn sàng trả tiền cho" — vd: 1
+  bản nháp, 1 lần gắn cờ, 1 dự báo, 1 lần kiểm tra hợp đồng.
 
-Tìm middle layer cho brief này, đề xuất 2 candidate cụ thể.
+Tìm tầng giữa cho đề bài này, đề xuất 2 phương án cụ thể.
 ```
 
-### Khi muốn validate qua real-world analog
+### Khi nhóm muốn đối chiếu với sản phẩm thật
 
 ```text
-Tìm 2 sản phẩm AI tương tự (cùng domain hoặc cùng pattern) và xem họ define usage unit thế nào:
+Tìm 2 sản phẩm AI tương tự (cùng ngành hoặc cùng mô hình hoạt động) và
+xem họ định nghĩa Usage Unit như thế nào:
 
 1. Sản phẩm: ___
-   - Họ bill theo usage unit gì?
-   - Pricing page URL: [...]
-   - Có giống usage unit nhóm tôi đề xuất không?
+   - Họ tính tiền theo đơn vị gì?
+   - URL trang giá: ___
+   - Có giống phương án nhóm tôi đề xuất không?
 
 2. Sản phẩm: ___
-   - [tương tự]
+   - (như trên)
 
-Sau khi tham khảo, có nên revise usage unit cho brief tôi không?
+Sau khi tham khảo, có nên sửa lại Usage Unit cho đề bài của nhóm tôi
+không, sửa thế nào?
 ```
 
 ---
 
-## Phản biện sau khi có output — 5 câu nhóm tự hỏi
+## Trước khi dán kết quả vào worksheet — nhóm tự rà soát
 
-Trước khi paste vào `1-usage-unit.md`, nhóm rà soát:
+- Phương án chọn có qua cả 3 câu kiểm tra không (đếm được, tốn token, có giá trị)?
+- Có thực sự là đơn vị nhỏ nhất, hay là kết quả gộp nhiều lần AI chạy?
+- Người mua (giám đốc kỹ thuật, phó tổng) có hiểu được Usage Unit này và có thể bảo vệ trong cuộc họp duyệt ngân sách không?
 
-1. **3-part test check**: usage unit pass cả 3? (countable, costs tokens, has value)
-2. **Atomic check**: usage unit có thực sự là "1 lần AI chạy" hay là 1 outcome multi-call?
-3. **Cost-linked check**: từ usage unit có dễ tính cost/task không?
-4. **Value-linked check**: từ usage unit có dễ tính value/task không?
-5. **Buyer view check**: buyer (CTO/VP) hiểu được usage unit này không, có defendable không?
+Nếu một câu trả lời "không" — quay lại sửa trước khi dán vào worksheet.
 
 ---
 
-## Ví dụ tốt vs ví dụ chưa tốt
-
-### Chưa tốt
-
-> "Usage unit: AI hỗ trợ agent."
-
-Vấn đề: không atomic, không đếm được, không tied với cost.
-
-> "Usage unit: 1 token tiêu thụ."
-
-Vấn đề: quá technical, không tied với business value.
-
-> "Usage unit: 1 ticket được giải quyết."
-
-Vấn đề: là outcome multi-step, không phải atomic AI call.
-
-### Tốt
-
-> **Usage unit: 1 ticket reply draft**
->
-> - **Mô tả**: AI nhận nội dung ticket + 3 KB articles liên quan (vector search trước đó), sinh ra 1 bản nháp trả lời dài 80-200 từ. Bản nháp hiển thị trong Zendesk side panel để agent edit/copy/send.
-> - **Trigger**: agent click "Draft with AI" → AI chạy 1 lần. Không auto trigger.
-> - **3-part test**:
->   - ✓ Đếm được: count số lần click "Draft" trong logs.
->   - ✓ Tốn token: input ~800 (ticket + KB) + output ~400 (draft) = ~1,200 tokens/call.
->   - ✓ Có giá trị: tiết kiệm 5 phút search KB + 4 phút viết = 9 phút saved (gross).
->
-> **Recommendation**: chọn unit này vì atomic + measurable + maps to value cho agent.
-
----
-
-## Anti-pattern khi prompt — tránh
-
-| Đừng làm | Nên làm |
-|---|---|
-| Hỏi AI "Usage unit là gì cho brief tôi" | Đưa brief context + ràng buộc 3-part test |
-| Chấp nhận usage unit đầu AI đưa | Đẩy AI đề xuất 3 candidates, so sánh |
-| Bỏ qua phần phản biện | Chạy 3 câu phản biện (constraint review / multi-step / regen) |
-| Không validate với real-world | Tìm 2 analog sản phẩm để cross-check |
-| Quên buyer perspective | Buyer (CTO/VP) có defendable không? |
-
----
-
-## Format save vào `1-usage-unit.md`
-
-```markdown
-## Phần A — Đề xuất Usage Unit
-
-(Đã có đề xuất 1 + 2 từ thành viên cá nhân — bổ sung từ AI nếu cần)
-
-**Usage unit cặp CHỌN**: ___
-**Lý do chọn**: ___
-
-## Phần C — Mô tả chi tiết Usage Unit
-
-(Paste mô tả + trigger + input + output từ AI output)
-```
-
----
-
-## Câu hỏi mở rộng — nâng cao phản biện (optional)
+## Câu hỏi mở rộng (chỉ làm khi còn thời gian)
 
 ```text
-Sau khi chọn usage unit, giúp tôi suy nghĩ 3 câu hỏi STRESS:
+Sau khi chọn Usage Unit, giúp tôi nghĩ thêm 3 tình huống dài hạn:
 
-1. Nếu brief tăng scope 10× (vd: 5 agent → 50 agent), usage unit này có scale được không?
-   - Volume × 10 có gây issue gì (vd: rate limit API, vector DB throughput)?
+1. Nếu đề bài tăng quy mô gấp 10 lần (vd: 5 nhân viên → 50 nhân viên),
+   Usage Unit này có chịu được không?
+   - Khối lượng × 10 có gây vấn đề gì (giới hạn API, dung lượng vector DB)?
 
-2. Nếu provider deprecate model hiện tại, usage unit có cần redefine không?
-   - Vd: model mới có context window khác → token estimate khác → unit cost khác.
+2. Nếu nhà cung cấp AI ngừng mô hình hiện tại, Usage Unit có cần định
+   nghĩa lại không?
+   - Vd: mô hình mới có cửa sổ ngữ cảnh khác → số token đổi → chi phí
+     mỗi lần chạy đổi.
 
-3. Nếu compliance change (vd: bắt buộc on-premise), usage unit có khả thi không?
-   - On-premise model thường có cost structure khác (GPU hourly thay vì per-token).
+3. Nếu có quy định bắt buộc chạy nội bộ (on-premise), Usage Unit có khả
+   thi không?
+   - Mô hình nội bộ thường tính tiền theo giờ GPU, không theo token.
 
-Đặt 3 câu này giúp nhóm test usage unit dưới các kịch bản dài hạn — quan trọng cho verdict CONDITIONAL/NO-GO.
+3 câu này giúp nhóm thấy Usage Unit không chỉ đúng ở quy mô thử nghiệm
+mà còn đứng vững khi quy mô thay đổi — quan trọng cho phần verdict ở Bước 3.
 ```
-
-3 câu hỏi này giúp nhóm nhìn usage unit **không chỉ ở pilot scale** — buyer thực tế sẽ hỏi về scale + deprecate + compliance.

@@ -1,328 +1,248 @@
-# Prompt tham khảo 8 — Viết Verdict Statement (GO / CONDITIONAL / NO-GO)
+# Câu lệnh AI 8 — Viết verdict GO / CONDITIONAL / NO-GO
 
-**Dùng khi**: nhóm đã có 5 scenarios + combined worst case, cần chốt verdict và viết conditions / changes cụ thể.
-**Công cụ gợi ý**: Claude Sonnet/Opus, ChatGPT-4o.
-**Lưu kết quả vào**: `worksheet/03-stress-test/2-verdict-draft.md` + Section D.4-D.8 trong `3-FINAL-stress-test-verdict.md`
-**Thời gian**: 15 phút
+**Dùng khi**: cuối Bước 3 Lab, sau khi đã có 5 kịch bản nén thử + kịch bản tệ nhất — nhóm cần chốt verdict và viết điều kiện / thay đổi cụ thể.
 
----
+**Công cụ gợi ý**: Claude, ChatGPT.
 
-## Trước khi vào prompt — 5 câu hỏi nhóm tự trả lời
+**Lưu kết quả vào**: `worksheet/03-stress-test/2-verdict-draft.md` + phần D.4 đến D.8 trong `3-FINAL-stress-test-verdict.md`.
 
-1. **Base ROI**: ___:1.
-2. **Combined worst case ROI**: ___:1.
-3. **Survives X/5 scenarios** (X = bao nhiêu scenario có ROI > 1.5:1)?
-4. **Buyer trong brief**: ai (CTO/VP/Director/...)?
-5. **Honesty test**: nhóm có ngả về GO chỉ vì "GO là đáp án đúng"?
-
-> **Cảnh báo**: nhiều nhóm chọn GO vì cảm giác GO = success. Thực tế, CONDITIONAL với điều kiện rõ là verdict CHUYÊN NGHIỆP nhất.
+**Thời gian**: 15 phút.
 
 ---
 
-## Prompt chính (paste sau scenarios output)
+## Trước khi vào câu lệnh — 5 câu nhóm tự trả lời
+
+Nhiều nhóm hay chọn GO chỉ vì "GO nghe như thành công". Thật ra, CONDITIONAL với điều kiện rõ là verdict CHUYÊN NGHIỆP nhất — vì nó thừa nhận có rủi ro và đề xuất cách giảm thiểu. Trả lời 5 câu này trước.
+
+1. ROI cơ bản: ___:1.
+2. ROI kịch bản kết hợp tệ nhất: ___:1.
+3. Số kịch bản qua được (X/5, X = số kịch bản có ROI > 1,5:1).
+4. Người mua trong đề bài là ai (giám đốc kỹ thuật, phó tổng, trưởng phòng)?
+5. Có nhóm đang nghiêng về GO chỉ vì cảm giác "muốn pilot thành công" không?
+
+---
+
+## Câu lệnh chính (dán sau kết quả 5 kịch bản)
 
 ```text
-Bạn là CFO advisor giúp viết verdict cho AI pilot.
-Dựa trên BỐI CẢNH ở trên (brief + cost + value + ROI + 5 scenarios + combined worst),
-giúp nhóm tôi:
+Bạn là cố vấn tài chính giúp viết verdict cho thử nghiệm AI.
+Dựa trên bối cảnh ở trên (đề bài + chi phí + giá trị + ROI + 5 kịch bản
+nén thử + kịch bản tệ nhất), giúp nhóm tôi:
 
-1. Apply criteria → chọn verdict (GO / CONDITIONAL / NO-GO).
-2. Viết verdict statement actionable.
-3. Liệt kê conditions / changes cụ thể.
+1. Áp tiêu chí → chọn verdict (GO / CONDITIONAL / NO-GO).
+2. Viết tuyên bố verdict có thể hành động được.
+3. Liệt kê điều kiện / thay đổi cụ thể.
 
-YÊU CẦU:
+Phần 1 — Áp tiêu chí:
 
-PHẦN 1 — Apply Criteria:
-
-| Criteria | GO | CONDITIONAL | NO-GO |
+| Tiêu chí | GO | CONDITIONAL | NO-GO |
 |---|---|---|---|
-| Base ROI | > 3:1 | 1-3:1 | < 1:1 |
-| Survives X/5 scenarios | 4-5 | 2-3 | 0-1 |
-| Combined worst case | > 1.5:1 | 0.5-1.5:1 | < 0.5:1 |
+| ROI cơ bản | > 3:1 | 1–3:1 | < 1:1 |
+| Qua được X/5 kịch bản | 4–5 | 2–3 | 0–1 |
+| ROI kịch bản tệ nhất | > 1,5:1 | 0,5–1,5:1 | < 0,5:1 |
 
-Apply cho nhóm tôi:
-- Base ROI: ___:1 → tier ___
-- Survives X/5: ___/5 → tier ___
-- Combined worst: ___:1 → tier ___
+Áp cho nhóm tôi:
+- ROI cơ bản: ___:1 → tầng ___
+- Qua X/5: ___/5 → tầng ___
+- ROI tệ nhất: ___:1 → tầng ___
 
-Nếu 3 row chỉ vào 1 verdict → clear.
-Nếu lệch (vd: base GO, combined NO-GO) → nghiêng CONDITIONAL với conditions chặt.
+Nếu 3 dòng cùng chỉ vào 1 verdict → rõ.
+Nếu lệch (vd: cơ bản GO nhưng tệ nhất NO-GO) → nghiêng về CONDITIONAL với
+điều kiện chặt.
 
 VERDICT đề xuất: ___
 
-PHẦN 2 — Verdict Statement:
+Phần 2 — Tuyên bố verdict (3–4 câu):
 
-Viết 3-4 câu, paste được vào Section D.4. Phải:
-- Rõ verdict (GO / CONDITIONAL / NO-GO).
-- Số ROI base + combined worst (defendable).
-- 1 key condition / change (nếu CONDITIONAL / NO-GO).
+Phải có:
+- Verdict rõ (GO / CONDITIONAL / NO-GO).
+- Số ROI cơ bản + ROI tệ nhất (bảo vệ được).
+- 1 điều kiện hoặc thay đổi quan trọng (nếu CONDITIONAL / NO-GO).
 
-Format tùy verdict:
+Theo verdict:
 
-NẾU GO:
-"Proceed with pilot as scoped. Brief #___ — [tên]. Base ROI ___:1, sống cả [n/5] scenarios. Combined worst case [scenarios xấu nhất] cho ROI ___:1, trên ngưỡng 1.5:1. Proceed without conditions."
+GO:
+"Tiến hành thử nghiệm như đã thiết kế. Đề bài #___ [tên]. ROI cơ bản
+___:1, qua [X/5] kịch bản. Kịch bản tệ nhất [tên 2 kịch bản kết hợp]
+cho ROI ___:1, trên ngưỡng 1,5:1. Tiến hành không cần điều kiện."
 
-NẾU CONDITIONAL:
-"CONDITIONAL GO. Brief #___ — [tên]. Base ROI ___:1, sống [n/5] scenarios. Combined worst case [scenarios] cho ROI ___:1 — biên mỏng. Pilot tiếp tục với conditions: 1) ___ 2) ___ 3) ___. Stop trigger: ___."
+CONDITIONAL:
+"CONDITIONAL GO. Đề bài #___ [tên]. ROI cơ bản ___:1, qua [X/5] kịch
+bản. Kịch bản tệ nhất [tên] cho ROI ___:1 — biên mỏng. Thử nghiệm tiếp
+tục với điều kiện: 1) ___ 2) ___ 3) ___. Cắt nếu: ___."
 
-NẾU NO-GO:
-"NO-GO at current scope. Brief #___ — [tên]. Base ROI ___:1 hoặc combined worst ___:1. Cần thay đổi: 1) ___ 2) ___ 3) ___. Loại: [Not now / Not ever]."
+NO-GO:
+"NO-GO ở phạm vi hiện tại. Đề bài #___ [tên]. ROI cơ bản ___:1 hoặc tệ
+nhất ___:1. Cần thay đổi: 1) ___ 2) ___ 3) ___. Loại: [Tạm thời / Vĩnh viễn]."
 
-PHẦN 3 — Conditions (nếu CONDITIONAL):
+Phần 3 — Điều kiện (nếu CONDITIONAL):
 
-3-5 conditions cụ thể, mỗi cái có 4 trường:
-- Tên condition
-- Đo bằng metric gì (cụ thể)
-- Timeline (vd: tháng 1 EOM, weekly)
-- Action nếu fail
-
-Ví dụ:
-"1. Adoption phải >= 60% trong tháng 1.
-   - Metric: active users / pilot total mỗi tuần.
-   - Timeline: tháng 1 EOM.
-   - Action: nếu < 50% → pause review pilot, kiểm tra UX + training."
-
-CẢNH BÁO: condition phải MEASURABLE + TIMED. Không "sẽ làm tốt".
-
-PHẦN 4 — Monitoring Metrics:
-
-3-5 metrics nhóm track trong pilot:
-- Metric name + frequency + source + threshold.
+3–5 điều kiện cụ thể, mỗi điều kiện có 4 trường:
+- Tên điều kiện
+- Đo bằng chỉ số gì (cụ thể)
+- Khi nào kiểm tra (vd: cuối tháng 1, hàng tuần)
+- Làm gì nếu không đạt
 
 Vd:
-- Adoption rate: weekly từ usage logs, threshold >= 60%.
-- Cost/task: weekly từ billing logs, threshold <= $0.01.
-- Quality: weekly random sample 50 tasks, threshold >= 75%.
-- User CSAT: monthly survey, threshold NPS >= 30.
+"1. Tỷ lệ sử dụng phải ≥ 60% trong tháng 1.
+   - Chỉ số: số người dùng / tổng nhóm thử nghiệm mỗi tuần.
+   - Thời gian: hàng tuần, đánh giá cuối tháng 1.
+   - Nếu không đạt: tạm dừng thử nghiệm, rà giao diện + đào tạo."
 
-PHẦN 5 — Stop / Pivot Trigger:
+Quy tắc cứng: điều kiện phải ĐO ĐƯỢC + CÓ MỐC THỜI GIAN. Không "sẽ cố
+gắng tốt".
 
-Trigger cứng: nếu X xảy ra trong Y thời gian → pause / pivot.
+Phần 4 — Chỉ số theo dõi:
 
-Vd:
-"Trigger 1: Adoption < 40% trong 30 ngày liên tiếp → pause review."
-"Trigger 2: Cost/task > $0.05 trong 2 tuần → switch to cheaper model."
-"Trigger 3: Quality < 60% trong 30 ngày → halt + iterate prompt."
-
-PHẦN 6 — Changes (nếu NO-GO):
-
-Nếu NO-GO, liệt kê 2-3 changes để khả thi:
-- Change name + tác động ROI dự kiến.
+3–5 chỉ số theo dõi trong suốt thử nghiệm:
+- Tên + tần suất + nguồn dữ liệu + ngưỡng.
 
 Vd:
-"Change 1: Đổi từ Claude 3.5 sang GPT-4o-mini cho task simple → cost giảm 80%, ROI 0.7 → 2.1."
-"Change 2: Renegotiate constraint 100% review → ROI 2.1 → 3.4."
+- Tỷ lệ sử dụng: hàng tuần từ log hệ thống, ngưỡng ≥ 60%.
+- Chi phí mỗi lần chạy: hàng tuần từ hoá đơn, ngưỡng ≤ $0,01.
+- Chất lượng: hàng tuần qua mẫu ngẫu nhiên 50 việc, ngưỡng ≥ 75%.
+- Điểm hài lòng người dùng: hàng tháng qua khảo sát, NPS ≥ 30.
 
-Loại NO-GO: "Not now (revisit khi A, B)" hay "Not ever (fundamentally không phù hợp)".
+Phần 5 — Điều kiện dừng / xoay:
 
-YÊU CẦU FORMAT:
-- Verdict statement ngắn (3-4 câu), defendable.
-- Conditions / monitoring / trigger cụ thể, measurable, timed.
-- Trả lời tiếng Việt thoát nghĩa.
+Cứng: nếu X xảy ra trong Y thời gian → dừng / xoay.
 
-YÊU CẦU PHẢN BIỆN:
-- Verdict CONDITIONAL có conditions feasible không (không phụ thuộc miracle)?
-- Verdict GO có check overestimate base case chưa?
-- Verdict NO-GO có thực sự "not ever" hay chỉ "not now"?
+Vd:
+"Điều kiện 1: Tỷ lệ sử dụng < 40% trong 30 ngày liên tiếp → tạm dừng."
+"Điều kiện 2: Chi phí mỗi lần chạy > $0,05 trong 2 tuần → đổi sang mô
+hình rẻ hơn."
+"Điều kiện 3: Chất lượng < 60% trong 30 ngày → dừng + tinh chỉnh câu lệnh."
+
+Phần 6 — Thay đổi (nếu NO-GO):
+
+Nếu NO-GO, liệt kê 2–3 thay đổi để khả thi:
+- Tên thay đổi + tác động dự kiến lên ROI.
+
+Vd:
+"Thay đổi 1: Đổi Claude 3.5 → GPT-4o-mini cho việc đơn giản → chi phí
+giảm 80%, ROI 0,7 → 2,1."
+"Thay đổi 2: Đàm phán lại ràng buộc 100% người kiểm tra → ROI 2,1 → 3,4."
+
+Loại NO-GO: "Tạm thời (xem lại khi A, B)" hay "Vĩnh viễn (về cơ bản không
+phù hợp)".
+
+Yêu cầu trình bày:
+- Tuyên bố verdict ngắn (3–4 câu), bảo vệ được.
+- Điều kiện / chỉ số / điều kiện dừng cụ thể, đo được, có mốc.
+- Viết tiếng Việt thoát nghĩa.
+
+Yêu cầu phản biện:
+- Verdict CONDITIONAL có điều kiện khả thi không (không phụ thuộc phép
+  màu)?
+- Verdict GO có kiểm tra kịch bản cơ bản có phóng đại không?
+- Verdict NO-GO có thực sự "vĩnh viễn" hay chỉ "tạm thời"?
 ```
 
 ---
 
-## Iterate — đẩy AI sâu hơn nếu output chưa đủ
+## Iterate — đẩy AI sâu hơn khi bản nháp chưa đủ
 
-### Khi nhóm muốn GO nhưng combined worst < 1.5
+### Khi nhóm muốn GO nhưng kịch bản tệ nhất < 1,5
 
 ```text
-Nhóm tôi muốn GO vì base ROI = 3.5:1.
+Nhóm tôi muốn GO vì ROI cơ bản = 3,5:1.
 
-NHƯNG combined worst case = 1.2:1 < 1.5:1.
+NHƯNG kịch bản tệ nhất = 1,2:1 < 1,5:1.
 
-Per framework, đây là CONDITIONAL territory:
-- Base GO ngụ ý "robust qua mọi shock".
-- Combined worst < 1.5 ngụ ý "pilot có biên mỏng khi 2 scenarios cùng xảy ra".
+Theo khung tiêu chí, đây là vùng CONDITIONAL:
+- Cơ bản GO ngụ ý "vững qua mọi cú sốc".
+- Tệ nhất < 1,5 ngụ ý "thử nghiệm có biên mỏng khi 2 cú sốc cùng xảy ra".
 
-Honest verdict: CONDITIONAL, KHÔNG GO.
+Verdict thành thật: CONDITIONAL, KHÔNG GO.
 
-Bằng chứng cho buyer:
-- "Base ROI 3.5:1 attractive."
-- "Nhưng nếu adoption < 40% AND quality < 60% cùng lúc → ROI 1.2:1 → mất 30% an toàn."
-- "Đề xuất CONDITIONAL với conditions: monitor adoption + quality hàng tuần. Nếu cả 2 cùng giảm 2 tuần liên tiếp → trigger review."
+Lập luận với người mua:
+- "ROI cơ bản 3,5:1 hấp dẫn."
+- "Nhưng nếu tỷ lệ sử dụng < 40% VÀ chất lượng < 60% cùng lúc → ROI
+  1,2:1 → mất 30% biên an toàn."
+- "Đề xuất CONDITIONAL với điều kiện: theo dõi tỷ lệ sử dụng + chất
+  lượng hàng tuần. Nếu cả 2 cùng giảm 2 tuần liên tiếp → kích hoạt xem
+  lại."
 
-CONDITIONAL với conditions cứng còn defend được hơn GO không stress test.
+CONDITIONAL với điều kiện cứng bảo vệ được hơn là GO không nén thử.
 
-Recommend revise verdict: CONDITIONAL.
+Đề xuất sửa verdict: CONDITIONAL.
 ```
 
 ### Khi nhóm muốn NO-GO sớm
 
 ```text
-Nhóm tôi muốn NO-GO vì base ROI = 1.4:1 (marginal).
+Nhóm tôi muốn NO-GO vì ROI cơ bản = 1,4:1 (cận biên).
 
-Trước khi NO-GO, identify 3 levers:
+Trước khi NO-GO, thử 3 hướng tăng:
+- Giảm chi phí: đổi mô hình cao cấp → trung; bỏ công cụ không bắt buộc;
+  đàm phán lại ràng buộc kiểm tra.
+- Tăng giá trị: mở rộng thử nghiệm để rải triển khai tốt hơn; đào tạo
+  để tăng tỷ lệ sử dụng; tinh chỉnh câu lệnh để tăng chất lượng.
+- Kéo dài thời gian: thử nghiệm 90 → 180 ngày để rải triển khai gấp đôi.
 
-LEVER 1: Giảm Cost
-- Đổi model premium → mid-tier. Cost/task giảm 60%. ROI mới?
-- Bỏ tooling không cần (vd: monitoring không bắt buộc trong pilot). Cost giảm 5%.
-- Renegotiate constraint review (vd: tier-1 task auto). Human review cost giảm 30%.
+Tính lại ROI với tổ hợp các hướng. Nếu sau điều chỉnh ROI > 2:1 →
+CONDITIONAL. Nếu vẫn < 1,5:1 → NO-GO kèm 2–3 thay đổi đề xuất cụ thể.
 
-LEVER 2: Tăng Value
-- Mở rộng pilot 5 → 15 user. Amortize setup tốt hơn. Value/user giữ nguyên, total value 3×.
-- Adoption boost: incentive program $500/month. ROI tăng?
-- Quality boost: prompt iteration tuần 1-2. ROI tăng?
-
-LEVER 3: Time horizon
-- Pilot 90 ngày → 180 ngày. Setup amortize gấp đôi. Cost/month giảm 30%.
-
-Recalc với lever combination:
-- Just LEVER 1 (cheaper model): ROI ___.
-- LEVER 1 + 2 (cheaper + broader pilot): ROI ___.
-- LEVER 1 + 2 + 3 (cheaper + broader + longer): ROI ___.
-
-Nếu sau lever ROI > 2:1 → CONDITIONAL.
-Nếu vẫn < 1.5:1 → NO-GO với 2-3 changes recommend.
-
-Đừng NO-GO trước khi thử lever.
+Đừng NO-GO trước khi thử các hướng.
 ```
 
-### Khi conditions không khả thi
+### Khi điều kiện đặt ra không khả thi
 
 ```text
-CONDITIONAL conditions nhóm tôi:
-- Adoption >= 80% trong tháng 1.
-- Quality >= 90% trong tháng 1.
+Điều kiện CONDITIONAL nhóm tôi:
+- Tỷ lệ sử dụng ≥ 80% trong tháng 1.
+- Chất lượng ≥ 90% trong tháng 1.
 
-Realistic check:
-- Adoption 80% trong tháng 1 ở pilot voluntary → KHÓ. Realistic 50-70% tháng 1.
-- Quality 90% trên draft generation → KHÓ. Realistic 75-85% mature, 65-75% tháng 1.
+Kiểm tra thực tế:
+- Tỷ lệ sử dụng 80% trong tháng 1 ở thử nghiệm tự nguyện → KHÓ. Thực tế
+  50–70% tháng 1.
+- Chất lượng 90% cho việc viết nháp → KHÓ. Thực tế 75–85% khi ổn định,
+  65–75% tháng 1.
 
-Conditions này không khả thi → CONDITIONAL biến thành NO-GO trá hình.
+Điều kiện này không khả thi → CONDITIONAL biến tướng thành NO-GO trá hình.
 
-Revise conditions:
-- Adoption >= 50% trong tháng 1, >= 65% tháng 3.
-- Quality >= 70% trong tháng 1, >= 80% tháng 3.
+Sửa lại điều kiện:
+- Tỷ lệ sử dụng ≥ 50% trong tháng 1, ≥ 65% trong tháng 3.
+- Chất lượng ≥ 70% trong tháng 1, ≥ 80% trong tháng 3.
 
-Conditions phải đạt được realistic — không là wishful thinking.
+Điều kiện phải đạt được thực tế — không phải ước mơ.
 ```
 
 ---
 
-## Phản biện sau khi có output — 5 câu nhóm tự hỏi
+## Trước khi dán kết quả vào worksheet — nhóm tự rà soát
 
-1. **Verdict rõ ràng**: GO / CONDITIONAL / NO-GO, không "có thể"?
-2. **Statement defendable**: 3-4 câu defend được buyer challenge?
-3. **Conditions measurable**: mỗi condition có metric + timeline + action?
-4. **Trigger specific**: stop trigger có ngưỡng + thời gian + action cụ thể?
-5. **Honest**: verdict reflect data hay reflect "muốn pilot success"?
-
----
-
-## Ví dụ tốt vs ví dụ chưa tốt
-
-### Chưa tốt
-
-> "Verdict: CONDITIONAL. Pilot tiếp tục với một số điều kiện cần monitor. Sẽ track adoption và quality."
-
-Vấn đề: không cụ thể, không measurable, không timed, không trigger.
-
-### Tốt
-
-> **Brief #1 — Verdict**
->
-> **VERDICT: CONDITIONAL GO**
->
-> "Brief #1 AI Support Copilot. Base ROI 2.07:1, sống 3/5 individual scenarios. Combined worst case (Low adoption + Quality fail) cho ROI 0.6:1 — Risky. Pilot tiếp tục với 4 conditions chặt + stop trigger rõ. Targeted ROI cuối pilot: > 2.5:1."
->
-> **Conditions**:
->
-> 1. **Adoption ≥ 60% trong tháng 1, ≥ 70% trong tháng 2**.
->    - Metric: active users / pilot total mỗi tuần.
->    - Timeline: weekly check, monthly milestone.
->    - Action fail: pause pilot, intensify training, redesign UX.
->
-> 2. **Quality ≥ 75% trong pilot (random sample 50 tasks/tuần)**.
->    - Metric: % drafts dùng without major edits.
->    - Timeline: weekly sample.
->    - Action fail: prompt engineering sprint, KB audit + update.
->
-> 3. **Cost/task ≤ $0.012 (= API + tooling, không include human review)**.
->    - Metric: monthly billing / monthly volume.
->    - Timeline: monthly.
->    - Action fail: switch to cheaper model fallback.
->
-> 4. **Lock Anthropic enterprise contract 6 tháng**.
->    - Action: negotiate pre-pilot, contract clause.
->    - Action fail (không lock được): setup backup GPT-4o-mini fallback.
->
-> **Monitoring Metrics** (dashboard track weekly):
-> - Adoption rate, Cost/task, Quality factor, Agent CSAT, Monthly budget burn rate.
->
-> **Stop Trigger** (pause review):
-> - Trigger 1: Adoption < 40% trong 30 ngày liên tiếp.
-> - Trigger 2: Quality < 60% trong 30 ngày liên tiếp.
-> - Trigger 3: Compliance event (vi phạm policy, customer complaint AI-related).
-> - Trigger 4: Monthly cost > $4,000 (= 80% budget) liên tiếp 2 tháng.
->
-> **Buyer view**: CONDITIONAL với conditions cứng + trigger rõ → CTO có thể defend trước CFO. ROI 2.07:1 base, có buffer adoption 32% break-even, defendable với data.
+- Verdict có rõ (GO / CONDITIONAL / NO-GO), không "có thể"?
+- Tuyên bố có bảo vệ được trước câu hỏi từ người mua trong 3–4 câu?
+- Mỗi điều kiện có chỉ số + thời gian + hành động khi không đạt?
+- Điều kiện dừng có ngưỡng + thời gian + hành động cụ thể?
+- Verdict có phản ánh dữ liệu, hay phản ánh "muốn pilot thành công"?
 
 ---
 
-## Anti-pattern khi prompt — tránh
-
-| Đừng làm | Nên làm |
-|---|---|
-| GO mà combined worst < 1.5 | Honest: CONDITIONAL |
-| CONDITIONAL không có condition cụ thể | 3-5 conditions measurable + timed |
-| Condition phụ thuộc miracle (adoption 95%) | Realistic threshold |
-| NO-GO mà không identify lever | Try lever trước, NO-GO sau khi exhausted |
-| Trigger = "nếu pilot fail" | Trigger = "Adoption < 40% trong 30 ngày" |
-| Quên buyer perspective | Buyer (CTO/VP) defend được trước CFO không? |
-
----
-
-## Format save vào `2-verdict-draft.md` và Section D
-
-```markdown
-## Phần C — Verdict của nhóm
-[Paste verdict + statement + conditions / changes]
-
-## Section D.4 — Verdict
-[Paste]
-
-## Section D.5 — Conditions
-[Paste bảng]
-
-## Section D.6 — Monitoring
-[Paste]
-
-## Section D.7 — Stop Trigger
-[Paste]
-
-## Section D.8 — Changes (nếu NO-GO)
-[Paste]
-```
-
----
-
-## Câu hỏi mở rộng — nâng cao phản biện (optional)
+## Câu hỏi mở rộng (chỉ làm khi còn thời gian)
 
 ```text
-Sau khi viết verdict, suy nghĩ 3 câu để chuẩn bị defend:
+Sau khi viết verdict, suy nghĩ 3 câu để chuẩn bị bảo vệ:
 
-1. **Buyer challenge** (hardest question):
-   - CTO sẽ hỏi: "Tại sao CONDITIONAL chứ không GO?"
-   - CFO sẽ hỏi: "Combined worst case 0.6:1 — pilot có thực sự safe?"
-   - VP Operations sẽ hỏi: "Adoption 60% trong tháng 1 — based on gì?"
-   - Chuẩn bị 1-2 câu defense cho mỗi challenge.
+1. Câu hỏi khó từ người mua:
+   - Giám đốc kỹ thuật: "Tại sao CONDITIONAL chứ không phải GO?"
+   - Giám đốc tài chính: "Kịch bản tệ nhất 0,6:1 — thử nghiệm có thật sự
+     an toàn không?"
+   - Phó tổng vận hành: "Tỷ lệ sử dụng 60% trong tháng 1 — dựa trên gì?"
+   - Chuẩn bị 1–2 câu trả lời cho mỗi câu.
 
-2. **D28 panel question** (anticipate):
-   - Panel sẽ hỏi: "Nếu cost API tăng 5×, pilot có sống không?"
-   - Panel sẽ hỏi: "Adoption trong production khác pilot thế nào?"
-   - Panel sẽ hỏi: "1 năm sau, ROI có thay đổi không?"
+2. Câu hỏi từ hội đồng D28:
+   - "Nếu chi phí API tăng 5×, thử nghiệm có sống không?"
+   - "Tỷ lệ sử dụng ở sản xuất chính thức khác thử nghiệm thế nào?"
+   - "1 năm sau ROI có đổi không?"
 
-3. **Counter-narrative**:
-   - "Nhưng pilot ROI 2:1 vẫn nhỏ — có nên không build, đầu tư vào khác?"
-   - Counter: "Pilot ROI 2:1 + optionality. Compétiteur làm → cost of not trying."
-   - "Adoption 30% case thấp — pilot fail mode. Plan migration?"
+3. Phản biện ngược:
+   - "ROI 2:1 vẫn nhỏ — có nên không làm, dồn nguồn lực vào dự án khác?"
+   - Đáp: "ROI 2:1 + giá trị tuỳ chọn. Đối thủ làm trước → chi phí của
+     việc không thử."
+   - "Tỷ lệ sử dụng 30% là chế độ thất bại — kế hoạch chuyển đổi?"
 
-3 câu này chuẩn bị defense rõ cho D28 — không chỉ đọc verdict mà respond intelligently.
+3 câu này chuẩn bị phòng thủ rõ cho D28 — không chỉ đọc verdict mà phản
+ứng thông minh.
 ```

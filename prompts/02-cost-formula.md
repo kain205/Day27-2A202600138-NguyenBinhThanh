@@ -1,261 +1,192 @@
-# Prompt tham khảo 2 — Tính Cost Formula với Provider Pricing
+# Câu lệnh AI 2 — Tra giá và tính công thức chi phí
 
-**Dùng khi**: nhóm đã có usage unit, cần tự tra pricing thực tế + tính cost/task chính xác.
-**Công cụ gợi ý**: Claude Sonnet/Opus, ChatGPT-4o (với web search), Perplexity Pro.
-**Lưu kết quả vào**: `worksheet/01-cost-model/2-cost-research.md` + Section A.7 trong `3-FINAL-cost-model.md`
-**Thời gian**: 15-20 phút
+**Dùng khi**: Bước 1 Lab, sau khi nhóm đã chốt Usage Unit, cần tra giá nhà cung cấp AI thật và tính chi phí mỗi tháng cho nhóm thử nghiệm.
 
----
+**Công cụ gợi ý**: Claude, ChatGPT (có duyệt web), Perplexity.
 
-## Trước khi vào prompt — 5 câu hỏi nhóm tự trả lời
+**Lưu kết quả vào**: `worksheet/01-cost-model/2-cost-research.md` + phần A.7 trong `3-FINAL-cost-model.md`.
 
-1. **Usage unit đã chốt là gì?** (Pull từ `1-usage-unit.md`).
-2. **Token estimate đã có chưa?** (Input + output bao nhiêu tokens 1 lần chạy?)
-3. **Provider candidate**: OpenAI / Anthropic / Google / Azure / Open source?
-4. **Có RAG không** (vector DB, embedding cost)? Có monitoring không?
-5. **Brief có constraint human review không** — nếu có, review time bao nhiêu phút?
-
-> **Cảnh báo**: AI hay bịa pricing — đặc biệt với model mới hoặc model deprecated. Luôn click URL pricing page để verify.
+**Thời gian**: 15–20 phút.
 
 ---
 
-## Prompt chính (paste sau `00-context.md` + `1-usage-unit.md`)
+## Trước khi vào câu lệnh — 5 câu nhóm tự trả lời
+
+AI rất hay "bịa" giá tiền, đặc biệt với mô hình mới hoặc mô hình vừa ngừng. Trả lời 5 câu này trước để nhóm có khung kiểm tra khi đọc bản nháp AI sinh ra.
+
+1. Usage Unit đã chốt là gì (lấy từ `1-usage-unit.md`)?
+2. Đã có ước lượng số token đầu vào và đầu ra cho một lần chạy chưa?
+3. Nhóm dự định dùng nhà cung cấp nào (OpenAI / Anthropic / Google / Azure / mã nguồn mở)?
+4. Có cần các công cụ phụ không — vector DB (lưu tài liệu để tìm), công cụ giám sát, công cụ ghép quy trình?
+5. Đề bài có ràng buộc người kiểm tra không — nếu có, mỗi lần kiểm tra mất bao nhiêu phút?
+
+Quy tắc cứng: **mỗi giá tiền AI đưa ra đều phải có URL trang giá kèm theo**. Không có URL = không nhận số.
+
+---
+
+## Câu lệnh chính (dán sau `00-context.md` và Usage Unit đã chốt)
 
 ```text
-Bạn là Product Manager AI có kinh nghiệm tính cost cho AI products.
-Dựa trên BỐI CẢNH ở trên (00-context.md + usage unit đã định nghĩa),
-giúp nhóm tôi tra pricing + tính Monthly AI Cost cho brief.
+Bạn là Product Manager AI có kinh nghiệm tính chi phí cho sản phẩm AI.
+Dựa trên bối cảnh ở trên (`00-context.md` + Usage Unit đã định nghĩa),
+giúp nhóm tôi tra giá và tính chi phí mỗi tháng cho đề bài.
 
-ĐIỀU KIỆN TRƯỚC: usage unit đã rõ. Tôi muốn tính cost từ A đến Z.
+Điều kiện trước: Usage Unit đã rõ. Tôi muốn tính chi phí đầy đủ từ A đến Z.
 
-YÊU CẦU:
+Phần 1 — Tra giá:
+Đề xuất 3 mô hình phù hợp với Usage Unit:
+- Mô hình A (rẻ): tên + $/1M token đầu vào + $/1M token đầu ra + URL
+- Mô hình B (trung cấp): (như trên)
+- Mô hình C (cao cấp): (như trên)
 
-PHẦN 1 — Pricing Research:
-Cho 3 model candidate phù hợp với usage unit:
-- Model A (cheaper): tên model + input $/1M tokens + output $/1M tokens + URL pricing page
-- Model B (mid-tier): [tương tự]
-- Model C (premium): [tương tự]
+Sau đó đề xuất mô hình nào cho đề bài của tôi, kèm lý do (chất lượng,
+giá, tốc độ phản hồi). Nếu chọn sai, chi phí sẽ lệch bao nhiêu?
 
-Sau đó RECOMMEND model nào cho brief tôi:
-- Lý do chọn (chất lượng vs giá vs latency).
-- Nếu sai → cost sai thế nào (sensitivity).
+Quy tắc cứng: nếu bạn không chắc chắn về một con số, ghi rõ "chưa kiểm
+tra — cần mở URL xác nhận". Không bịa số.
 
-CẢNH BÁO RÕ: nếu bạn không chắc chắn về 1 số tiền pricing, GHI RÕ "chưa verified, cần click URL".
-Đừng bịa số.
+Phần 2 — Ước lượng số token:
+Cho Usage Unit của tôi, ước lượng:
+- Token đầu vào (câu lệnh + ngữ cảnh + hướng dẫn hệ thống): ___ token
+- Token đầu ra (phản hồi AI): ___ token
+- Nếu có nhiều bước: cộng dồn token cả các bước.
 
-PHẦN 2 — Token estimate:
-Cho usage unit của tôi, estimate:
-- Input tokens (prompt + context + system): ___ tokens (range hợp lý)
-- Output tokens (response): ___ tokens
-- Multi-step nếu có: tổng tokens cộng lại.
+Sau đó tính chi phí mỗi lần chạy = (token đầu vào × giá đầu vào + token
+đầu ra × giá đầu ra) / 1.000.000.
 
-Sau đó tính cost/task = (input × in_price + output × out_price) / 1,000,000.
+Phần 3 — Chi phí công cụ phụ:
+Đề bài có cần các công cụ sau không? Nếu có, ước lượng giá/tháng + URL:
+- Vector DB (cho tìm tài liệu): cần / không cần
+- Giám sát (Langfuse, Helicone): cần / không cần
+- Ghép quy trình (n8n, LangChain): cần / không cần
+- API tạo embedding (nếu có tìm tài liệu): cần / không cần
 
-PHẦN 3 — Tooling cost:
-Brief tôi có cần các tooling sau không? Nếu có, ước tính giá tháng + URL:
-- Vector DB (cho RAG): cần / không cần
-- Monitoring (Langfuse, Helicone): cần / không cần
-- Orchestration (n8n, LangChain): cần / không cần
-- Embedding API (nếu RAG): cần / không cần
+Phần 4 — Chi phí người kiểm tra:
+Nếu đề bài có ràng buộc người kiểm tra:
+- Tiền công mỗi giờ (đã cộng phụ phí): $___/giờ (= cơ bản × 1.3–1.5)
+- Thời gian kiểm tra một việc: ___ phút (lấy từ đề bài hoặc giả định)
+- Chi phí mỗi lần kiểm tra = (phút / 60) × tiền công/giờ
+- Chi phí kiểm tra mỗi tháng = khối lượng tháng × chi phí mỗi lần.
 
-PHẦN 4 — Human review cost:
-Nếu brief có constraint human review:
-- Reviewer hourly rate ước tính: $___/hr (loaded = base × 1.3-1.5)
-- Review time/task: ___ phút (từ brief hoặc giả định)
-- Cost/review = (phút / 60) × hourly rate
-- Monthly review cost = monthly volume × cost/review.
+Phần 5 — Chi phí triển khai ban đầu (rải đều):
+Ước lượng tiền triển khai 1 lần ($):
+- Tích hợp: ___ kỹ sư × ___ tuần × $___/tuần
+- Kiểm tra bảo mật: ___
+- Tinh chỉnh câu lệnh: ___
+- Đào tạo người dùng: ___
 
-PHẦN 5 — Setup cost (amortize):
-Ước tính setup 1 lần ($):
-- Integration: ___ engineer × ___ tuần × ___/tuần
-- Security review: ___
-- Prompt engineering iteration: ___
-- Training cho user: ___
+Rải đều cho thời gian thử nghiệm → chi phí triển khai/tháng.
 
-Amortize đều cho pilot duration → setup/month.
-
-PHẦN 6 — Monthly Cost Formula:
+Phần 6 — Công thức chi phí mỗi tháng:
 Tổng hợp:
-Monthly Cost = (volume × cost/task) + tooling + (volume × review cost) + setup amortize
-            = $___ /month
+Chi phí/tháng = (khối lượng × chi phí mỗi lần chạy)
+              + chi phí công cụ
+              + (khối lượng × chi phí kiểm tra)
+              + chi phí triển khai rải đều
+            = $___/tháng
 
-PHẦN 7 — Budget check:
-So với budget brief: ___% trong budget? Action nếu over budget?
+Phần 7 — So với ngân sách:
+Tổng chi phí so với ngân sách đề bài là bao nhiêu phần trăm? Nếu vượt
+ngân sách, đề xuất hành động cụ thể.
 
-YÊU CẦU FORMAT:
-- Mỗi giá tiền phải có URL nguồn.
-- Mỗi giả định (token estimate, review time) phải có lý do.
-- Trả lời bằng tiếng Việt thoát nghĩa.
+Yêu cầu trình bày:
+- Mỗi giá tiền có URL nguồn.
+- Mỗi giả định (số token, thời gian kiểm tra) có lý do 1 câu.
+- Viết tiếng Việt thoát nghĩa.
 
-YÊU CẦU PHẢN BIỆN:
-- Pricing model nào dễ "blow up" khi volume scale (vd: per-token model expensive khi context dài)?
-- Có cost hidden nào nhóm tôi đang quên không?
-- Cost/task có hợp lý so với industry benchmark không?
+Yêu cầu phản biện:
+- Mô hình giá nào dễ "bùng" khi khối lượng tăng mạnh (vd: tính theo
+  token mà ngữ cảnh dài)?
+- Có chi phí ẩn nào nhóm tôi đang quên không?
+- Chi phí mỗi lần chạy có hợp lý so với mức tham khảo của ngành không?
 ```
 
 ---
 
-## Iterate — đẩy AI sâu hơn nếu output chưa đủ
+## Iterate — đẩy AI sâu hơn khi bản nháp chưa đủ
 
-### Khi AI đưa pricing có vẻ bịa
+### Khi giá AI đưa ra có vẻ bịa hoặc URL không mở được
 
 ```text
-Pricing bạn đưa cho Model X ($___/1M tokens) — tôi không click được URL bạn cite,
-hoặc URL trả 404, hoặc pricing page không match.
+Giá bạn đưa cho Mô hình X ($___/1M token) — URL không mở được, hoặc
+trang giá không khớp với số bạn nói.
 
-Verify lại:
-1. Click trực tiếp pricing page chính thức của provider (vd: openai.com/api/pricing,
+Kiểm tra lại:
+1. Mở trực tiếp trang giá chính thức (openai.com/api/pricing,
    anthropic.com/pricing, cloud.google.com/vertex-ai/pricing).
-2. Ghi rõ "as of [ngày kiểm tra]" — pricing đổi thường xuyên.
-3. Nếu pricing có tier (vd: 0-10M tokens, 10M+) → ghi rõ tier nhóm tôi rơi vào.
-4. Nếu provider có enterprise discount (cần contract) → ghi rõ "list price, enterprise có thể negotiate ___-___%".
+2. Ghi rõ "tính đến ngày [ngày kiểm tra]" — giá đổi rất thường.
+3. Nếu giá có nhiều bậc theo khối lượng, ghi rõ nhóm tôi rơi vào bậc nào.
+4. Nếu nhà cung cấp có chiết khấu doanh nghiệp (cần hợp đồng), ghi rõ
+   "giá niêm yết, doanh nghiệp có thể thương lượng giảm ___%".
 
-Đừng đưa số mà không có URL working.
+Không đưa số nếu không có URL mở được.
 ```
 
-### Khi muốn so sánh 2-3 model
+### Khi nhóm muốn so sánh 2–3 mô hình cùng lúc
 
 ```text
-Tính cost cho 3 model candidate ở pilot scale (volume = ___ tasks/month):
+Tính chi phí cho 3 mô hình ở quy mô thử nghiệm (khối lượng = ___ việc/tháng):
 
-| Model | Cost/task | Monthly API cost | % of budget |
+| Mô hình | Chi phí/lần chạy | Chi phí API/tháng | % ngân sách |
 |---|---|---|---|
-| Cheap (vd: GPT-4o-mini) | $___ | $___ | ___% |
-| Mid (vd: GPT-4o, Claude 3.5 Sonnet) | $___ | $___ | ___% |
-| Premium (vd: Claude 3 Opus, GPT-4.5) | $___ | $___ | ___% |
+| Rẻ | $___ | $___ | ___% |
+| Trung | $___ | $___ | ___% |
+| Cao cấp | $___ | $___ | ___% |
 
-Recommend model phù hợp dựa trên:
-- Budget headroom (cost <50% budget = safe).
-- Quality cần thiết cho usage unit.
-- Latency cần thiết (model lớn thường chậm hơn).
+Đề xuất mô hình phù hợp dựa trên:
+- Còn dư ngân sách (chi phí < 50% ngân sách = an toàn)
+- Chất lượng cần thiết cho Usage Unit
+- Tốc độ phản hồi cần thiết (mô hình lớn thường chậm hơn)
 
-Nếu cheap model quality đủ → chọn cheap. Đừng default premium.
+Nếu mô hình rẻ đủ chất lượng → chọn rẻ. Không mặc định chọn cao cấp.
 ```
 
-### Khi muốn break down theo cost component
+### Khi muốn xem phần nào chiếm chi phí nhiều nhất
 
 ```text
-Cost/month nhóm tôi tính ra = $___. Break down theo % các component:
+Tổng chi phí/tháng = $___. Phân tích theo từng phần:
 
-| Component | $/month | % |
+| Phần | $/tháng | % |
 |---|---|---|
-| API cost | $___ | ___% |
-| Tooling (vector DB + monitoring + ...) | $___ | ___% |
-| Human review cost | $___ | ___% |
-| Setup (amortized) | $___ | ___% |
+| Chi phí API | $___ | ___% |
+| Công cụ phụ | $___ | ___% |
+| Người kiểm tra | $___ | ___% |
+| Triển khai (rải đều) | $___ | ___% |
 
-Phân tích:
-- Component nào dominate (>50%)? Đó là cost driver chính → tối ưu nó trước.
-- Component nào nhỏ (<5%)? Không cần tập trung optimize.
-- Có component nào surprising (cao hoặc thấp ngoài dự đoán)?
+- Phần nào chiếm > 50%? Đó là chỗ cần tối ưu trước.
+- Phần nào < 5%? Không cần tập trung.
+- Phần nào bất ngờ (cao hoặc thấp ngoài dự đoán)?
 ```
 
 ---
 
-## Phản biện sau khi có output — 5 câu nhóm tự hỏi
+## Trước khi dán kết quả vào worksheet — nhóm tự rà soát
 
-1. **URL check**: mỗi giá tiền có URL working pricing page không?
-2. **Token check**: token estimate có realistic cho usage unit của nhóm không?
-3. **Hidden cost check**: có quên human review / setup / monitoring không?
-4. **Sanity check**: cost/task có rơi trong range typical (xem bảng tham chiếu trong `2-cost-research.md` Phần D)?
-5. **Budget check**: total monthly cost trong budget brief không? Nếu over, có hành động cụ thể?
-
----
-
-## Ví dụ tốt vs ví dụ chưa tốt
-
-### Chưa tốt
-
-> "Cost/task khoảng $0.01. Monthly cost khoảng $500."
-
-Vấn đề: không có công thức, không có URL, không có breakdown.
-
-### Tốt
-
-> **Model**: Claude 3.5 Sonnet (Anthropic). Pricing: $3/1M input, $15/1M output. Source: <https://www.anthropic.com/pricing>, accessed 2026-05-14.
->
-> **Token estimate**:
->
-> - Input: 800 tokens (ticket text 500 + 3 KB articles 300).
-> - Output: 400 tokens (draft reply 300 từ).
->
-> **Cost/task**: (800 × $3 + 400 × $15) / 1,000,000 = $0.0024 + $0.006 = **$0.0084 /task**.
->
-> **Monthly volume**: 5 agent / 25 × 800 ticket × 22 ngày = **3,520 task/month**.
->
-> **Monthly API cost**: 3,520 × $0.0084 = **$29.57**.
->
-> **Tooling**: Pinecone (vector DB) $70/mo + Langfuse $50/mo = **$120/month**. Source: pricing pages.
->
-> **Human review**: 3,520 task × 3 min review × ($25/hr / 60) = **$1,320/month**. (Loaded rate = $20 base × 1.25 = $25.)
->
-> **Setup**: 1 engineer × 2 tuần × $2,000/tuần = $4,000. Amortize over 90-day pilot (3 tháng) = **$1,333/month**.
->
-> **Total Monthly Cost**: $30 + $120 + $1,320 + $1,333 = **$2,803/month**.
->
-> **Budget check**: $2,803 / $5,000 = 56% of budget — within budget ✓.
+- Mỗi giá tiền có URL trang giá mở được không?
+- Số token ước lượng có hợp lý cho Usage Unit của nhóm không?
+- Có quên chi phí người kiểm tra / triển khai / giám sát không?
+- Tổng chi phí có trong ngân sách của đề bài không? Nếu vượt, có hành động cụ thể chưa?
 
 ---
 
-## Anti-pattern khi prompt — tránh
-
-| Đừng làm | Nên làm |
-|---|---|
-| Hỏi "Cost bao nhiêu?" | Đưa usage unit + volume + brief, request từng component |
-| Chấp nhận pricing AI đưa | Click URL, verify từng giá |
-| Quên human review cost | Nếu constraint review → đây là phần lớn cost |
-| Setup = $0 | Setup luôn có (integration + prompt engineering) |
-| Round numbers ($100, $500) | Số chính xác từ công thức (vd: $2,803) |
-| Pricing không "as of date" | Pricing đổi thường → ghi ngày check |
-
----
-
-## Format save vào `2-cost-research.md` Phần A + Phần C
-
-```markdown
-## Phần A — Pricing Research
-
-[Paste bảng pricing 3 model + recommend model + URL]
-
-## Phần C — Tính Cost/Task
-
-### Step C1 — Token estimate
-[Paste]
-
-### Step C2 — API cost/task
-[Paste công thức + số]
-
-### Step C3 — Tooling cost/task
-[Paste]
-
-### Step C4 — Human review cost/task
-[Paste]
-
-### Step C5 — Tổng cost/task
-[Paste]
-```
-
----
-
-## Câu hỏi mở rộng — nâng cao phản biện (optional)
+## Câu hỏi mở rộng (chỉ làm khi còn thời gian)
 
 ```text
-Sau khi tính cost, giúp tôi nhìn 3 góc khác:
+Sau khi tính chi phí, nhìn thêm 3 góc:
 
-1. **Cost sensitivity**: nếu volume × 5 (pilot → mở rộng team), cost component nào tăng tuyến tính,
-   component nào có "step" jump (vd: vượt enterprise tier)?
+1. Nếu khối lượng tăng 5 lần (mở rộng từ nhóm thử nghiệm ra toàn đội),
+   phần nào tăng tuyến tính, phần nào "nhảy bậc" (vd: vượt bậc doanh
+   nghiệp, gói công cụ miễn phí hết hạn)?
 
-2. **Provider comparison**: ngoài provider chính, có alternative nào rẻ hơn 50%+ không?
-   - Open source via Replicate / Together AI?
-   - Self-hosted (yêu cầu GPU)?
-   - Trade-off (quality, latency, support)?
+2. Ngoài nhà cung cấp chính, có lựa chọn nào rẻ hơn 50% trở lên không?
+   - Mã nguồn mở qua Replicate / Together AI?
+   - Tự host (cần GPU)?
+   - Đánh đổi gì (chất lượng, tốc độ, hỗ trợ)?
 
-3. **Cost optimization opportunity**:
-   - Cache (lưu kết quả AI cho input lặp lại) — giảm cost bao nhiêu %?
-   - Smaller model cho easy task, big model cho hard task (tiered)?
-   - Batch processing thay vì real-time?
+3. Cách tối ưu chi phí:
+   - Lưu lại kết quả AI cho đầu vào lặp lại → giảm bao nhiêu %?
+   - Mô hình nhỏ cho việc dễ, mô hình lớn cho việc khó (chia tầng)?
+   - Xử lý theo lô thay vì thời gian thực?
 
-Trả lời 3 góc này để chuẩn bị cho Step 3 Stress Test (provider shock scenario).
+3 câu này chuẩn bị cho Bước 3 — kịch bản nhà cung cấp đổi giá.
 ```
-
-3 câu này giúp nhóm thấy cost không cố định — có nhiều lever để tối ưu khi stress test ROI.

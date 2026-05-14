@@ -1,227 +1,225 @@
 ---
-artifact: 00 — Worked Example (Brief #1 AI Support Copilot)
-buoc: Tham chiếu cho cả 3 bước Lab
-phase: Đọc trước Lab để hiểu mức chi tiết mong đợi
-time: 10 phút đọc trước Lab
-input: Slide 13-14 (Worked Example) + brief #1 trong challenge-brief-bank.md
-nop-cuoi: Không — file tham chiếu mẫu
+title: 00 — Ví dụ mẫu đã làm sẵn (Đề bài #1 — AI Support Copilot)
+phan: Tham chiếu cho cả 3 bước Lab
+format: Đọc trước Lab — không phải file để điền
+thoi-gian: 10 phút đọc
 ---
 
-# 00 — Worked Example: AI Support Copilot (Brief #1)
+# 00 — Ví dụ mẫu: AI Support Copilot (Đề bài #1)
 
-File này trình bày **một bản Economics Sheet đã điền hoàn chỉnh** cho Brief #1 (AI Support Copilot) — đúng mức chi tiết và độ chính xác mong đợi từ deliverable cuối của nhóm.
+File này là **một bản Economics Sheet đã điền hoàn chỉnh** cho Đề bài #1 (AI Support Copilot). Đây là mức chi tiết và độ chính xác mà nhóm cần đạt khi nộp bản cuối của mình.
 
-**Cách dùng**:
+## Cách dùng file này
 
-- Đọc trước Lab để biết "FINAL trông thế nào".
-- Tham chiếu khi nhóm bí ở 1 sub-section cụ thể.
-- **Không copy số** sang brief khác — mỗi brief có context riêng, sao chép = trừ 15 điểm (xem rubric).
+- Đọc trước Lab để hình dung **bản nộp cuối trông như thế nào**.
+- Khi nhóm bí ở một phần cụ thể, mở file này xem cách trình bày tham chiếu.
+- **Không sao chép số sang đề bài khác** — mỗi đề bài có ngữ cảnh riêng. Sao chép = trừ 15 điểm (xem rubric).
 
-Số trong file khớp với Slide 13-14 và prompt `05-value-formula.md`. Brief #1 cố tình đặt làm worked example vì có constraint 100% human review — đại diện cho pattern phổ biến (review chi phối cost).
+Số trong file khớp với slide 13-14 và câu lệnh trong `prompts/05-value-formula.md`. Đề bài #1 được chọn làm ví dụ vì có ràng buộc 100% người kiểm tra trước khi gửi — đại diện cho dạng phổ biến nhất (chi phí kiểm tra chi phối toàn bộ chi phí).
 
 ---
 
-## Thông tin nhóm (ví dụ)
+## Thông tin nhóm (mẫu)
 
-- **Brief**: # 1 — AI Support Copilot
+- **Đề bài**: #1 — AI Support Copilot
 - **Cặp**: A20-99001 Nguyễn Mẫu A + A20-99002 Trần Mẫu B
-- **Ngày tính**: [YYYY-MM-DD]
-- **Phiên bản**: v1 (worked example)
+- **Ngày tính**: 2026-05-14
+- **Phiên bản**: v1 (ví dụ mẫu)
 
 ---
 
-## Tóm tắt 1 câu cho buyer
+## Tóm tắt 1 câu cho người mua
 
-> "CONDITIONAL GO cho Brief #1 AI Support Copilot. Base ROI 2.07:1, combined worst case (Low adoption + Provider shock) 1.20:1 — biên mỏng. Pilot tiếp tục với 3 điều kiện: adoption ≥ 50% trước cuối tháng 1, khoá giá API 6 tháng, cổng chi phí $3,000/tháng."
+> "CONDITIONAL GO cho Đề bài #1 — AI Support Copilot. ROI nền 2.07:1, kịch bản xấu kết hợp (tỷ lệ sử dụng thấp + nhà cung cấp tăng giá) còn 1.20:1 — biên rất mỏng. Pilot tiếp tục với 3 điều kiện cứng: tỷ lệ sử dụng ≥ 50% trước cuối tháng 1, khoá giá API 6 tháng, cổng chi phí $3,000/tháng."
 
 ---
 
-## Section A — Cost Model
+## Section A — Cost Model (mô hình chi phí)
 
-### A.1 — Usage Unit
+### A.1 — Đơn vị AI làm việc
 
 | Trường | Giá trị |
 |---|---|
-| Usage unit (tên ngắn) | "1 ticket reply draft" |
-| Mô tả (1-2 câu) | AI nhận ticket subject + body + 3 KB articles + customer history, sinh 1 bản nháp 80-200 từ hiển thị trong Zendesk side panel để agent edit/copy/send. |
-| 3-part test pass | [x] Đếm được [x] Tốn token [x] Có giá trị |
+| Tên ngắn | "1 bản nháp trả lời ticket" |
+| Mô tả | AI nhận tiêu đề + nội dung ticket + 3 bài KB liên quan + lịch sử khách hàng, sinh ra 1 bản nháp 80–200 từ hiển thị trong panel bên Zendesk để agent sửa và gửi. |
+| 3 câu kiểm tra | [x] Đếm được  [x] Tốn token  [x] Có giá trị cho người dùng |
 
-### A.2 — Volume
+### A.2 — Khối lượng
 
 | Trường | Giá trị | Công thức / Nguồn |
 |---|---|---|
-| Pilot users | 5 agent | Brief field #8 |
-| Total team | 25 agent | Brief field #1 |
-| Team daily volume | 800 ticket/day | Brief field #1 |
-| Pilot daily volume | 160 ticket/day | (5/25) × 800 |
-| Monthly volume | 3,520 ticket/month | 160 × 22 working days |
+| Người dùng trong nhóm thử nghiệm | 5 agent | Đề bài trường #8 |
+| Tổng đội | 25 agent | Đề bài trường #1 |
+| Khối lượng mỗi ngày của toàn đội | 800 ticket/ngày | Đề bài trường #1 |
+| Khối lượng mỗi ngày của nhóm thử nghiệm | 160 ticket/ngày | (5/25) × 800 |
+| Khối lượng mỗi tháng | 3,520 ticket/tháng | 160 × 22 ngày làm việc |
 
-### A.3 — Model + API Cost
+### A.3 — Mô hình + Chi phí API
 
 | Trường | Giá trị | Nguồn |
 |---|---|---|
-| Provider chính | Anthropic | <https://www.anthropic.com/pricing> |
-| Model chọn | Claude 3.5 Sonnet | <https://www.anthropic.com/pricing> |
-| Input price ($/1M tokens) | $3.00 | Pricing page |
-| Output price ($/1M tokens) | $15.00 | Pricing page |
-| Input tokens/task | 6,000 | Ticket 500 từ + 3 KB articles (~1,500 từ mỗi) + system prompt + customer history |
-| Output tokens/task | 400 | Reply nháp 300 từ + a few headers |
-| API cost/task | $0.024 | (6,000 × $3 + 400 × $15) / 1M = $0.018 + $0.006 = $0.024 |
+| Nhà cung cấp chính | Anthropic | <https://www.anthropic.com/pricing> |
+| Mô hình chọn | Claude 3.5 Sonnet | Trang giá Anthropic |
+| Giá đầu vào ($/1M token) | $3.00 | Trang giá |
+| Giá đầu ra ($/1M token) | $15.00 | Trang giá |
+| Token đầu vào / một lần chạy | 6,000 | Ticket 500 từ + 3 bài KB (~1,500 từ mỗi bài) + system prompt + lịch sử khách |
+| Token đầu ra / một lần chạy | 400 | Bản nháp 300 từ + header |
+| Chi phí API / một lần chạy | $0.024 | (6,000 × $3 + 400 × $15) / 1,000,000 = $0.018 + $0.006 |
 
-**Ghi chú**: cost/task slide 13 là $0.05 (round-up đã include thêm tooling per-task + a small buffer). Worked example dùng $0.05 để khớp slide.
+> **Ghi chú**: trên slide 13 dùng $0.05 cho gọn — đã cộng thêm chi phí tooling phân bổ theo việc và một biên dự phòng nhỏ. Ví dụ mẫu này dùng $0.05 để khớp slide.
 
-| Cost/task (rounded for slide) | $0.05 | Bao gồm API + tooling apportioned + buffer |
+| Chi phí mỗi lần chạy (làm tròn cho slide) | $0.05 | API + tooling phân bổ + biên dự phòng |
 
-### A.4 — Tooling Cost
+### A.4 — Chi phí công cụ phụ trợ
 
 | Trường | Giá trị | Nguồn / Lý do |
 |---|---|---|
-| Vector DB | $70/month | Pinecone Starter (50K vectors, đủ cho 50K KB articles) |
-| Monitoring | $50/month | Langfuse Pro tier (10K traces/day) |
-| Orchestration | $30/month | n8n self-hosted plus license |
-| Other tooling | $50/month | Zendesk app integration license |
-| **Tổng tooling/tháng** | **$200** | Sum |
+| Vector DB | $70/tháng | Pinecone Starter (50K vectors, đủ cho 50K bài KB) |
+| Giám sát | $50/tháng | Langfuse Pro tier (10K log/ngày) |
+| Điều phối workflow | $30/tháng | n8n self-hosted + giấy phép |
+| Tích hợp khác | $50/tháng | Zendesk app license |
+| **Tổng / tháng** | **$200** | Cộng dồn |
 
-### A.5 — Human Review Cost
+### A.5 — Chi phí người kiểm tra
 
 | Trường | Giá trị | Công thức / Lý do |
 |---|---|---|
-| Reviewer hourly rate | $25/hr | Brief: senior support agent $20/hr base × 1.25 loaded |
-| Review time/task | 3 phút | Brief constraint: 100% human review trước khi gửi (compliance) |
-| Cost/review | $1.25/task | (3 / 60) × $25 = $1.25 |
-| Monthly review cost | $4,400/month gross | 3,520 × $1.25 |
+| Lương theo giờ của người kiểm | $25/giờ | Đề bài: agent senior $20/giờ × 1.25 (đã cộng phụ cấp) |
+| Thời gian kiểm / một việc | 3 phút | Ràng buộc đề bài: 100% người kiểm trước khi gửi |
+| Chi phí kiểm / một việc | $1.25 | (3/60) × $25 |
+| Chi phí kiểm / tháng (gộp) | $4,400/tháng | 3,520 × $1.25 |
 
-**Adjustment cho worked example**: Slide 13 dùng $2,427/month review cost. Lý do: review chỉ áp cho ~55% drafts thực sự được dùng (sau adoption 65% × quality 80% ≈ 52% hit rate; rounded 55%). Drafts còn lại agent skip + viết tay → không tính review cost cho phần đó.
+**Hiệu chỉnh cho ví dụ mẫu**: slide 13 dùng $2,427/tháng. Lý do: chỉ ~55% bản nháp thật sự được agent dùng (tỷ lệ sử dụng 65% × chất lượng 80% ≈ 52%, làm tròn lên 55%). Phần còn lại agent bỏ qua và viết tay — không tính chi phí kiểm cho phần đó.
 
-| Effective review cost/task | $0.69/task | $1.25 × 55% effective rate |
-| Effective monthly review cost | $2,427/month | 3,520 × $0.69 |
+| Chi phí kiểm hiệu dụng / một việc | $0.69 | $1.25 × 55% |
+| Chi phí kiểm hiệu dụng / tháng | $2,427/tháng | 3,520 × $0.69 |
 
-### A.6 — Setup Cost (amortize)
+### A.6 — Chi phí setup (phân bổ)
 
 | Trường | Giá trị | Lý do |
 |---|---|---|
-| One-time setup | $0 (đã hoàn thành) | Integration + prompt engineering đã làm trong tháng 0 trước pilot, không tính vào budget tháng pilot |
-| Pilot duration | 3 months | Brief field #8: pilot 90 ngày |
-| Amortized setup/month | $0 | Đã ghi vào ngân sách tháng 0 (không in vào monthly cost) |
+| Setup một lần | $0 (đã xong) | Tích hợp + tinh chỉnh prompt đã làm trong tháng 0 trước pilot, không tính vào ngân sách tháng pilot |
+| Thời gian pilot | 3 tháng | Đề bài trường #8: 90 ngày |
+| Setup phân bổ / tháng | $0 | Đã ghi vào tháng 0 |
 
-**Ghi chú**: Trong thực tế, setup ($4,000-$8,000) thường amortize $1,300-$2,700/tháng. Worked example bỏ qua để khớp slide. Nhóm khác phải tính amortize cụ thể.
+> **Ghi chú thực tế**: setup ($4,000-$8,000) thường phân bổ ra $1,300-$2,700/tháng. Ví dụ mẫu bỏ qua để khớp slide. **Nhóm khác bắt buộc phải tính phần phân bổ này.**
 
-### A.7 — Monthly Cost Formula
+### A.7 — Công thức chi phí mỗi tháng
 
 ```text
-Monthly AI Cost
-  = (3,520 × $0.05)              = $176        [API + tooling per-task]
-  + $200                          = $200        [Tooling fixed]
-  + (3,520 × $0.69)              = $2,427      [Human review effective]
-  + $0                            = $0          [Setup đã ghi tháng 0]
-                                   ──────────
-                                   = $2,803 /month TOTAL
+Chi phí AI mỗi tháng
+  = (3,520 × $0.05)        = $176        [API + tooling theo việc]
+  + $200                    = $200        [Tooling cố định]
+  + (3,520 × $0.69)        = $2,427      [Người kiểm hiệu dụng]
+  + $0                      = $0          [Setup đã ghi tháng 0]
+                            ──────────
+                            = $2,803 /tháng TỔNG
 ```
 
-### A.8 — Budget Check
+### A.8 — Đối chiếu ngân sách
 
 | Trường | Giá trị |
 |---|---|
-| Total monthly cost | $2,803 |
-| Pilot budget | $5,000 (brief field #8) |
-| % of budget | 56% |
-| Status | [x] Within budget [ ] Over budget |
+| Tổng chi phí tháng | $2,803 |
+| Ngân sách pilot | $5,000 (đề bài trường #8) |
+| % ngân sách dùng | 56% |
+| Trạng thái | [x] Trong ngân sách  [ ] Vượt ngân sách |
 
-### Section A — Insight ban đầu
+### Section A — 3 nhận xét chính
 
-1. **Cost driver chính**: Human review chiếm 87% cost ($2,427 / $2,803). API chỉ 6%. Đây là pattern điển hình khi brief có constraint 100% review.
-2. **Surprise cost**: Tooling rẻ hơn dự đoán ($200 cho 4 tool). Setup amortize nếu tính sẽ đẩy cost lên $4,000+, vượt budget.
-3. **Sensitivity**: Cost nhạy nhất với human review time. Mỗi phút thêm review → $1,173/tháng tăng cost. Quan trọng hơn cả model choice.
+1. **Chi phí lớn nhất là người kiểm**: $2,427 / $2,803 = 87% tổng chi phí. API chỉ chiếm 6%. Đây là dạng phổ biến khi đề bài có ràng buộc 100% người kiểm.
+2. **Chi phí bất ngờ**: tooling rẻ hơn dự đoán ($200 cho 4 công cụ). Setup nếu phân bổ đúng sẽ đẩy tổng lên $4,000+ — gần vượt ngân sách.
+3. **Độ nhạy**: chi phí nhạy nhất với **thời gian kiểm mỗi việc**. Cứ thêm 1 phút kiểm là $1,173/tháng. Quan trọng hơn cả chọn mô hình rẻ.
 
 ---
 
-## Section B — Pricing / Access Model
+## Section B — Mô hình định giá (Pricing / Access)
 
-### B.1 — Attribution × Autonomy positioning
-
-| Trường | Giá trị | Justification |
-|---|---|---|
-| Autonomy level | Low | Agent quyết định gửi cuối, AI chỉ suggest. Constraint 100% review = Low autonomy cứng. |
-| Attribution level | Medium-Low | Khó tách "AI viết" khỏi "agent edit". Buyer không thấy rõ AI tạo ra giá trị độc lập. |
-| Quadrant | Low Auto + Low/Med Attrib | → Seat-based hoặc Hybrid leaning Seat |
-
-### B.2 — Pricing Model
-
-| Trường | Giá trị |
-|---|---|
-| Pricing model chosen | Hybrid (Seat + Credits) |
-| Pricing structure (cụ thể) | $25/seat/month + 1,000 draft credits/seat. Extra credit $0.05. |
-| Value metric | "1 ticket draft generated" (countable, agent thấy cụ thể, tied to AI work). |
-| Buyer (role) | CTO / Director Support |
-| Buying trigger | Pain field #3: support-related churn 18%, hire thêm 5 agent = $300K/year → AI tiết kiệm > $200K nếu adoption đạt. |
-
-### B.3 — Real-world analog
-
-| Trường | Giá trị |
-|---|---|
-| Sản phẩm analog | Cursor AI |
-| Pricing của họ | $20/seat + 500 fast credits, extra $0.04/request |
-| Vì sao analog phù hợp | Low autonomy (dev review code suggest), Medium attribution (per-feature), Hybrid pricing đã chứng minh khả thi với buyer engineering. |
-
-### B.4 — Usage Anxiety check
-
-| Trường | Giá trị |
-|---|---|
-| Usage Anxiety risk | Medium |
-| Mitigation | (1) Cap soft 80% credit có alert nhẹ, không block. (2) Admin dashboard show team-level usage, không bị bill shock individual. (3) Free 100 exploration credits tháng đầu cho mỗi agent. |
-
----
-
-## Section C — Value / ROI
-
-### C.1 — Time Saved per Task
+### B.1 — Vị trí trên ma trận Attribution × Autonomy
 
 | Trường | Giá trị | Lý do |
 |---|---|---|
-| Original task time (no AI) | 12 phút | Brief field #2: search KB 5 min + draft 4 min + send 3 min |
-| − AI processing wait | − 0.3 phút | Claude 3.5 latency ~20s = 0.3 min |
-| − Human review time | − 3 phút | Brief constraint: agent senior review 2-4 min (mean 3) |
-| − Context switching | − 0.5 phút | AI tích hợp Zendesk side panel — switch nhẹ |
-| − Rework time (avg) | − 0.6 phút | 20% drafts cần rewrite × 3 min = 0.6 min average |
-| **= NET time saved/task** | 7.6 phút | 12 − 0.3 − 3 − 0.5 − 0.6 = 7.6 phút |
+| Mức tự chủ (Autonomy) | Thấp | Agent ra quyết định cuối, AI chỉ gợi ý. Ràng buộc 100% kiểm = autonomy thấp cứng. |
+| Mức gán giá trị (Attribution) | Thấp đến Trung | Khó tách "AI viết" khỏi "agent sửa". Người mua không thấy rõ AI tạo giá trị độc lập. |
+| Ô trên ma trận | Autonomy thấp + Attribution thấp/trung | → Seat-based hoặc Hybrid nghiêng về Seat |
 
-NET/Gross = 7.6 / 12 = 63%, phù hợp benchmark 40-60% (slightly upper bound — biện minh: AI tích hợp inline, switch cost thấp).
+### B.2 — Mô hình định giá
 
-### C.2 — Loaded Hourly Rate
+| Trường | Giá trị |
+|---|---|
+| Mô hình chọn | Hybrid (Seat + Credits) |
+| Cấu trúc giá cụ thể | $25/seat/tháng + 1,000 credit/seat. Credit thêm $0.05. |
+| Chỉ số tính giá (value metric) | "1 bản nháp trả lời được sinh" (đếm được, agent thấy cụ thể, gắn với việc AI làm) |
+| Người mua (vai trò) | CTO / Director Support |
+| Lý do mua bây giờ | Đề bài trường #3: 18% churn liên quan support, thuê thêm 5 agent = $300K/năm → AI tiết kiệm > $200K nếu đạt tỷ lệ sử dụng. |
+
+### B.3 — Sản phẩm tương đương trên thị trường
+
+| Trường | Giá trị |
+|---|---|
+| Sản phẩm tương đương | Cursor AI |
+| Cách họ định giá | $20/seat + 500 fast credit, credit thêm $0.04/request |
+| Vì sao tương đương | Autonomy thấp (dev kiểm code suggest), attribution trung (theo từng tính năng), pricing hybrid đã chứng minh khả thi với người mua kỹ thuật. |
+
+### B.4 — Kiểm tra Usage Anxiety (nỗi sợ dùng nhiều bị tính phí cao)
+
+| Trường | Giá trị |
+|---|---|
+| Mức rủi ro Usage Anxiety | Trung |
+| Cách giảm thiểu | (1) Cap mềm ở 80% credit: chỉ cảnh báo nhẹ, không chặn. (2) Dashboard admin hiển thị tổng usage cả đội, không bill shock cá nhân. (3) Tháng đầu miễn phí 100 credit khám phá cho mỗi agent. |
+
+---
+
+## Section C — Giá trị / ROI
+
+### C.1 — Thời gian tiết kiệm mỗi việc
+
+| Trường | Giá trị | Lý do |
+|---|---|---|
+| Thời gian gốc (không AI) | 12 phút | Đề bài trường #2: tìm KB 5 phút + viết nháp 4 phút + gửi 3 phút |
+| − Thời gian chờ AI phản hồi | − 0.3 phút | Claude 3.5 latency ~20 giây |
+| − Thời gian người kiểm | − 3 phút | Ràng buộc đề bài: agent senior kiểm 2-4 phút (trung bình 3) |
+| − Chi phí chuyển ngữ cảnh | − 0.5 phút | AI tích hợp panel Zendesk — chuyển nhẹ |
+| − Thời gian sửa lại trung bình | − 0.6 phút | 20% bản nháp cần viết lại × 3 phút = 0.6 phút trung bình |
+| **= Thời gian tiết kiệm thực** | **7.6 phút** | 12 − 0.3 − 3 − 0.5 − 0.6 |
+
+Tỷ lệ thực / gộp = 7.6 / 12 = 63%, hợp với mốc tham chiếu 40-60% (hơi cao một chút — biện minh: AI tích hợp inline, chi phí chuyển ngữ cảnh thấp).
+
+### C.2 — Lương theo giờ đã cộng phụ cấp
 
 | Trường | Giá trị | Công thức |
 |---|---|---|
-| Base hourly rate | $20/hr | Industry: US support agent senior |
-| Multiplier (benefit + overhead) | × 1.25 | Loaded conservative |
-| **Loaded hourly rate** | $25/hr | base × multiplier |
+| Lương cơ bản theo giờ | $20/giờ | US support agent senior |
+| Hệ số phụ cấp + chi phí gián tiếp | × 1.25 | Mức bảo thủ |
+| **Lương đã cộng phụ cấp** | $25/giờ | $20 × 1.25 |
 
-### C.3 — Adoption + Quality
+### C.3 — Tỷ lệ sử dụng + Chất lượng
 
-| Trường | Giá trị | Justification |
+| Trường | Giá trị | Lý do |
 |---|---|---|
-| Adoption rate | 65% | Brief: pilot mandatory medium (encouraged không bắt buộc), UX tích hợp Zendesk inline, 1 session training. Range 60-85% mandatory + integrated → 65% bảo thủ. |
-| Quality factor | 80% | Task: draft generation. Range 60-80% draft. Brief có 50K ticket history + RAG → upper bound 80%. KB outdated 30% có thể drop về 75% tháng 1. |
+| Tỷ lệ sử dụng thực tế | 65% | Đề bài: pilot dạng "khuyến khích" (không bắt buộc), UX tích hợp Zendesk inline, 1 buổi training. Mức 60-85% cho dạng có gợi ý mạnh + tích hợp tốt → 65% bảo thủ. |
+| Tỷ lệ chất lượng đạt | 80% | Việc làm: sinh bản nháp. Mốc 60-80% cho dạng draft. Đề bài có 50K lịch sử ticket + RAG → cận trên 80%. Nếu KB outdated 30% có thể tụt về 75% tháng 1. |
 
-### C.4 — Monthly Volume
+### C.4 — Khối lượng mỗi tháng
 
 | Trường | Giá trị | Nguồn |
 |---|---|---|
-| Monthly volume (tasks) | 3,520 ticket | Section A.2 |
+| Khối lượng mỗi tháng | 3,520 ticket | Section A.2 |
 
-### C.5 — Monthly Value Formula
+### C.5 — Công thức giá trị mỗi tháng
 
 ```text
-Step 1: Gross Monthly Value
+Bước 1: Giá trị tháng gộp
   = 3,520 × 7.6 × ($25 / 60)
   = $11,147
 
-Step 2: Adjusted for adoption + quality
+Bước 2: Điều chỉnh theo tỷ lệ sử dụng + chất lượng
   = $11,147 × 65% × 80%
   = $5,797
 
-Step 3: Rework đã trừ trong NET (0.6 min) → không trừ lần 2.
+Bước 3: Chi phí sửa lại đã trừ trong NET (0.6 phút) → không trừ lần 2.
 
-NET Monthly Value = $5,797 /month
+Giá trị thực mỗi tháng = $5,797 /tháng
 ```
 
 ### C.6 — ROI
@@ -230,122 +228,122 @@ NET Monthly Value = $5,797 /month
 ROI = $5,797 / $2,803 = 2.07 : 1
 ```
 
-### C.7 — ROI Interpretation
+### C.7 — Diễn giải ROI
 
-| ROI range | Interpretation | Verdict tendency |
+| ROI range | Diễn giải | Hướng quyết định |
 |---|---|---|
-| 1.5-3:1 | Marginal | CONDITIONAL |
+| 1.5-3:1 | Biên mỏng (marginal) | CONDITIONAL |
 
-**Interpretation**: ROI nằm trong vùng marginal. Còn sống nhưng biên mỏng — phụ thuộc cao vào adoption + quality. Verdict không thể là GO chắc chắn.
+**Diễn giải**: ROI nằm trong vùng biên mỏng. Còn sống nhưng phụ thuộc cao vào tỷ lệ sử dụng + chất lượng. Không thể GO chắc chắn.
 
-**Reality check**:
+**Kiểm tra lại cho hợp lý**:
 
-- Adoption 65% có data hard? Không, là estimate. → Bảo thủ.
-- Quality 80% có POC data? Không. → Track tháng 1 để verify.
-- Cost component nào quên? Setup amortize bỏ qua, sẽ làm cost thật cao hơn $300-500/tháng.
-- NET vs Gross check? 63%, OK.
+- Tỷ lệ sử dụng 65% có dữ liệu cứng không? Không, là ước tính. → Bảo thủ.
+- Chất lượng 80% có POC không? Không. → Theo dõi tháng 1 để xác minh.
+- Có quên thành phần chi phí nào không? Setup chưa phân bổ — nếu tính sẽ thêm $300-500/tháng.
+- Tỷ lệ NET/Gross? 63%, hợp lý.
 
 ---
 
 ## Section D — Stress Test + Verdict
 
-### D.1 — Stress Test Table
+### D.1 — Bảng 5 kịch bản
 
-| # | Scenario | Change | Cost ($/mo) | Value ($/mo) | ROI | Status |
+| # | Kịch bản | Thay đổi | Chi phí ($/tháng) | Giá trị ($/tháng) | ROI | Trạng thái |
 |---|---|---|---|---|---|---|
-| 1 | Base case | (No change) | $2,803 | $5,797 | 2.07:1 | [x] Marginal |
-| 2 | Heavy usage | Volume × 3 | $8,014 | $17,391 | 2.17:1 | [x] Marginal |
-| 3 | Low adoption | Adoption 40% (was 65%) | $2,803 | $3,567 | 1.27:1 | [x] Negative (dưới 1.5) |
-| 4 | Quality failure | Quality 50% (was 80%) | $2,803 | $3,623 | 1.29:1 | [x] Negative (dưới 1.5) |
-| 5 | Provider shock | API cost × 2 | $2,979 | $5,797 | 1.95:1 | [x] Marginal |
+| 1 | Nền | (giữ nguyên) | $2,803 | $5,797 | 2.07:1 | [x] Biên mỏng |
+| 2 | Dùng nhiều | Khối lượng × 3 | $8,014 | $17,391 | 2.17:1 | [x] Biên mỏng |
+| 3 | Tỷ lệ sử dụng thấp | 40% (so với 65%) | $2,803 | $3,567 | 1.27:1 | [x] Yếu (dưới 1.5) |
+| 4 | Chất lượng kém | 50% (so với 80%) | $2,803 | $3,623 | 1.29:1 | [x] Yếu (dưới 1.5) |
+| 5 | Nhà cung cấp tăng giá | API × 2 | $2,979 | $5,797 | 1.95:1 | [x] Biên mỏng |
 
-**Survives X/5** (ROI ≥ 1.5): Base, Heavy, Provider → 3/5 → CONDITIONAL range.
+**Sống được X/5** (ROI ≥ 1.5): Nền, Dùng nhiều, Tăng giá → 3/5 → vùng CONDITIONAL.
 
-### D.2 — Combined Worst Case
+### D.2 — Kịch bản xấu kết hợp
 
-| Field | Giá trị |
+| Trường | Giá trị |
 |---|---|
-| Scenario xấu nhất 1 | #3 Low adoption (1.27:1) |
-| Scenario xấu nhất 2 | #5 Provider shock (1.95:1) |
-| Combined change | Adoption 40% + API cost × 2 |
-| Combined cost | $2,979 /month |
-| Combined value | $3,567 /month |
-| **Combined ROI** | 1.20:1 |
-| Status | [x] Break-even (1-1.5) |
+| Kịch bản xấu 1 | #3 Tỷ lệ sử dụng thấp (1.27:1) |
+| Kịch bản xấu 2 | #5 Nhà cung cấp tăng giá (1.95:1) |
+| Thay đổi kết hợp | Tỷ lệ sử dụng 40% + API × 2 |
+| Chi phí kết hợp | $2,979 /tháng |
+| Giá trị kết hợp | $3,567 /tháng |
+| **ROI kết hợp** | **1.20:1** |
+| Trạng thái | [x] Gần hoà vốn (1-1.5) |
 
-**Lý do chọn Low adoption + Provider shock**: 2 scenarios đại diện 2 loại rủi ro khác nhau (internal demand + external supply), khả năng xảy ra đồng thời cao trong pilot 90 ngày. Quality failure đã hurt riêng — combine thêm sẽ over-stress.
+**Lý do chọn cặp này**: hai kịch bản đại diện hai loại rủi ro khác nhau (nội bộ — tỷ lệ sử dụng + bên ngoài — giá nhà cung cấp), khả năng xảy ra đồng thời trong pilot 90 ngày là cao. Kịch bản chất lượng kém đã hurt riêng — nếu cộng thêm sẽ stress quá mức.
 
-### D.3 — Break-even Analysis
+### D.3 — Phân tích điểm hoà vốn (break-even)
 
-| Field | Giá trị |
+| Trường | Giá trị |
 |---|---|
-| Break-even adoption | 31% (tại quality 80%, cost base) |
-| Break-even quality | 39% (tại adoption 65%, cost base) |
-| Diễn giải | "Pilot fail nếu adoption < 31% HOẶC quality < 39%." Threshold quan trọng để monitor. |
+| Điểm hoà vốn tỷ lệ sử dụng | 31% (giữ chất lượng 80%, chi phí nền) |
+| Điểm hoà vốn chất lượng | 39% (giữ tỷ lệ sử dụng 65%, chi phí nền) |
+| Diễn giải | "Pilot fail nếu tỷ lệ sử dụng < 31% HOẶC chất lượng < 39%." Đây là ngưỡng cần theo dõi sát. |
 
-Break-even adoption tính: $2,803 = $11,147 × X% × 80% → X% = $2,803 / ($11,147 × 0.8) = 31.4%.
+Cách tính: $2,803 = $11,147 × X% × 80% → X% = $2,803 / ($11,147 × 0.8) = 31.4%.
 
 ### D.4 — Verdict
 
-**Verdict**: [ ] GO  [x] CONDITIONAL  [ ] NO-GO
+**Verdict**: [ ] GO   [x] CONDITIONAL   [ ] NO-GO
 
-**Verdict statement (3-4 câu)**:
+**Phát biểu verdict (3-4 câu)**:
 
-> "CONDITIONAL GO cho Brief #1 AI Support Copilot. Base ROI 2.07:1 nằm trong vùng marginal, sống 3/5 scenarios cá nhân (base, heavy, provider). Combined worst case (Low adoption + Provider shock) cho 1.20:1 — biên mỏng. Tiến hành pilot 90 ngày với 3 điều kiện cứng + monitoring tuần."
+> "CONDITIONAL GO cho Đề bài #1 — AI Support Copilot. ROI nền 2.07:1 thuộc vùng biên mỏng, sống được 3/5 kịch bản riêng lẻ (nền, dùng nhiều, tăng giá). Kịch bản xấu kết hợp (tỷ lệ sử dụng thấp + nhà cung cấp tăng giá) cho 1.20:1 — biên rất mỏng. Tiến hành pilot 90 ngày kèm 3 điều kiện cứng + giám sát hàng tuần."
 
-### D.5 — Conditions
+### D.5 — Điều kiện đi kèm
 
-| # | Điều kiện | Đo bằng gì | Timeline | Action nếu fail |
+| # | Điều kiện | Đo bằng gì | Thời hạn | Hành động nếu fail |
 |---|---|---|---|---|
-| 1 | Adoption ≥ 50% trước cuối tháng 1 (target 65% tháng 3) | Active agents / 5 pilot agents weekly | Tháng 1 EOM | Pause pilot, training intensive |
-| 2 | Quality ≥ 70% (target 80%) | Random sample 50 drafts/tuần, % usable không major rewrite | Weekly | Iterate prompt + RAG re-index |
-| 3 | API pricing locked với Anthropic 6 tháng HOẶC fallback model (GPT-4o-mini) ready | Contract review + fallback test | Pre-pilot start | Block pilot start nếu chưa lock |
-| 4 | Cost/task ≤ $0.80 effective | Billing logs weekly | Weekly | Switch to GPT-4o-mini cho phần FAQ tier-1 |
-| 5 | Monthly cost ≤ $3,000 gate | Finance dashboard | Monthly | Escalate to CTO, không tiếp tục pilot tháng sau |
+| 1 | Tỷ lệ sử dụng ≥ 50% trước cuối tháng 1 (mục tiêu 65% tháng 3) | Agent active / 5 agent pilot, hàng tuần | Cuối tháng 1 | Tạm dừng pilot, training tăng cường |
+| 2 | Chất lượng ≥ 70% (mục tiêu 80%) | Lấy ngẫu nhiên 50 bản nháp/tuần, % dùng được không cần viết lại nhiều | Hàng tuần | Tinh chỉnh prompt + index lại RAG |
+| 3 | Khoá giá API với Anthropic 6 tháng HOẶC chuẩn bị sẵn mô hình dự phòng (GPT-4o-mini) | Hợp đồng + test fallback | Trước khi pilot bắt đầu | Chặn pilot cho đến khi khoá được giá |
+| 4 | Chi phí mỗi việc ≤ $0.80 (hiệu dụng) | Log billing hàng tuần | Hàng tuần | Chuyển sang GPT-4o-mini cho phần FAQ tier-1 |
+| 5 | Chi phí tháng ≤ $3,000 (cổng cứng) | Dashboard tài chính | Hàng tháng | Báo CTO, dừng pilot tháng sau |
 
-### D.6 — Monitoring Metrics
+### D.6 — Chỉ số theo dõi
 
-| Metric | Frequency | Source | Threshold |
+| Chỉ số | Tần suất | Nguồn | Ngưỡng |
 |---|---|---|---|
-| Adoption rate | Weekly | Zendesk app logs | ≥ 50% |
-| Cost per task | Weekly | Anthropic billing + Pinecone billing | ≤ $0.80 |
-| Quality factor | Weekly | Random sample 50 drafts | ≥ 70% |
-| User satisfaction (agent) | Monthly | Survey 5 agents | NPS ≥ 20 |
-| Total monthly cost | Monthly | Finance dashboard | ≤ $3,000 |
+| Tỷ lệ sử dụng | Hàng tuần | Log Zendesk app | ≥ 50% |
+| Chi phí mỗi việc | Hàng tuần | Billing Anthropic + Pinecone | ≤ $0.80 |
+| Tỷ lệ chất lượng | Hàng tuần | Mẫu ngẫu nhiên 50 bản nháp | ≥ 70% |
+| Mức hài lòng của agent | Hàng tháng | Khảo sát 5 agent | NPS ≥ 20 |
+| Tổng chi phí tháng | Hàng tháng | Dashboard tài chính | ≤ $3,000 |
 
-### D.7 — Stop / Pivot Trigger
+### D.7 — Trigger dừng / xoay hướng
 
-- Trigger 1: Adoption < 40% trong 30 ngày liên tiếp → pause pilot, training program intensive.
-- Trigger 2: Cost/task > $1.20 trong 2 tuần liên tiếp → switch to GPT-4o-mini.
-- Trigger 3: Quality < 50% trong 30 ngày → iterate prompt + RAG re-index hoặc pause.
-- Trigger 4: Compliance event (1 draft sent without review do AI auto-send bug) → pause immediately, root-cause review.
+- Trigger 1: Tỷ lệ sử dụng < 40% trong 30 ngày liên tiếp → tạm dừng pilot, training tăng cường.
+- Trigger 2: Chi phí mỗi việc > $1.20 trong 2 tuần liên tiếp → chuyển sang GPT-4o-mini.
+- Trigger 3: Chất lượng < 50% trong 30 ngày → tinh chỉnh prompt + index lại RAG, hoặc tạm dừng.
+- Trigger 4: Sự cố tuân thủ (1 bản nháp gửi đi mà chưa được kiểm do lỗi AI tự gửi) → dừng ngay, root-cause review.
 
-### D.8 — Changes Needed (N/A — verdict không phải NO-GO)
-
----
-
-## Section D — Insight đáng chú ý
-
-1. **Scenario hurt nhất**: Low adoption (1.27:1) và Quality failure (1.29:1) gần ngang nhau. Cả 2 đều kéo ROI xuống vùng yếu vì base đã thấp.
-2. **Combined worst pattern**: Khi rủi ro internal (adoption) + external (provider) gặp nhau, ROI rơi đến 1.20 — sát break-even. Mọi điều kiện trong D.5 đều quan trọng.
-3. **Buyer takeaway**: Adoption là biến nhạy nhất + dễ kiểm soát nhất. Đầu tư training + onboarding > đầu tư model upgrade. Threshold 50% adoption tháng 1 là "make or break".
+### D.8 — Thay đổi cần làm (không áp dụng — verdict không phải NO-GO)
 
 ---
 
-## Cross-section insights
+## Section D — 3 nhận xét chính
 
-1. **Cost structure**: Human review (87%) chi phối, không phải API (6%). Pattern phổ biến với brief có compliance constraint — đừng tối ưu sai (đổi model rẻ hơn không cứu nổi).
-2. **Value sensitivity**: Adoption × Quality cùng tăng/giảm theo cấp số nhân. 65% × 80% = 52% effective rate. Nếu giảm xuống 40% × 50% = 20% effective → value collapse 60%.
-3. **Verdict insight**: Combined worst 1.20:1 ngay sát break-even 1.0:1 → biên an toàn rất mỏng. Mọi điều kiện trong D.5 là điều kiện sống chết, không phải nice-to-have.
+1. **Kịch bản hurt nhất**: Tỷ lệ sử dụng thấp (1.27:1) và Chất lượng kém (1.29:1) gần ngang nhau. Cả hai đều kéo ROI xuống vùng yếu vì ROI nền vốn đã thấp.
+2. **Pattern kết hợp**: khi rủi ro nội bộ (sử dụng) + bên ngoài (nhà cung cấp) xảy ra cùng lúc, ROI rơi xuống 1.20 — sát điểm hoà vốn. Mọi điều kiện ở D.5 đều quan trọng.
+3. **Điều người mua cần nhớ**: tỷ lệ sử dụng là biến nhạy nhất + dễ kiểm soát nhất. Đầu tư training + onboarding > đầu tư đổi mô hình. Ngưỡng 50% tháng 1 là "sống chết".
+
+---
+
+## Nhận xét xuyên các Section
+
+1. **Cấu trúc chi phí**: người kiểm (87%) chi phối, không phải API (6%). Đây là pattern phổ biến khi đề bài có ràng buộc tuân thủ — đừng tối ưu nhầm hướng (đổi mô hình rẻ hơn không cứu nổi).
+2. **Độ nhạy giá trị**: tỷ lệ sử dụng × chất lượng nhân với nhau theo cấp số. 65% × 80% = 52% hiệu dụng. Nếu cả hai tụt xuống 40% × 50% = 20% hiệu dụng → giá trị sụp 60%.
+3. **Nhận xét quyết định**: kết hợp xấu nhất 1.20:1 sát điểm hoà vốn 1.0:1 → biên an toàn rất mỏng. Mọi điều kiện ở D.5 là điều kiện sống chết, không phải "tốt thì có".
 
 ---
 
 ## Lưu ý cuối
 
-File này là **ví dụ tham chiếu**, không phải template để paste. Nhóm khác:
+File này là **ví dụ tham chiếu**, không phải template để dán đè. Nhóm khác:
 
-- Có thể có verdict GO hoặc NO-GO tuỳ brief.
-- Số sẽ khác hoàn toàn — Brief #2 Content Moderator có volume × 100, API cost dominant.
-- Justification cho mỗi % phải tự viết theo context brief, không copy.
+- Có thể có verdict GO hoặc NO-GO tuỳ đề bài.
+- Số sẽ khác hoàn toàn — Đề bài #2 (Content Moderator) có khối lượng × 100, chi phí API chi phối.
+- Mỗi % phải tự viết lý do theo ngữ cảnh đề bài, không copy.
 
-Đọc xong file này → trở lại `worksheet/00-context.md` để bắt đầu Lab với brief của nhóm.
+Đọc xong file này → quay lại `worksheet/00-context.md` để bắt đầu Lab với đề bài của nhóm.

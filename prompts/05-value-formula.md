@@ -1,290 +1,222 @@
-# Prompt tham khảo 5 — Tính Value Formula (Monthly Value)
+# Câu lệnh AI 5 — Tính giá trị mỗi tháng AI mang lại
 
-**Dùng khi**: nhóm đã có pricing model + cost, cần tính Monthly Value cụ thể (giá trị tháng AI mang lại) → input cho ROI.
-**Công cụ gợi ý**: Claude Sonnet/Opus, ChatGPT-4o.
-**Lưu kết quả vào**: Section C.1-C.5 trong `worksheet/02-pricing-value/3-FINAL-pricing-value-roi.md`
-**Thời gian**: 15 phút
+**Dùng khi**: Bước 2 Lab, sau khi đã có mô hình định giá và chi phí — nhóm cần tính giá trị thực tế AI mang lại mỗi tháng để làm đầu vào cho ROI.
 
----
+**Công cụ gợi ý**: Claude, ChatGPT.
 
-## Trước khi vào prompt — 5 câu hỏi nhóm tự trả lời
+**Lưu kết quả vào**: phần C.1–C.5 trong `worksheet/02-pricing-value/3-FINAL-pricing-value-roi.md`.
 
-1. **Original task time** (không AI): bao nhiêu phút/đơn vị work? (Từ brief field #2).
-2. **NET time saved** = Gross − wait − review − switch − rework. Đã estimate từng phần chưa?
-3. **Loaded hourly rate**: $___/hr (base × 1.3-1.5).
-4. **Adoption rate**: realistic? (60-85% mandatory tool / 30-60% optional / 20-50% new behavior / 50-80% pilot incentive).
-5. **Quality factor**: realistic? (80-95% classify / 60-80% draft / 70-85% summarize / 50-70% creative / 40-65% complex).
-
-> **Cảnh báo**: 90% nhóm overestimate Value vì dùng GROSS thay vì NET, hoặc giả adoption 100% / quality 95%. Đây là sai lầm khiến ROI quá đẹp ở base case.
+**Thời gian**: 15 phút.
 
 ---
 
-## Prompt chính (paste sau pricing model output)
+## Trước khi vào câu lệnh — 5 câu nhóm tự trả lời
+
+Đây là phần dễ bị đẹp giả nhất trong cả Lab. 90% nhóm phóng đại giá trị vì dùng "thời gian tiết kiệm thô" (Gross) thay vì "thời gian tiết kiệm thực" (NET sau khi trừ chờ AI, người kiểm tra, đổi tab, làm lại). Hoặc giả định tỷ lệ sử dụng 100%, chất lượng AI 95%. Đây là sai lầm khiến ROI quá đẹp ở kịch bản cơ bản — nhưng sụp khi nén thử.
+
+1. Thời gian xử lý một việc khi chưa có AI (lấy từ trường 2 đề bài): ___ phút.
+2. Đã ước lượng từng phần để trừ khỏi thời gian tiết kiệm thô chưa — chờ AI / người kiểm tra / đổi tab / làm lại?
+3. Tiền công mỗi giờ đã cộng phụ phí: $___/giờ (= cơ bản × 1,3–1,5).
+4. Tỷ lệ sử dụng thực tế có thực tế không (60–85% bắt buộc, 30–60% tuỳ chọn, 20–50% thói quen mới, 50–80% có thưởng thử nghiệm)?
+5. Hệ số chất lượng có thực tế không (80–95% phân loại, 60–80% viết nháp, 70–85% tóm tắt, 50–70% sáng tạo, 40–65% phức tạp)?
+
+---
+
+## Câu lệnh chính (dán sau kết quả mô hình định giá)
 
 ```text
-Bạn là Product Manager AI tính ROI cho AI products.
-Dựa trên BỐI CẢNH ở trên (brief + cost model + pricing model),
-giúp nhóm tôi tính MONTHLY VALUE realistic — không overestimate.
+Bạn là Product Manager AI có kinh nghiệm tính ROI cho sản phẩm AI.
+Dựa trên bối cảnh ở trên (đề bài + Cost Model + mô hình định giá),
+giúp nhóm tôi tính GIÁ TRỊ THỰC mỗi tháng — bảo thủ, không phóng đại.
 
-YÊU CẦU:
+Phần 1 — Bóc tách thời gian tiết kiệm:
+Tính thời gian tiết kiệm THỰC mỗi việc (không phải thô):
 
-PHẦN 1 — Time Saved Breakdown:
-Tính NET time saved/task (không phải Gross):
-
-| Component | Phút | Lý do |
+| Phần | Phút | Lý do |
 |---|---|---|
-| Original task time (no AI) | ___ | Từ brief field #2 |
-| − AI processing wait | ___ | Latency Claude/GPT call (typical 5-30s = 0.1-0.5 min) |
-| − Human review time | ___ | Nếu brief có review constraint (typical 1-5 min per task) |
-| − Context switching | ___ | User mở tab AI tool, copy/paste back (typical 0.5-1 min) |
-| − Rework time (avg) | ___ | Khi quality fail, time fix (= rework × quality miss rate) |
-| **= NET time saved** | ___ | sum |
+| Thời gian xử lý gốc (chưa có AI) | ___ | Từ trường 2 đề bài |
+| − Chờ AI phản hồi | ___ | Độ trễ Claude/GPT ~5–30 giây = 0,1–0,5 phút |
+| − Người kiểm tra | ___ | Nếu có ràng buộc duyệt (~1–5 phút/việc) |
+| − Đổi tab / dán dữ liệu | ___ | Mở AI ngoài, dán vào, dán lại (~0,5–1 phút) |
+| − Làm lại khi chất lượng kém | ___ | Thời gian sửa × tỷ lệ chất lượng kém |
+| = Thời gian tiết kiệm THỰC | ___ | tổng |
 
-CẢNH BÁO:
-- NET typical = 40-60% of Gross. Nếu nhóm tôi tính NET > 80% Gross → đã quên overhead nào đó.
-- Đừng bỏ qua context switching — đây là cost ẩn quan trọng.
+Quy tắc cứng:
+- Thời gian tiết kiệm thực thường = 40–60% thời gian thô. Nếu nhóm tôi
+  tính ra > 80% → đã quên một phần phụ phí.
+- Đừng bỏ qua phần đổi tab — đây là chi phí ẩn quan trọng.
 
-PHẦN 2 — Loaded Hourly Rate:
-Tính rate đầy đủ:
-- Base hourly: $___/hr (lương cơ bản, từ brief hoặc industry benchmark)
-- Multiplier: × 1.3-1.5 (benefit + tax + overhead + office)
-- = Loaded hourly: $___/hr
+Phần 2 — Tiền công mỗi giờ (đã cộng phụ phí):
+- Lương cơ bản: $___/giờ (từ đề bài hoặc mức tham khảo ngành).
+- Hệ số phụ phí: × 1,3–1,5 (bảo hiểm, thuế, quản lý, văn phòng).
+- = Tiền công đầy đủ: $___/giờ.
 
-Brief có cho lương cụ thể không? Nếu không, dùng:
-- US: support agent $20-30/hr, lawyer $80-150/hr, nurse $40-60/hr.
-- VN: support agent $5-10/hr, lawyer $30-50/hr, nurse $15-25/hr.
+Nếu đề bài không cho lương, dùng:
+- Mỹ: nhân viên hỗ trợ $20–30/h, luật sư $80–150/h, y tá $40–60/h.
+- Việt Nam: nhân viên hỗ trợ $5–10/h, luật sư $30–50/h, y tá $15–25/h.
 
-PHẦN 3 — Adoption Rate Justification:
-Realistic adoption cho brief tôi:
-- Range typical: ___% (xem benchmark)
-- Brief context: brief có mandatory không? Có incentive không?
-- Adoption tháng 1 (initial): ___%
-- Adoption tháng 3 (stable): ___%
-- Adoption pilot average: ___%
+Phần 3 — Tỷ lệ sử dụng thực tế:
+- Khoảng tham khảo cho đề bài tôi: ___%.
+- Đề bài có bắt buộc dùng không? Có ưu đãi không?
+- Tháng 1 (đầu): ___%.
+- Tháng 3 (ổn định): ___%.
+- Trung bình cho cả thời gian thử nghiệm: ___%.
 
-Recommend % với 1-2 câu justification.
+Nêu lý do trong 1–2 câu — không chỉ một con số.
 
-PHẦN 4 — Quality Factor Justification:
-Realistic quality cho task type:
-- Task type: classify / draft / summarize / creative / complex (chọn 1)
-- Range typical: ___%
-- Brief context: dữ liệu sẵn có (50K ticket history → tốt cho draft), KB outdated (xấu cho draft), domain narrow (xấu vì model chưa fine-tuned)
-- Realistic estimate cho brief tôi: ___%
+Phần 4 — Hệ số chất lượng:
+- Loại việc: phân loại / viết nháp / tóm tắt / sáng tạo / phức tạp (chọn 1).
+- Khoảng tham khảo: ___%.
+- Bối cảnh đề bài: dữ liệu sẵn có thế nào (vd: 50K lịch sử ticket — tốt
+  cho viết nháp), tài liệu nội bộ có cũ không, ngành có hẹp không.
+- Hệ số chất lượng thực tế cho đề bài: ___%.
 
-PHẦN 5 — Monthly Value Formula:
-Tính step-by-step:
+Phần 5 — Công thức giá trị mỗi tháng:
+Tính từng bước:
 
-Step 1: Gross Monthly Value
-= Monthly volume × NET time saved (min) × (Loaded hourly / 60)
-= ___ × ___ × ($___ / 60)
-= $___
+Bước 1: Giá trị thô mỗi tháng
+= Khối lượng/tháng × Thời gian tiết kiệm thực × (Tiền công/giờ ÷ 60)
+= ___ × ___ × ($___/60) = $___
 
-Step 2: Adjusted for adoption + quality
-= Gross × Adoption × Quality
-= $___ × ___% × ___%
-= $___
+Bước 2: Điều chỉnh theo tỷ lệ sử dụng và chất lượng
+= Bước 1 × Tỷ lệ sử dụng × Chất lượng
+= $___ × ___% × ___% = $___
 
-Step 3: Minus rework cost (nếu rework time chưa trừ trong NET)
+Bước 3: Trừ chi phí làm lại (nếu chưa trừ trong thời gian tiết kiệm thực)
 − $___
 
-= NET Monthly Value: $___
+= Giá trị THỰC mỗi tháng: $___
 
-PHẦN 6 — Sensitivity Note:
-Nếu adoption thay đổi ±20%, NET Value thay đổi bao nhiêu?
-Nếu quality thay đổi ±20%, NET Value thay đổi bao nhiêu?
+Phần 6 — Phân tích nhạy cảm:
+- Nếu tỷ lệ sử dụng đổi ±20%, giá trị thực đổi bao nhiêu?
+- Nếu chất lượng đổi ±20%, giá trị thực đổi bao nhiêu?
+- Biến nào nhạy nhất → đó là chỉ số phải theo dõi chặt nhất trong pilot.
 
-Identify variable nào nhạy nhất với NET Value — đó là metric cần track chặt nhất.
-
-YÊU CẦU FORMAT:
+Yêu cầu trình bày:
 - Mỗi số có công thức rõ.
-- Mỗi % có justification 1-2 câu.
-- Trả lời tiếng Việt thoát nghĩa.
+- Mỗi % có lý do 1–2 câu.
+- Viết tiếng Việt thoát nghĩa.
 
-YÊU CẦU PHẢN BIỆN:
-- NET time saved có > 80% Gross không? (Nếu có → check lại overhead).
-- Adoption > 80%? (Cần data hard support).
-- Quality > 85%? (Cần POC data).
-- Có double-count: rework đã trừ trong NET rồi mà còn trừ trong Step 3?
+Yêu cầu phản biện:
+- Thời gian tiết kiệm thực có > 80% thô không? (Nếu có → kiểm tra lại
+  phụ phí đã trừ chưa.)
+- Tỷ lệ sử dụng > 80% có dữ liệu cứng nào không?
+- Chất lượng > 85% có dữ liệu thử thực tế nào không?
+- Có tính làm lại 2 lần không (1 lần trong thời gian thực + 1 lần ở
+  bước 3)?
 ```
 
 ---
 
-## Iterate — đẩy AI sâu hơn nếu output chưa đủ
+## Iterate — đẩy AI sâu hơn khi bản nháp chưa đủ
 
-### Khi nhóm muốn challenge mức adoption
+### Khi nhóm muốn chất vấn tỷ lệ sử dụng
 
 ```text
-Nhóm tôi đặt adoption = 70% cho pilot. Justify:
+Nhóm tôi đặt tỷ lệ sử dụng = 70% cho pilot. Lý do là:
 
-Hỏi 5 câu:
-1. Pilot có mandatory không (mgmt push) hay voluntary?
-2. User có experience với AI tool trước không?
-3. UX của AI có integrate sẵn với workflow (vd: trong Zendesk) hay phải mở tab khác?
-4. Có incentive (vd: free credits, bonus cho user adopt) không?
-5. Có training session không? Số session?
+Trả lời 5 câu:
+1. Thử nghiệm có bắt buộc dùng AI không, hay tuỳ chọn?
+2. Người dùng đã có kinh nghiệm dùng công cụ AI trước đó chưa?
+3. Giao diện AI có tích hợp sẵn vào quy trình (vd: trong Zendesk), hay
+   phải mở tab riêng?
+4. Có thưởng / ưu đãi cho người dùng chịu thử không?
+5. Có buổi đào tạo không? Mấy buổi?
 
-Dựa trên trả lời, adoption realistic là:
-- Voluntary + no UX integration + no incentive → 20-40%.
-- Voluntary + UX integrated + light incentive → 40-60%.
-- Mandatory + UX integrated + training → 60-85%.
+Dựa trên trả lời, tỷ lệ thực tế là:
+- Tuỳ chọn + không tích hợp + không thưởng → 20–40%.
+- Tuỳ chọn + có tích hợp + thưởng nhẹ → 40–60%.
+- Bắt buộc + tích hợp + có đào tạo → 60–85%.
 
-70% nhóm tôi đặt thuộc tier 3 — cần justify mandatory + UX + training cụ thể trong brief.
+70% rơi vào tầng 3 — cần lý do bắt buộc + tích hợp + đào tạo cụ thể
+trong đề bài để biện minh.
 ```
 
-### Khi muốn benchmark quality realistic
+### Khi nhóm muốn đối chiếu chất lượng với mức tham khảo
 
 ```text
-Quality nhóm tôi đặt = 80%. Validate qua benchmark:
+Chất lượng nhóm tôi đặt = 80%. Đối chiếu:
 
-Task type: [draft generation cho support reply].
+Loại việc: viết nháp trả lời ticket support.
 
-Benchmark:
-- Anthropic Claude 3.5 trên domain general: 75-85% (theo eval public).
-- Anthropic Claude 3.5 fine-tuned trên domain support: 85-92%.
-- Brief tôi: dùng base Claude 3.5 + RAG vector search → expect 70-82% (vì KB outdated 30%).
+Mức tham khảo:
+- Claude 3.5 trên ngành chung: 75–85% (theo công bố đánh giá).
+- Claude 3.5 đã tinh chỉnh trên ngành support: 85–92%.
+- Đề bài của tôi: dùng Claude 3.5 cơ bản + tìm tài liệu nội bộ → kỳ vọng
+  70–82% (vì tài liệu nội bộ cũ 30%).
 
-Adjust quality cho brief tôi:
-- Initial month 1: 70% (RAG context chưa optimize).
-- Stable month 3: 80% (sau prompt iteration).
-- Pilot average: 75%.
+Chất lượng cho đề bài:
+- Tháng 1 (đầu): 70% (ngữ cảnh tìm tài liệu chưa tối ưu).
+- Tháng 3 (ổn định): 80% (sau khi tinh chỉnh câu lệnh).
+- Trung bình thử nghiệm: 75%.
 
-Nhóm tôi nên dùng 75% thay vì 80% — bảo thủ hơn, realistic hơn.
+Nhóm nên dùng 75% thay vì 80% — bảo thủ hơn, sát thực tế hơn.
 ```
 
-### Khi NET time saved > 80% Gross (suspicious)
+### Khi thời gian tiết kiệm thực > 80% thô (đáng nghi)
 
 ```text
-Nhóm tôi tính NET = 10 min, Gross = 12 min → NET/Gross = 83%.
+Nhóm tôi tính ra: thực = 10 phút, thô = 12 phút → 83% — đáng nghi.
 
-Suspicious vì typical 40-60%. Re-check:
+Bình thường tỷ lệ thực/thô = 40–60%. Kiểm tra lại:
 
-1. Human review time đã trừ chưa?
-   - Nếu brief có "agent review trước khi send" → review thường 2-4 min.
-2. Context switching đã trừ chưa?
-   - Agent phải mở Zendesk → mở AI tool → copy back? Hay AI tích hợp inline?
-3. Rework đã trừ chưa?
-   - Quality 80% → 20% drafts không dùng được, agent phải viết tay → time fix.
+1. Đã trừ thời gian người kiểm tra chưa?
+   - Nếu đề bài có "người duyệt trước khi gửi" → thường 2–4 phút.
+2. Đã trừ thời gian đổi tab chưa?
+   - Phải mở Zendesk → mở AI → dán lại? Hay AI tích hợp inline?
+3. Đã trừ thời gian làm lại chưa?
+   - Chất lượng 80% → 20% nháp không dùng được, phải viết tay → thời
+     gian sửa.
 
-Re-calculate NET với 3 overhead trên:
-- Gross: 12 min (search KB 5 + draft 4 + send 3).
-- AI saves: search 5 + draft 4 = 9 min potential.
-- Wait AI: 0.3 min.
-- Review draft: 2 min (agent đọc + edit nhẹ).
-- Switch: 0.3 min (AI tích hợp inline, nhẹ).
-- Rework: 0.5 min average (= 2 min fix × 20% miss rate / 80% used rate).
+Tính lại với 3 phụ phí:
+- Thô: 12 phút (tìm tài liệu 5 + viết nháp 4 + gửi 3).
+- AI tiết kiệm: 5 + 4 = 9 phút tiềm năng.
+- Chờ AI: 0,3 phút.
+- Kiểm tra: 2 phút.
+- Đổi tab: 0,3 phút (tích hợp inline → nhẹ).
+- Làm lại trung bình: 0,5 phút (= 2 phút sửa × 20% / 80% giữ).
 
-NET = 9 − 0.3 − 2 − 0.3 − 0.5 = 5.9 min.
-NET/Gross = 5.9/12 = 49%. Match benchmark 40-60% ✓.
+Thực = 9 − 0,3 − 2 − 0,3 − 0,5 = 5,9 phút.
+Thực/thô = 5,9/12 = 49%. Khớp tham khảo 40–60%. ✓
 ```
 
 ---
 
-## Phản biện sau khi có output — 5 câu nhóm tự hỏi
+## Trước khi dán kết quả vào worksheet — nhóm tự rà soát
 
-1. **NET vs Gross check**: NET có rơi vào 40-60% Gross không?
-2. **Adoption realistic**: < 80% không có data hard?
-3. **Quality realistic**: < 85% không có POC data?
-4. **Justification check**: mỗi % có 1-2 câu lý do?
-5. **Double-count check**: rework có double-count giữa NET và Step 3?
-
----
-
-## Ví dụ tốt vs ví dụ chưa tốt
-
-### Chưa tốt
-
-> "Monthly Value: $5,000. Adoption 90%, quality 95%, gross saving 10 min/task."
-
-Vấn đề: adoption + quality quá lạc quan, không justify, không có công thức.
-
-### Tốt
-
-> **Brief #1 — Monthly Value Calculation**
->
-> **Time Saved Breakdown**:
-> | Component | Phút | Lý do |
-> |---|---|---|
-> | Original task time | 12 | Brief field #7 |
-> | − AI wait | − 0.3 | Claude 3.5 latency ~20s = 0.3 min |
-> | − Review draft | − 3 | Brief constraint: agent senior review (typical 2-4 min) |
-> | − Context switch | − 0.5 | Zendesk side panel inline, nhẹ |
-> | − Rework | − 0.6 | 3 min fix × 20% miss rate = 0.6 min average |
-> | **NET saved** | **7.6** | 12 − 0.3 − 3 − 0.5 − 0.6 = 7.6 min |
->
-> NET/Gross = 7.6 / 12 = 63% — slightly upper bound of 40-60% (justify: AI tích hợp inline Zendesk → switch cost thấp).
->
-> **Loaded Rate**: $20 base × 1.25 multiplier = **$25/hr**.
->
-> **Adoption**: 65%. Pilot 5 agent. Mandatory: medium (encouraged, không bắt buộc). UX: tích hợp Zendesk. Training: 1 session. Range 60-85% mandatory → 65% bảo thủ.
->
-> **Quality**: 80%. Task: draft generation. Range 60-80% draft. Brief có 50K ticket history + RAG → upper bound 80%. Justify: KB outdated 30% có thể drop quality về 75% ở month 1.
->
-> **Monthly Value Formula**:
->
-> Gross: 3,520 task × 7.6 min × ($25 / 60) = **$11,147/month**.
->
-> Adjusted: $11,147 × 65% × 80% = **$5,797/month**.
->
-> Rework already in NET (đã trừ 0.6 min) → không trừ lần 2.
->
-> NET Monthly Value: **$5,797/month**.
+- Thời gian tiết kiệm thực rơi vào 40–60% thô không?
+- Tỷ lệ sử dụng < 80% (nếu cao hơn có dữ liệu cứng không)?
+- Chất lượng < 85% (nếu cao hơn có dữ liệu thử thực tế không)?
+- Mỗi % có 1–2 câu lý do?
+- Có tính làm lại 2 lần (1 trong thời gian thực + 1 ở bước 3) không?
 
 ---
 
-## Anti-pattern khi prompt — tránh
-
-| Đừng làm | Nên làm |
-|---|---|
-| Adoption 100% | Realistic 50-80%, justify từ context |
-| Quality 95% | Realistic theo task type benchmark |
-| Dùng Gross time saved | NET = Gross − overhead 4 component |
-| Double-count rework | Hoặc trong NET hoặc Step 3, không cả 2 |
-| Loaded rate = base | Loaded = base × 1.3-1.5 |
-| Bỏ context switching | Mỗi lần đổi tool = thời gian thực |
-| Round number ($5,000) | Số chính xác từ công thức ($5,797) |
-
----
-
-## Format save vào Section C.1-C.5
-
-```markdown
-### C.1 — Time Saved per Task
-[Paste bảng]
-
-### C.2 — Loaded Hourly Rate
-[Paste]
-
-### C.3 — Adoption + Quality
-[Paste với justification]
-
-### C.4 — Monthly Volume
-[Paste]
-
-### C.5 — Monthly Value Formula
-[Paste công thức 3 step + số cụ thể]
-```
-
----
-
-## Câu hỏi mở rộng — nâng cao phản biện (optional)
+## Câu hỏi mở rộng (chỉ làm khi còn thời gian)
 
 ```text
-Sau khi tính Value, giúp tôi suy nghĩ 3 góc:
+Sau khi tính giá trị, suy nghĩ 3 góc:
 
-1. **Hidden value**: AI có tạo giá trị nào KHÔNG phải time saved không?
-   - Quality consistent (giảm variance) → defend trong rubric mới.
-   - Onboarding ngắn lại (3 tuần → 1 tuần) → onboarding cost saved.
-   - 24/7 availability (AI không sleep) → after-hour service.
-   - Scale capacity (10× volume mà không hire thêm) → hire deferred.
+1. Giá trị ẩn (không phải thời gian tiết kiệm):
+   - Chất lượng đều hơn (giảm độ chênh) → biện minh được trong rubric mới.
+   - Đào tạo nhân viên mới nhanh hơn (3 tuần → 1 tuần) → tiết kiệm chi
+     phí đào tạo.
+   - 24/7 (AI không nghỉ) → phục vụ ngoài giờ.
+   - Tăng được khối lượng (10× không cần tuyển thêm) → hoãn tuyển dụng.
 
-2. **Time saved vs Value created**: 2 khác nhau:
-   - Time saved: agent dùng AI → save 7 min/ticket → AI value = 7 min × rate.
-   - Value created: agent dùng time saved làm gì? Đón thêm ticket? Customer succ initiative? Đi café?
-   - Nếu time saved chỉ dùng để "đi café" → value không materialize thực sự.
+2. Thời gian tiết kiệm vs Giá trị tạo ra — 2 thứ khác nhau:
+   - Tiết kiệm: nhân viên dùng AI → tiết kiệm 7 phút/ticket → giá trị =
+     7 phút × tiền công.
+   - Tạo ra: nhân viên dùng thời gian tiết kiệm làm gì? Nhận thêm ticket?
+     Việc khác có giá trị hơn? Hay là đi cà phê?
+   - Nếu chỉ "đi cà phê" → giá trị không thật sự hiện hữu.
 
-3. **Indirect value**: AI giảm churn (vì CSAT tăng), tăng deal close (vì respond nhanh):
-   - Brief field #1 có "support-related churn 18%" → nếu AI giảm churn 2pt → save bao nhiêu LTV?
-   - Indirect value có thể > direct time saved value.
+3. Giá trị gián tiếp:
+   - AI giảm tỷ lệ khách rời (vì điểm hài lòng tăng), tăng tỷ lệ chốt deal
+     (vì phản hồi nhanh).
+   - Nếu đề bài có "khách rời 18% do hỗ trợ kém" → AI giảm 2 điểm % →
+     tiết kiệm bao nhiêu giá trị vòng đời khách hàng?
+   - Giá trị gián tiếp có thể lớn hơn giá trị thời gian tiết kiệm trực tiếp.
 
-Trả lời 3 câu này để hiểu Value đầy đủ — không chỉ "time saved × rate".
+3 câu này giúp hiểu giá trị đầy đủ — không chỉ "thời gian × tiền công".
 ```
