@@ -22,32 +22,53 @@ Nếu chưa hiểu → quay lại đọc lại 1 lần nữa. Đừng đi tiếp
 
 ## Bước 2 — Vẽ lại flow theo cách hiểu của nhóm
 
-Vẽ flow ra giấy hoặc trên bảng (1 thành viên vẽ, cả nhóm góp ý). Có thể dùng ASCII đơn giản:
-
 ```text
-(vẽ flow của nhóm vào đây — hoặc dán link ảnh chụp bảng)
+Tourist gửi tin nhắn (tiếng Anh)
+            │
+            ▼
+┌─ INTENT CLASSIFIER ──────────────────────────────────────────┐
+│  Keyword matching phân loại ý định của khách                   │
+│  → Visa/Policy | Guide/Destination | Weather/Event           │
+│  → Tour/Booking | Complaint                                  │
+└────┬──────────────┬──────────┬──────────┬───────────────────┘
+     │              │          │          │            │
+     ▼              ▼          ▼          ▼            ▼
+  Visa/Policy   Guide/Dest  Weather   Booking      Complaint
+     │              │          │          │            │
+     ▼              ▼          ▼          ▼            ▼
+  RAG lookup    RAG lookup  Web search  Handoff     Escalate
+  + Web search? (KB đủ)    (real-time)  Sales ($0)  Manager ($0)
+     │              │          │
+     └──────────────┴──────────┘
+                    │
+                    ▼
+┌─ CONTEXT ASSEMBLY ───────────────────────────────────────────┐
+│  System prompt (500 tokens)                                   │
+│  + Chat history (Last 3 / Last 5 / Full — tùy config)        │
+│  + RAG top-5 chunks (1,250 tokens)                           │
+│  + Web search results (800 tokens — nếu bật)                 │
+│  + User message (80 tokens)                                  │
+└────────────────────────┬─────────────────────────────────────┘
+                         │
+                         ▼
+┌─ RESPONSE GENERATION ────────────────────────────────────────┐
+│  Model tạo câu trả lời tiếng Anh cho khách                    │
+│  (180 tokens output trung bình)                              │
+└──────────────────────────────────────────────────────────────┘
 ```
 
-Khi vẽ, đảm bảo flow có 4 điểm:
-
-1. **Intent classification** — phân loại ý định
-2. **Route theo intent** — 5 nhánh đi đâu (RAG / Web search / Handoff / Escalate)
-3. **Context assembly** — ráp system prompt + history + RAG + web (nếu bật) + user msg
-4. **Response generation** — model tạo câu trả lời
-
-Nếu nhóm vẽ thiếu 1 trong 4 bước → bổ sung trước khi đi tiếp.
+**Lưu ý quan trọng khi vẽ:**
+- Booking + Complaint → handoff ngay → **$0 LLM cost** (chỉ tốn classifier)
+- Visa cần web search vì policy thay đổi thường xuyên theo quốc gia (UK, Đức, Hàn...)
+- Weather luôn cần web search vì đây là thông tin real-time (mưa, bão, lũ miền Trung)
+- Guide dùng RAG là đủ — knowledge base static đã cover điểm đến, ẩm thực, vận chuyển tốt
+- History được cộng vào mỗi turn → chi phí tăng dần theo độ dài conversation
 
 ---
 
 ## Bước 3 — Xác định 3 Knobs
 
-3 knobs là 3 quyết định thiết kế nhóm có thể tweak. Mỗi config nhóm thiết kế = 1 bộ chọn tại 3 knobs này.
-
-Trước khi điền vào ô bên dưới, đọc nhanh mục **3. Decision Points** của `cost-reference-card.md`. Sau đó tự hỏi:
-
-- Knob 1 — Model tier: model rẻ và model mạnh chênh bao nhiêu lần? Có thể mix theo intent không?
-- Knob 2 — Web search: intent nào *cần* real-time? intent nào không cần?
-- Knob 3 — History: 7 lượt chat cuối đắt hay rẻ? Cắt history có rủi ro gì?
+3 knobs là 3 quyết định thiết kế có thể tweak. Mỗi config = 1 bộ chọn tại 3 knobs này.
 
 ### Knob 1 — Model tier
 
@@ -60,17 +81,17 @@ Options:
 □ Mid          (Gemini Flash / Claude Haiku 4.5)
 □ Strong       (DeepSeek V4 Pro / Claude Sonnet 4.6)
 □ Premium      (Claude Opus 4.7 / GPT-5.5)
-□ Mix          (model khác nhau cho intent khác nhau — viết rõ)
+☑ Mix          (model khác nhau cho intent khác nhau — viết rõ bên dưới)
 ```
 
-**Câu hỏi gợi mở cho nhóm** (trả lời trước khi chọn):
-
-- Mục tiêu chính là chi phí thấp hay chất lượng cao?
-- Tourist hỏi câu phức tạp hay đơn giản hơn?
-- Có nên dùng cheap cho phân loại + strong cho trả lời không?
-
 ```text
-(viết suy nghĩ của nhóm vào đây — chưa cần chốt option, chỉ cần thấy hướng)
+Suy nghĩ:
+- Câu hỏi Guide (food, transport, itinerary): knowledge base đã cover tốt
+  → model rẻ GPT-4o-mini là đủ để format và present thông tin
+- Câu hỏi Visa: phức tạp hơn — policy theo từng quốc tịch (UK, Đức, Hàn),
+  cần xử lý chính xác web context dài → nên dùng model trung bình (Haiku 4.5)
+- Chênh lệch: GPT-4o-mini ($0.15/$0.60) vs Claude Sonnet ($3/$15) → đắt hơn 20×
+- Chiến lược: dùng đúng "trí thông minh" cho đúng loại câu hỏi
 ```
 
 ### Knob 2 — Web search
@@ -81,18 +102,18 @@ Options:
 
 ```text
 □ OFF              (chỉ dùng RAG — knowledge base có sẵn)
-□ ON selective    (bật cho 1–2 intent cần real-time: visa, weather)
+☑ ON selective    (bật cho 1–2 intent cần real-time: visa, weather)
 □ ON broad         (bật cho hầu hết intent)
 ```
 
-**Câu hỏi gợi mở:**
-
-- Visa policy đổi mỗi tháng — RAG có đủ không?
-- Weather là thông tin real-time tự nhiên — không có lựa chọn khác đúng không?
-- Web search tốn $0.005/call + 800 tokens — bật bừa có lợi không?
-
 ```text
-(viết suy nghĩ của nhóm vào đây)
+Suy nghĩ:
+- Visa policy UK, Đức, Hàn thay đổi theo thời gian (VN mở e-visa, kéo dài thời hạn...)
+  → chatbot trả lời outdated = khách bị từ chối nhập cảnh → bad review nghiêm trọng
+- Weather: real-time tự nhiên — đặc biệt quan trọng cho khách hỏi mùa bão miền Trung
+- Guide: knowledge base static đủ tốt — "top food in Hoi An" không cần real-time
+- ON broad: lãng phí $0.008/query + 800 tokens mỗi turn không cần thiết
+- Kết luận: ON selective (Visa + Weather) là điểm cân bằng đúng
 ```
 
 ### Knob 3 — History management
@@ -108,53 +129,55 @@ Options:
 □ Summarize every 5   (nâng cao — cần 1 LLM call phụ để tóm tắt)
 ```
 
-**Câu hỏi gợi mở:**
-
-- Tourist hay nói "tôi đã nói budget là $500 ở turn 1" rồi turn 7 hỏi gợi ý — nếu quên thì sao?
-- Scenario A trung bình 4 lượt → full history có tốn nhiều không?
-- Scenario B trung bình 7 lượt → mỗi turn thêm 260 tokens — tổng thêm bao nhiêu?
-
 ```text
-(viết suy nghĩ của nhóm vào đây)
+Suy nghĩ:
+- Emma (tourist Đức) hỏi vaccination turn 1, turn 4 hỏi hospital cho trẻ → nếu Last 3
+  sẽ không nhớ "gia đình có trẻ 7 tuổi" → trả lời generic thay vì pediatric care
+- Last 5: đủ cho Scenario A (4 turns), Scenario B mất 2 turns đầu (thường là greeting)
+  → chấp nhận được vì greeting không chứa info quan trọng
+- Full: Scenario B turn 7 thêm 1,560 tokens history → với Sonnet đắt thêm ~$0.005/turn
+- Kết luận: Last 3 cho Economy, Last 5 cho Smart Balance, Full cho VIP Concierge
 ```
 
 ---
 
-## Bước 4 — Sơ bộ nhóm muốn thử những combo nào?
-
-Chưa cần quyết định cuối cùng. Chỉ cần phác thảo: nhóm dự định thử ít nhất 3 combo khác nhau. Càng khác nhau, càng dễ thấy tradeoff.
+## Bước 4 — Sơ bộ các combo sẽ thử
 
 **Combo 1 (định hướng cheap)**:
 
 ```text
-Model: ___    Web: ___    History: ___    (đặt tên dự kiến: ___)
+Model: GPT-4o-mini (tất cả intents)    Web: OFF    History: Last 3
+Đặt tên dự kiến: "Economy Mode"
 ```
 
 **Combo 2 (định hướng premium)**:
 
 ```text
-Model: ___    Web: ___    History: ___    (đặt tên dự kiến: ___)
+Model: Claude Sonnet 4.6 (tất cả intents)    Web: ON selective (Visa+Weather)    History: Full
+Đặt tên dự kiến: "VIP Concierge"
 ```
 
-**Combo 3 (định hướng balanced / smart mix)**:
+**Combo 3 (định hướng balanced)**:
 
 ```text
-Model: ___    Web: ___    History: ___    (đặt tên dự kiến: ___)
+Model: GPT-4o-mini cho Guide/Weather, Claude Haiku 4.5 cho Visa    Web: ON selective    History: Last 5
+Đặt tên dự kiến: "Smart Balance"
 ```
 
-**Combo 4** (optional — nếu nhóm có ý tưởng khác):
+**Combo 4** (optional):
 
 ```text
-Model: ___    Web: ___    History: ___    (đặt tên dự kiến: ___)
+Model: Gemini 2.5 Flash-Lite (tất cả intents)    Web: ON selective (Visa+Weather)    History: Last 5
+Đặt tên dự kiến: "Google Lite" — thử provider khác với giá thấp nhất thị trường
 ```
 
 ---
 
 ## Bảng kiểm trước khi sang file tiếp theo
 
-- [ ] Đã vẽ flow base có đủ 4 bước (Intent → Route → Context → Response)
-- [ ] Hiểu Booking + Khiếu nại = $0 LLM cost (chuyển con người)
-- [ ] Đã phác thảo ≥3 combo khác nhau (chưa cần chi tiết)
-- [ ] Nhóm đồng thuận về hướng đi mỗi combo
+- [x] Đã vẽ flow base có đủ 4 bước (Intent → Route → Context → Response)
+- [x] Hiểu Booking + Khiếu nại = $0 LLM cost (chuyển con người)
+- [x] Đã phác thảo ≥3 combo khác nhau (chưa cần chi tiết)
+- [x] Nhóm đồng thuận về hướng đi mỗi combo
 
 Xong → 10:25 chuyển sang **Main phase**. Mở `02-config-design.md`.
